@@ -5,4 +5,4 @@ body:
   - type: textarea
     attributes:
       label: Describe The Bug
-      placeholer: 🎷🐛 🎷🐛 🎷🐛
+      placeholder: 🎷🐛 🎷🐛 🎷🐛
