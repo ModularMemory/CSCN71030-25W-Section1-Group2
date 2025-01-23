@@ -4,5 +4,5 @@ labels: ["bug"]
 body:
   - type: textarea
     attributes:
-    label: Describe The Bug
-    placeholer: 🎷🐛 🎷🐛 🎷🐛
+      label: Describe The Bug
+      placeholer: 🎷🐛 🎷🐛 🎷🐛
