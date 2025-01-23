@@ -1,0 +1,7 @@
+name: Other
+description: Report something else
+body:
+  - type: textarea
+    attributes:
+      label: Describe The Report
+      placeholder: We must steal the moon!
