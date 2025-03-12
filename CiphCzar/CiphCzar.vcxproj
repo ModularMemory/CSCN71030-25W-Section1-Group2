@@ -128,14 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="algorithm.c" />
-    <ClCompile Include="algorithms.c" />
     <ClCompile Include="argument.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="result.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
-    <ClInclude Include="algorithms.h" />
     <ClInclude Include="argument.h" />
+    <ClInclude Include="result.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

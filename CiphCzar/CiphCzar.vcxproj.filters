@@ -27,18 +27,18 @@
     <ClCompile Include="argument.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="algorithms.c">
+    <ClCompile Include="result.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="algorithm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="argument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="algorithms.h">
+    <ClInclude Include="result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
