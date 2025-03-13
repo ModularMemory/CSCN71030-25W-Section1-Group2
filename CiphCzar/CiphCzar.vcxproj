@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -129,15 +129,23 @@
   <ItemGroup>
     <ClCompile Include="algorithm.c" />
     <ClCompile Include="argument.c" />
+    <ClCompile Include="data.c" />
+    <ClCompile Include="main-ui.c" />
     <ClCompile Include="fileIO.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="result.c" />
+    <ClCompile Include="to_upper.c" />
+    <ClCompile Include="utils.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="argument.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />
     <ClInclude Include="result.h" />
+    <ClInclude Include="to_upper.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
