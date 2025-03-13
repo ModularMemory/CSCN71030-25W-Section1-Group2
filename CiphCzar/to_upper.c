@@ -6,25 +6,27 @@
 #include "to_upper.h"
 #include "utils.h"
 
-/*
-
-static result_t execute(const char* input, size_t input_len, pargument_t args, char** output, size_t* output_len) {
-    result_t out_res = allocate_string(input_len);
+static result_t execute(const data_t input, pargument_t args, data_t* output) {
+    result_t out_res = allocate_string(input.len);
     if (!out_res.success) {
         return out_res;
     }
 
     assert(out_res.data);
-    *output = out_res.data;
+    char* out_data = out_res.data;
 
-    for (size_t i = 0; i < input_len; i++) {
-        char c = input[i];
+    for (size_t i = 0; i < input.len; i++) {
+        char c = input.data[i];
         if (c >= 'a' && c <= 'z') {
             c = (char)toupper(c);
         }
 
-        *output[i] = c;
+        out_data[i] = c;
     }
+
+    *output = create_data(out_data, input.len);
+
+    return result_ok(NULL);
 }
 
 static result_t validate_args(pargument_t args) {
@@ -42,5 +44,3 @@ algorithm_t create_alg_to_upper(void) {
 
     return alg;
 }
-
-*/
