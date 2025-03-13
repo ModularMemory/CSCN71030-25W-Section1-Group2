@@ -45,8 +45,6 @@
     <ClCompile Include="main-ui.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="argument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
