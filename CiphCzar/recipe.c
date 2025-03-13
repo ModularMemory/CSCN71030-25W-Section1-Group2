@@ -22,7 +22,7 @@ bool recipe_is_empty(Recipe recipe) {
 
 result_t recipe_push(Recipe recipe, algorithm_t algorithm) {
     if (!recipe) {
-        return result_error("Recipe canot be NULL.");
+        return result_error("Recipe cannot be NULL.");
     }
 
     precipe_node_t new_node = (precipe_node_t)malloc(sizeof(recipe_node_t));
@@ -69,7 +69,23 @@ bool recipe_pop(Recipe recipe, algorithm_t* algorithm) {
 }
 
 result_t copy_recipe(Recipe recipe) {
-    return result_error("Not implemented.");
+    if (!recipe) {
+        return result_error("Source recipe was NULL.");
+    }
+
+    result_t new_recipe_res = create_recipe();
+    if (!new_recipe_res.success) {
+        return new_recipe_res;
+    }
+
+    Recipe new_recipe = (Recipe)new_recipe_res.data;
+
+    precipe_node_t current = recipe->head;
+    while (current) {
+        recipe_push(new_recipe, current->algorithm);
+    }
+
+    return result_ok(new_recipe);
 }
 
 void destroy_recipe(Recipe recipe) {
