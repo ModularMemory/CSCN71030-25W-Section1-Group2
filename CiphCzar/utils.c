@@ -11,7 +11,7 @@ result_t allocate_string(size_t length) {
     size_t allocSize = length + NULL_TERMINATOR_LEN;
     char* str = (char*)calloc(allocSize, sizeof(char));
     if (!str) {
-        return result_error(NULL, "Failed to allocate string.");
+        return result_error("Failed to allocate string.");
     }
 
     return result_ok(str);

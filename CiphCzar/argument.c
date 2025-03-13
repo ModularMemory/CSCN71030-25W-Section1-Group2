@@ -50,6 +50,8 @@ result_t append_integer_arg(pargument_t* list, const char* description, int init
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
+
+    return result_ok(NULL);
 }
 
 result_t append_float_arg(pargument_t* list, const char* description, float initial_val) {
@@ -65,6 +67,8 @@ result_t append_float_arg(pargument_t* list, const char* description, float init
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
+
+    return result_ok(NULL);
 }
 
 result_t append_string_arg(pargument_t* list, const char* description, char* initial_val) {
@@ -81,6 +85,8 @@ result_t append_string_arg(pargument_t* list, const char* description, char* ini
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
+
+    return result_ok(NULL);
 }
 
 void destroy_argument_list(pargument_t list) {
