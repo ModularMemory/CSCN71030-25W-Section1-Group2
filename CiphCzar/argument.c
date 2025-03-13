@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "argument.h"
+#include "utils.h"
 
 static result_t create_arg(const char* description, argument_type_t arg_type, argument_union_t arg_union) {
     pargument_t arg = (pargument_t)malloc(sizeof(argument_t));
@@ -71,13 +72,17 @@ result_t append_float_arg(pargument_t* list, const char* description, float init
     return result_ok(NULL);
 }
 
-result_t append_string_arg(pargument_t* list, const char* description, char* initial_val) {
+result_t append_string_arg(pargument_t* list, const char* description, const char* initial_val) {
     if (!list) {
         return result_error("List cannot be NULL!");
     }
 
-    // TODO: Copy the string?
-    argument_union_t arg_union = (argument_union_t){ .string = initial_val };
+    result_t copied_string = clone_string(initial_val);
+    if (!copied_string.success) {
+        return copied_string;
+    }
+    
+    argument_union_t arg_union = (argument_union_t){ .string = (char*)copied_string.data };
     result_t res = create_arg(description, STRING_ARG, arg_union);
     if (!res.success) {
         return res;
@@ -89,11 +94,19 @@ result_t append_string_arg(pargument_t* list, const char* description, char* ini
     return result_ok(NULL);
 }
 
+void destroy_argument(pargument_t arg) {
+    if (arg->arg_type == STRING_ARG) {
+        free(arg->arg_union.string);
+    }
+
+    free(arg);
+}
+
 void destroy_argument_list(pargument_t list) {
     argument_t* current = list;
     while (current) {
         argument_t* temp = current->next;
-        free(current);
+        destroy_argument(current);
         current = temp;
     }
 }

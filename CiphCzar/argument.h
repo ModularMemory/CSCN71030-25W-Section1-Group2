@@ -27,6 +27,8 @@ result_t append_integer_arg(pargument_t* list, const char* description, int init
 
 result_t append_float_arg(pargument_t* list, const char* description, float initial_val);
 
-result_t append_string_arg(pargument_t* list, const char* description, char* initial_val);
+result_t append_string_arg(pargument_t* list, const char* description, const char* initial_val);
+
+void destroy_argument(pargument_t arg);
 
 void destroy_argument_list(pargument_t list);
