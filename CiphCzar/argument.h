@@ -2,6 +2,7 @@
 
 #include <stdbool.h>
 
+
 typedef enum {
     INTEGER_ARG,
     STRING_ARG,

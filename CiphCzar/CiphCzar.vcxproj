@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClCompile Include="algorithm.c" />
     <ClCompile Include="argument.c" />
+    <ClCompile Include="main-ui.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="result.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="argument.h" />
+    <ClInclude Include="main-ui.h" />
     <ClInclude Include="result.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
