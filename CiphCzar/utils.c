@@ -5,7 +5,6 @@
 #include <string.h>
 
 #define NULL_TERMINATOR_LEN 1
-/*
 
 result_t allocate_string(size_t length) {
     size_t allocSize = length + NULL_TERMINATOR_LEN;
@@ -34,5 +33,3 @@ result_t clone_string(const char* origin) {
 
     return result_ok(str);
 }
-
-*/

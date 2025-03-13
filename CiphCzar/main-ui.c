@@ -13,7 +13,7 @@
 
 void printIntro() {
 	printf("%s\n\n", LOGO);
-	printf("Welcome to CyphCzar!\n")
+	printf("Welcome to CyphCzar!\n");
 	return;
 }
 
