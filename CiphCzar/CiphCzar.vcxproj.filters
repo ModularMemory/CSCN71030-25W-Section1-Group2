@@ -16,8 +16,8 @@
     <Filter Include="Source Files\Algorithms">
       <UniqueIdentifier>{5cba9ebd-824b-4d52-9bcc-e0e6e24b18e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI">
-      <UniqueIdentifier>{28a5baa5-82bf-4e6c-85fd-f1781f762a37}</UniqueIdentifier>
+    <Filter Include="Header Files\Algorithms">
+      <UniqueIdentifier>{952d18a0-4515-487e-b680-c1134e863a12}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,7 +33,10 @@
     <ClCompile Include="result.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main-ui.c">
+    <ClCompile Include="to_upper.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +50,10 @@
     <ClInclude Include="algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main-ui.h">
+    <ClInclude Include="to_upper.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
