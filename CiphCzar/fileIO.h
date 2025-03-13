@@ -1,13 +1,17 @@
 #pragma once
 
+#include <stdio.h>
+
+#include "data.h"
+#include "result.h"
 
 result_t read_data(char* filename, data_t* data);
 
 result_t write_data(char* filename, data_t* data);
 
-result_t read_recipe(char* filename, recipe_t* recipe);
+//result_t read_recipe(char* filename, recipe_t* recipe);
 
-result_t write_recipe(char* filename, recipe_t* recipe);
+//result_t write_recipe(char* filename, recipe_t* recipe);
 
 result_t write_string_to_stream(FILE* fp, char* data);
 

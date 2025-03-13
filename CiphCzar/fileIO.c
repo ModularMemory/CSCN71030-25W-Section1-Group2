@@ -1,8 +1,6 @@
-
-#include <stdio.h>
 #include <stdlib.h>
+
 #include "fileIO.h"
-#include "result.h"
 
 // these function open and close from a file name
 result_t read_data(char* filename, data_t* data) {
@@ -19,18 +17,18 @@ result_t write_data(char* filename, data_t* data) {
 
 }
 
-result_t read_recipe(char* filename, recipe_t* recipe) {
-	FILE* fp = fopen(filename, "r");
-	if (fp == NULL) {
-		return result_error("File not found");
-	}
+//result_t read_recipe(char* filename, recipe_t* recipe) {
+//	FILE* fp = fopen(filename, "r");
+//	if (fp == NULL) {
+//		return result_error("File not found");
+//	}
+//
+//	fclose(fp);
+//}
 
-	fclose(fp);
-}
-
-result_t write_recipe(char* filename, recipe_t* recipe) {
-
-}
+//result_t write_recipe(char* filename, recipe_t* recipe) {
+//
+//}
 ////
 
 // these functions take an already open file 

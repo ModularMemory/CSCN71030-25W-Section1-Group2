@@ -133,6 +133,8 @@
     <ClCompile Include="main-ui.c" />
     <ClCompile Include="fileIO.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="recipe.c" />
+    <ClCompile Include="recipe_enumerator.c" />
     <ClCompile Include="result.c" />
     <ClCompile Include="to_upper.c" />
     <ClCompile Include="utils.c" />
@@ -143,6 +145,8 @@
     <ClInclude Include="data.h" />
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />
+    <ClInclude Include="recipe.h" />
+    <ClInclude Include="recipe_enumerator.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="to_upper.h" />
     <ClInclude Include="utils.h" />

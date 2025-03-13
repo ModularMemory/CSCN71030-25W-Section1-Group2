@@ -48,6 +48,12 @@
     <ClCompile Include="fileIO.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="recipe.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recipe_enumerator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -72,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fileIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recipe_enumerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
