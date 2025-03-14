@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#include "rot_common.h"
 #include "to_lower.h"
 #include "utils.h"
 
@@ -13,27 +14,7 @@ status_t rot_13_execute(const data_t input, const pargument_t args, data_t* outp
     assert(out_res.data);
     char* out_data = out_res.data;
 
-    for (size_t i = 0; i < input.len; i++) {
-        char c = input.data[i];
-        if (c >= 'a' && c <= 'z') {
-            c += 13;
-
-            // Wrap char around range
-            if (c > 'z') {
-                c -= 26;
-            }
-        }
-        else if (c >= 'A' && c <= 'Z') {
-            c += 13;
-
-            // Wrap char around range
-            if (c > 'Z') {
-                c -= 26;
-            }
-        }
-
-        out_data[i] = c;
-    }
+    rotate_impl(input.data, out_data, input.len, true, true, false, 13);
 
     *output = create_data(out_data, input.len);
 

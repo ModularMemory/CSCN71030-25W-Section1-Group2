@@ -66,6 +66,12 @@
     <ClCompile Include="rot_n.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
+    <ClCompile Include="base64_common.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="rot_common.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -108,6 +114,12 @@
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
     <ClInclude Include="rot_n.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="base64_common.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="rot_common.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>

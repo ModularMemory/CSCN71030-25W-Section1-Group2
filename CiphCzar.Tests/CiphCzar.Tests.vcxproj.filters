@@ -60,6 +60,9 @@
     <ClCompile Include="..\CiphCzar\to_upper.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\rot_common.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="..\CiphCzar\to_upper.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\rot_common.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
   </ItemGroup>

@@ -164,6 +164,7 @@
     <ClCompile Include="..\CiphCzar\recipe.c" />
     <ClCompile Include="..\CiphCzar\recipe_enumerator.c" />
     <ClCompile Include="..\CiphCzar\rot_13.c" />
+    <ClCompile Include="..\CiphCzar\rot_common.c" />
     <ClCompile Include="..\CiphCzar\rot_n.c" />
     <ClCompile Include="..\CiphCzar\status_result.c" />
     <ClCompile Include="..\CiphCzar\to_base64.c" />
@@ -179,6 +180,7 @@
     <ClInclude Include="..\CiphCzar\recipe.h" />
     <ClInclude Include="..\CiphCzar\recipe_enumerator.h" />
     <ClInclude Include="..\CiphCzar\rot_13.h" />
+    <ClInclude Include="..\CiphCzar\rot_common.h" />
     <ClInclude Include="..\CiphCzar\rot_n.h" />
     <ClInclude Include="..\CiphCzar\status_result.h" />
     <ClInclude Include="..\CiphCzar\to_base64.h" />

@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#include "rot_common.h"
 #include "to_lower.h"
 #include "utils.h"
 
@@ -13,38 +14,12 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
 
     assert(args);
     assert(args->arg_type == INTEGER_ARG);
-    int rotation_count = args->arg_union.integer;
+    int rotate_count = args->arg_union.integer;
 
     assert(out_res.data);
     char* out_data = out_res.data;
 
-    for (size_t i = 0; i < input.len; i++) {
-        // long long to ensure we don't overflow/underflow the type
-        long long c = (long long)input.data[i];
-
-        if (c >= 'a' && c <= 'z') {
-            c += rotation_count;
-
-            // Wrap char around range
-            while (c < 'a') {
-                c += 26;
-            }
-
-            c %= 26;
-        }
-        else if (c >= 'A' && c <= 'Z') {
-            c += rotation_count;
-
-            // Wrap char around range
-            while (c < 'A') {
-                c += 26;
-            }
-
-            c %= 26;
-        }
-
-        out_data[i] = (char)c;
-    }
+    rotate_impl(input.data, out_data, input.len, true, true, false, rotate_count);
 
     *output = create_data(out_data, input.len);
 

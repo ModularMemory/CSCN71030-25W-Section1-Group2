@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="algorithm.c" />
     <ClCompile Include="argument.c" />
+    <ClCompile Include="base64_common.c" />
     <ClCompile Include="data.c" />
     <ClCompile Include="main-ui.c" />
     <ClCompile Include="fileIO.c" />
@@ -136,6 +137,7 @@
     <ClCompile Include="recipe.c" />
     <ClCompile Include="recipe_enumerator.c" />
     <ClCompile Include="rot_13.c" />
+    <ClCompile Include="rot_common.c" />
     <ClCompile Include="rot_n.c" />
     <ClCompile Include="status_result.c" />
     <ClCompile Include="to_base64.c" />
@@ -146,12 +148,14 @@
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="argument.h" />
+    <ClInclude Include="base64_common.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />
     <ClInclude Include="recipe.h" />
     <ClInclude Include="recipe_enumerator.h" />
     <ClInclude Include="rot_13.h" />
+    <ClInclude Include="rot_common.h" />
     <ClInclude Include="rot_n.h" />
     <ClInclude Include="status_result.h" />
     <ClInclude Include="to_base64.h" />
