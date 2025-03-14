@@ -68,7 +68,7 @@ bool recipe_pop(recipe_t recipe, algorithm_t* algorithm) {
     return true;
 }
 
-RESULT(recipe_t) copy_recipe(recipe_t recipe) {
+RESULT(recipe_t) clone_recipe(recipe_t recipe) {
     if (!recipe) {
         return result_error("Source recipe was NULL.");
     }
@@ -82,7 +82,13 @@ RESULT(recipe_t) copy_recipe(recipe_t recipe) {
 
     precipe_node_t current = recipe->head;
     while (current) {
-        recipe_push(new_recipe, current->algorithm);
+        status_t push_stat = recipe_push(new_recipe, current->algorithm);
+        if (!push_stat.success) {
+            destroy_recipe(new_recipe);
+            return to_result(push_stat);
+        }
+
+        current = current->next;
     }
 
     return result_ok(new_recipe);

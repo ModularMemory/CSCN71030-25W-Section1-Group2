@@ -8,7 +8,7 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
         return result_error("Failed to allocate enumerator.");
     }
 
-    result_t recipe2_res = copy_recipe(recipe);
+    result_t recipe2_res = clone_recipe(recipe);
     if (!recipe2_res.success) {
         return recipe2_res;
     }
@@ -23,7 +23,7 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
     enumerator->recipe = (recipe_t)recipe2_res.data;
     enumerator->rolling_result = rolling_result;
 
-    return result_error("Not implemented.");
+    return result_ok(enumerator);
 }
 
 bool recipe_enumerator_has_moved(recipe_enumerator_t enumerator) {
