@@ -133,6 +133,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="result.c" />
     <ClCompile Include="to_upper.c" />
+    <ClCompile Include="userInput.c" />
     <ClCompile Include="utils.c" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="to_upper.h" />
+    <ClInclude Include="userInput.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

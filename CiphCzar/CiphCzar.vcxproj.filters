@@ -45,6 +45,9 @@
     <ClCompile Include="main-ui.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="userInput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="main-ui.h">
       <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="userInput.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

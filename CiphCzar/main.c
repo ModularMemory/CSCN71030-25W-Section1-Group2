@@ -2,6 +2,7 @@
 
 int main(void) {
     printIntro();
+    printMainMenu();
 
     return 0;
 }
