@@ -26,6 +26,14 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
     return result_error("Not implemented.");
 }
 
+bool recipe_enumerator_has_moved(recipe_enumerator_t enumerator) {
+    return enumerator->has_moved;
+}
+
+bool recipe_enumerator_is_empty(recipe_enumerator_t enumerator) {
+    return recipe_enumerator_has_moved(enumerator) && enumerator->recipe->head;
+}
+
 bool recipe_enumerator_move_next(recipe_enumerator_t enumerator) {
     return false;
 }
@@ -35,12 +43,12 @@ status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
 }
 
 RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enumerator) {
-    if (!enumerator->has_moved) {
+    if (!recipe_enumerator_has_moved(enumerator)) {
         return result_error("Enumerator has not moved yet.");
     }
 
     // Not required to access rolling result, but maintains consistency with current_name
-    if (!enumerator->recipe->head) {
+    if (!recipe_enumerator_is_empty(enumerator)) {
         return result_error("Enumerator is empty.");
     }
 
@@ -48,11 +56,11 @@ RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enume
 }
 
 RESULT(const char*) recipe_enumerator_current_name(recipe_enumerator_t enumerator) {
-    if (!enumerator->has_moved) {
+    if (!recipe_enumerator_has_moved(enumerator)) {
         return result_error("Enumerator has not moved yet.");
     }
 
-    if (!enumerator->recipe->head) {
+    if (!recipe_enumerator_is_empty(enumerator)) {
         return result_error("Enumerator is empty.");
     }
 

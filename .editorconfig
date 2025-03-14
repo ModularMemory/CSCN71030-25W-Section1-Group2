@@ -5,7 +5,7 @@ root = true
 
 # Visual C++ Code Style settings
 
-cpp_generate_documentation_comments = xml
+cpp_generate_documentation_comments = doxygen_triple_slash
 
 # Visual C++ Formatting settings
 
