@@ -27,10 +27,10 @@ bool recipe_enumerator_move_next(recipe_enumerator_t enumerator);
 /// @brief Computes the result of the current algorithm with the rolling result as input
 status_t recipe_enumerator_execute(recipe_enumerator_t enumerator);
 
-/// @brief Returns the current rolling result of the enumerator
+/// @brief Gets the read-only current rolling result of the enumerator
 RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enumerator);
 
-/// @brief Returns the name of the current algorithm
+/// @brief Gets the read-only name of the current algorithm
 RESULT(const char*) recipe_enumerator_current_name(recipe_enumerator_t enumerator);
 
 void destroy_recipe_enumerator(recipe_enumerator_t enumerator);
