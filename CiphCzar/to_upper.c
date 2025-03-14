@@ -6,7 +6,7 @@
 #include "to_upper.h"
 #include "utils.h"
 
-static status_t execute(const data_t input, const pargument_t args, data_t* output) {
+status_t to_upper_execute(const data_t input, const pargument_t args, data_t* output) {
     result_t out_res = allocate_string(input.len);
     if (!out_res.success) {
         return to_status(out_res);
@@ -29,18 +29,8 @@ static status_t execute(const data_t input, const pargument_t args, data_t* outp
     return status_ok();
 }
 
-static status_t validate_args(const pargument_t args) {
+status_t to_upper_validate_args(const pargument_t args) {
     return status_ok();
 }
 
-algorithm_t create_alg_to_upper(void) {
-    algorithm_t alg = { 0 };
-
-    alg.name = "To Upper";
-    alg.description = "Uppercases all of the readable characters in the input buffer.";
-    alg.execute = execute;
-    alg.validate_args = validate_args;
-    alg.additional_args = NULL;
-
-    return alg;
-}
+void to_upper_reset_args(algorithm_t* alg) {}

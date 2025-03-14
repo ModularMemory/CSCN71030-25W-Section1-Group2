@@ -6,19 +6,27 @@
 #include "data.h"
 #include "status_result.h"
 
-typedef struct {
+typedef struct algorithm {
     const char* name;
     const char* description;
     status_t (*execute)(const data_t input, const pargument_t args, data_t* output);
     status_t (*validate_args)(const pargument_t args);
     pargument_t additional_args;
+    void (*reset_args)(struct algorithm* alg);
 } algorithm_t;
 
-typedef struct algorithm_list {
-    struct algorithm_list* next;
-    algorithm_t algorithm;
-} algorithm_list_t, *palgorithm_list_t;
+status_t clone_algorithm(const algorithm_t* source, algorithm_t* dest);
 
-const palgorithm_list_t get_algorithms(void);
+typedef struct {
+    algorithm_t* algorithms;
+    size_t len;
+} algorithm_list_t;
 
-algorithm_t get_algorithm_by_name(const char* name);
+/// @brief Gets a read-only list of all available algorithms 
+const algorithm_list_t get_algorithms(void);
+
+/// @brief Gets a read-only pointer to an algorithm by index in the algorithm list.
+RESULT(const algorithm_t*) get_algorithm_by_index(int index);
+
+/// @brief Gets a read-only pointer to an algorithm by name (case insensitive).
+RESULT(const algorithm_t*) get_algorithm_by_name(const char* name);
