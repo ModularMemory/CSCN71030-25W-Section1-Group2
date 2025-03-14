@@ -13,10 +13,90 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\External">
+      <UniqueIdentifier>{8c17270b-fd5b-44bd-8a9b-d1d8e98ec730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\External">
+      <UniqueIdentifier>{254cca39-c02b-49c6-8fd9-0afb04e610d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CiphCzar.Tests.cpp">
+    <ClCompile Include="recipe_enumerator.tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\recipe_enumerator.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\status_result.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\recipe.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\data.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\algorithm.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\argument.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\utils.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\rot_13.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\rot_n.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_base64.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_lower.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_upper.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CiphCzar\utils.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\status_result.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\recipe_enumerator.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\recipe.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\data.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\argument.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\algorithm.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\rot_13.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\rot_n.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\to_base64.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\to_lower.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\to_upper.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
