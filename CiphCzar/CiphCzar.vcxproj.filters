@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Algorithms">
       <UniqueIdentifier>{952d18a0-4515-487e-b680-c1134e863a12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{0a27141f-4320-4cbb-bc02-c917cadc9ed7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -40,7 +43,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main-ui.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +63,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="main-ui.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

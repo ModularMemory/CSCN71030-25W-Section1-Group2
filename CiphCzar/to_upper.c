@@ -6,7 +6,7 @@
 #include "to_upper.h"
 #include "utils.h"
 
-/*
+
 
 static result_t execute(const char* input, size_t input_len, pargument_t args, char** output, size_t* output_len) {
     result_t out_res = allocate_string(input_len);
@@ -43,4 +43,3 @@ algorithm_t create_alg_to_upper(void) {
     return alg;
 }
 
-*/

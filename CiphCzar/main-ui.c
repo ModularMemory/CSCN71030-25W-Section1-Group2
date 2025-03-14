@@ -1,26 +1,24 @@
-#define LOGO \
-"       _______ __    _________    ___     ___ \n" \
-"      /      / \\ \\  /  /  __  \\  /  /    /  / \n" \
-"     /  ____/   \\ \\/  /  /  \\  \\/  /    /  / \n" \
-"    /  /         \\   /   \\__/  /  /____/  / \n" \
-"   /  /          /  /  ,______/  _____   / \n" \
-"  /  /____      /  /  /      /  /    /  / \n" \
-" /       /_____/  /  /______/  /____/  /______ \n" \
-"/____________________________________________/ \n"
+#define LOGO "temp :p"
 
 #include "main-ui.h"
 #include <stdio.h>
 
 void printIntro() {
-	printf("%s\n\n", LOGO);
-	printf("Welcome to CyphCzar!\n")
+	printf("%s\n\n" "\x1b[0m", LOGO);
+	printf("Welcome to CyphCzar!\n" "\x1b[0m");
 	return;
 }
 
 void printMainMenu() {
 	char response = '\0';
 
-	printf("");
+	printf("Main menu:\n");
+
+	do {
+		while (response == '\0');
+		if (97 <= (int)response <= 101) break;
+		response = '\0';
+	}
 
 	return;
 }

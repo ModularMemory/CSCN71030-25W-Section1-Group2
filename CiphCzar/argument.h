@@ -1,7 +1,5 @@
 #pragma once
 
-/*
-
 #include <stdbool.h>
 
 #include "result.h"
@@ -33,4 +31,3 @@ result_t append_string_arg(pargument_t* list, const char* description, char* ini
 
 void destroy_argument_list(pargument_t list);
 
-*/

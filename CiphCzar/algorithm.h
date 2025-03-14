@@ -5,8 +5,6 @@
 #include "argument.h"
 #include "result.h"
 
-/*
-
 typedef struct {
     const char* name;
     const char* description;
@@ -15,5 +13,4 @@ typedef struct {
     pargument_t additional_args;
 } algorithm_t;
 
-*/
 
