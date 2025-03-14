@@ -38,60 +38,60 @@ static void append_arg(pargument_t* list, pargument_t arg) {
     current->next = arg;
 }
 
-result_t append_integer_arg(pargument_t* list, const char* description, int initial_val) {
+status_t append_integer_arg(pargument_t* list, const char* description, int initial_val) {
     if (!list) {
-        return result_error("List cannot be NULL!");
+        return status_error("List cannot be NULL!");
     }
 
     argument_union_t arg_union = (argument_union_t){ .integer = initial_val };
     result_t res = create_arg(description, INTEGER_ARG, arg_union);
     if (!res.success) {
-        return res;
+        return to_status(res);
     }
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
-result_t append_float_arg(pargument_t* list, const char* description, float initial_val) {
+status_t append_float_arg(pargument_t* list, const char* description, float initial_val) {
     if (!list) {
-        return result_error("List cannot be NULL!");
+        return status_error("List cannot be NULL!");
     }
 
     argument_union_t arg_union = (argument_union_t){ .fp = initial_val };
     result_t res = create_arg(description, FLOAT_ARG, arg_union);
     if (!res.success) {
-        return res;
+        return to_status(res);
     }
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
-result_t append_string_arg(pargument_t* list, const char* description, const char* initial_val) {
+status_t append_string_arg(pargument_t* list, const char* description, const char* initial_val) {
     if (!list) {
-        return result_error("List cannot be NULL!");
+        return status_error("List cannot be NULL!");
     }
 
     result_t copied_string = clone_string(initial_val);
     if (!copied_string.success) {
-        return copied_string;
+        return to_status(copied_string);
     }
     
     argument_union_t arg_union = (argument_union_t){ .string = (char*)copied_string.data };
     result_t res = create_arg(description, STRING_ARG, arg_union);
     if (!res.success) {
-        return res;
+        return to_status(res);
     }
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
 void destroy_argument(pargument_t arg) {

@@ -3,7 +3,7 @@
 
 #include "recipe.h"
 
-result_t create_recipe(void) {
+RESULT(Recipe) create_recipe(void) {
     Recipe rec = (Recipe)malloc(sizeof(struct recipe));
     if (!rec) {
         return result_error("Failed to allocate recipe.");
@@ -20,14 +20,14 @@ bool recipe_is_empty(Recipe recipe) {
     return recipe->head == NULL;
 }
 
-result_t recipe_push(Recipe recipe, algorithm_t algorithm) {
+status_t recipe_push(Recipe recipe, algorithm_t algorithm) {
     if (!recipe) {
-        return result_error("Recipe cannot be NULL.");
+        return status_error("Recipe cannot be NULL.");
     }
 
     precipe_node_t new_node = (precipe_node_t)malloc(sizeof(recipe_node_t));
     if (!new_node) {
-        return result_error("Failed to allocate new recipe node.");
+        return status_error("Failed to allocate new recipe node.");
     }
 
     new_node->next = NULL;
@@ -42,7 +42,7 @@ result_t recipe_push(Recipe recipe, algorithm_t algorithm) {
         recipe->tail = new_node;
     }
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
 bool recipe_pop(Recipe recipe, algorithm_t* algorithm) {
@@ -68,7 +68,7 @@ bool recipe_pop(Recipe recipe, algorithm_t* algorithm) {
     return true;
 }
 
-result_t copy_recipe(Recipe recipe) {
+RESULT(Recipe) copy_recipe(Recipe recipe) {
     if (!recipe) {
         return result_error("Source recipe was NULL.");
     }

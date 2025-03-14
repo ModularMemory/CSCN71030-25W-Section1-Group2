@@ -6,7 +6,7 @@
 
 #define NULL_TERMINATOR_LEN 1
 
-result_t allocate_string(size_t length) {
+RESULT(char*) allocate_string(size_t length) {
     size_t allocSize = length + NULL_TERMINATOR_LEN;
     char* str = (char*)calloc(allocSize, sizeof(char));
     if (!str) {
@@ -16,8 +16,9 @@ result_t allocate_string(size_t length) {
     return result_ok(str);
 }
 
-result_t clone_string(const char* origin) {
+RESULT(char*) clone_string(const char* origin) {
     if (!origin) {
+        // Special case: Caller most likely expects ok(NULL) over error("Origin was NULL.")
         return result_ok(NULL);
     }
 

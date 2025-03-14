@@ -30,9 +30,6 @@
     <ClCompile Include="argument.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="result.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="to_upper.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
@@ -54,12 +51,15 @@
     <ClCompile Include="recipe_enumerator.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="status_result.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="result.h">
+    <ClInclude Include="status_result.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="algorithm.h">
@@ -86,5 +86,8 @@
     <ClInclude Include="recipe_enumerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

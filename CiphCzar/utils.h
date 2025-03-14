@@ -2,8 +2,8 @@
 
 #include <stddef.h>
 
-#include "result.h"
+#include "status_result.h"
 
-result_t allocate_string(size_t length);
+RESULT(char*) allocate_string(size_t length);
 
-result_t clone_string(const char* origin);
+RESULT(char*) clone_string(const char* origin);

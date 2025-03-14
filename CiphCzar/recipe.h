@@ -14,14 +14,14 @@ typedef struct recipe {
     precipe_node_t tail;
 } *Recipe;
 
-result_t create_recipe(void);
+RESULT(Recipe) create_recipe(void);
 
 bool recipe_is_empty(Recipe recipe);
 
-result_t recipe_push(Recipe recipe, algorithm_t algorithm);
+status_t recipe_push(Recipe recipe, algorithm_t algorithm);
 
 bool recipe_pop(Recipe recipe, algorithm_t* algorithm);
 
-result_t copy_recipe(Recipe recipe);
+RESULT(Recipe) copy_recipe(Recipe recipe);
 
 void destroy_recipe(Recipe recipe);

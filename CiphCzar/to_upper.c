@@ -6,10 +6,10 @@
 #include "to_upper.h"
 #include "utils.h"
 
-static result_t execute(const data_t input, pargument_t args, data_t* output) {
+static status_t execute(const data_t input, pargument_t args, data_t* output) {
     result_t out_res = allocate_string(input.len);
     if (!out_res.success) {
-        return out_res;
+        return to_status(out_res);
     }
 
     assert(out_res.data);
@@ -26,11 +26,11 @@ static result_t execute(const data_t input, pargument_t args, data_t* output) {
 
     *output = create_data(out_data, input.len);
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
-static result_t validate_args(pargument_t args) {
-    return result_ok(NULL);
+static status_t validate_args(pargument_t args) {
+    return status_ok();
 }
 
 algorithm_t create_alg_to_upper(void) {

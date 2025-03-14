@@ -1,0 +1,6 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define RESULT(type)
+#define __crt_typefix(ctype) __declspec("SAL_typefix(" _CRT_STRINGIZE(ctype) ")")
+#define __crt_typefix(ctype)
