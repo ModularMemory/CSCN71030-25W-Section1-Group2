@@ -54,6 +54,9 @@
     <ClCompile Include="status_result.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="to_lower.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="recipe_enumerator.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="to_lower.h">
+      <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

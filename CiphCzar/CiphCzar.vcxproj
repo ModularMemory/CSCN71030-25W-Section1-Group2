@@ -136,6 +136,7 @@
     <ClCompile Include="recipe.c" />
     <ClCompile Include="recipe_enumerator.c" />
     <ClCompile Include="status_result.c" />
+    <ClCompile Include="to_lower.c" />
     <ClCompile Include="to_upper.c" />
     <ClCompile Include="utils.c" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="recipe.h" />
     <ClInclude Include="recipe_enumerator.h" />
     <ClInclude Include="status_result.h" />
+    <ClInclude Include="to_lower.h" />
     <ClInclude Include="to_upper.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
