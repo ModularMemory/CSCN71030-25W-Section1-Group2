@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 
-#include "result.h"
+#include "status_result.h"
 
 typedef enum {
     INTEGER_ARG,
@@ -23,11 +23,14 @@ typedef struct argument {
     argument_union_t arg_union;
 } argument_t, *pargument_t;
 
-result_t append_integer_arg(pargument_t* list, const char* description, int initial_val);
+status_t append_integer_arg(pargument_t* list, const char* description, int initial_val);
 
-result_t append_float_arg(pargument_t* list, const char* description, float initial_val);
+status_t append_float_arg(pargument_t* list, const char* description, float initial_val);
 
-result_t append_string_arg(pargument_t* list, const char* description, char* initial_val);
+status_t append_string_arg(pargument_t* list, const char* description, const char* initial_val);
+
+RESULT(pargument_t) clone_argument_list(const pargument_t source_list);
+
+void destroy_argument(pargument_t arg);
 
 void destroy_argument_list(pargument_t list);
-

@@ -33,13 +33,13 @@
     <ClCompile Include="argument.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="result.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="to_upper.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
     <ClCompile Include="utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main-ui.c">
@@ -48,12 +48,27 @@
     <ClCompile Include="userInput.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileIO.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recipe.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recipe_enumerator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="status_result.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="to_lower.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="result.h">
+    <ClInclude Include="status_result.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="algorithm.h">
@@ -65,11 +80,29 @@
     <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="main-ui.h">
       <Filter>Source Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="userInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="fileIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recipe_enumerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="to_lower.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

@@ -3,10 +3,10 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "to_upper.h"
+#include "to_lower.h"
 #include "utils.h"
 
-status_t to_upper_execute(const data_t input, const pargument_t args, data_t* output) {
+status_t to_lower_execute(const data_t input, const pargument_t args, data_t* output) {
     result_t out_res = allocate_string(input.len);
     if (!out_res.success) {
         return to_status(out_res);
@@ -17,8 +17,8 @@ status_t to_upper_execute(const data_t input, const pargument_t args, data_t* ou
 
     for (size_t i = 0; i < input.len; i++) {
         char c = input.data[i];
-        if (c >= 'a' && c <= 'z') {
-            c = (char)toupper(c);
+        if (c >= 'A' && c <= 'Z') {
+            c = (char)tolower(c);
         }
 
         out_data[i] = c;
@@ -29,8 +29,8 @@ status_t to_upper_execute(const data_t input, const pargument_t args, data_t* ou
     return status_ok();
 }
 
-status_t to_upper_validate_args(const pargument_t args) {
+status_t to_lower_validate_args(const pargument_t args) {
     return status_ok();
 }
 
-void to_upper_reset_args(algorithm_t* alg) {}
+void to_lower_reset_args(algorithm_t* alg) {}

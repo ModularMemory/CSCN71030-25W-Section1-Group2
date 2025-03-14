@@ -3,8 +3,9 @@
 #include <stdio.h>
 
 #include "argument.h"
+#include "utils.h"
 
-static result_t create_arg(const char* description, argument_type_t arg_type, argument_union_t arg_union) {
+static RESULT(pargument_t) create_arg(const char* description, argument_type_t arg_type, argument_union_t arg_union) {
     pargument_t arg = (pargument_t)malloc(sizeof(argument_t));
     if (!arg) {
         return result_error("Failed to allocate new argument.");
@@ -37,63 +38,101 @@ static void append_arg(pargument_t* list, pargument_t arg) {
     current->next = arg;
 }
 
-result_t append_integer_arg(pargument_t* list, const char* description, int initial_val) {
+status_t append_integer_arg(pargument_t* list, const char* description, int initial_val) {
     if (!list) {
-        return result_error("List cannot be NULL!");
+        return status_error("List cannot be NULL!");
     }
 
     argument_union_t arg_union = (argument_union_t){ .integer = initial_val };
     result_t res = create_arg(description, INTEGER_ARG, arg_union);
     if (!res.success) {
-        return res;
+        return to_status(res);
     }
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
-result_t append_float_arg(pargument_t* list, const char* description, float initial_val) {
+status_t append_float_arg(pargument_t* list, const char* description, float initial_val) {
     if (!list) {
-        return result_error("List cannot be NULL!");
+        return status_error("List cannot be NULL!");
     }
 
     argument_union_t arg_union = (argument_union_t){ .fp = initial_val };
     result_t res = create_arg(description, FLOAT_ARG, arg_union);
     if (!res.success) {
-        return res;
+        return to_status(res);
     }
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
 
-    return result_ok(NULL);
+    return status_ok();
 }
 
-result_t append_string_arg(pargument_t* list, const char* description, char* initial_val) {
+status_t append_string_arg(pargument_t* list, const char* description, const char* initial_val) {
     if (!list) {
-        return result_error("List cannot be NULL!");
+        return status_error("List cannot be NULL!");
     }
 
-    // TODO: Copy the string?
-    argument_union_t arg_union = (argument_union_t){ .string = initial_val };
+    result_t copied_string = clone_string(initial_val);
+    if (!copied_string.success) {
+        return to_status(copied_string);
+    }
+    
+    argument_union_t arg_union = (argument_union_t){ .string = (char*)copied_string.data };
     result_t res = create_arg(description, STRING_ARG, arg_union);
     if (!res.success) {
-        return res;
+        return to_status(res);
     }
 
     assert(res.data);
     append_arg(list, (pargument_t)res.data);
 
-    return result_ok(NULL);
+    return status_ok();
+}
+
+RESULT(pargument_t) clone_argument_list(const pargument_t source_list) {
+    pargument_t source_current = source_list;
+    
+    pargument_t dest_prev = NULL;
+    pargument_t dest_current = NULL;
+    pargument_t dest_head = NULL;
+    while (source_current) {
+        dest_current = (pargument_t)malloc(sizeof(argument_t));
+        if (!dest_current) {
+            destroy_argument_list(dest_head);
+            return result_error("Failed to allocate argument node.");
+        }
+
+        if (!dest_head) {
+            dest_head = dest_current;
+            dest_prev = dest_current;
+        }
+        else {
+            dest_prev->next = dest_current;
+            dest_prev = dest_current;
+        }
+    }
+
+    return result_ok(dest_head);
+}
+
+void destroy_argument(pargument_t arg) {
+    if (arg->arg_type == STRING_ARG) {
+        free(arg->arg_union.string);
+    }
+
+    free(arg);
 }
 
 void destroy_argument_list(pargument_t list) {
-    argument_t* current = list;
+    pargument_t current = list;
     while (current) {
-        argument_t* temp = current->next;
-        free(current);
+        pargument_t temp = current->next;
+        destroy_argument(current);
         current = temp;
     }
 }
