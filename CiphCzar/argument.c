@@ -94,6 +94,32 @@ status_t append_string_arg(pargument_t* list, const char* description, const cha
     return status_ok();
 }
 
+RESULT(pargument_t) clone_argument_list(const pargument_t source_list) {
+    pargument_t source_current = source_list;
+    
+    pargument_t dest_prev = NULL;
+    pargument_t dest_current = NULL;
+    pargument_t dest_head = NULL;
+    while (source_current) {
+        dest_current = (pargument_t)malloc(sizeof(argument_t));
+        if (!dest_current) {
+            destroy_argument_list(dest_head);
+            return result_error("Failed to allocate argument node.");
+        }
+
+        if (!dest_head) {
+            dest_head = dest_current;
+            dest_prev = dest_current;
+        }
+        else {
+            dest_prev->next = dest_current;
+            dest_prev = dest_current;
+        }
+    }
+
+    return result_ok(dest_head);
+}
+
 void destroy_argument(pargument_t arg) {
     if (arg->arg_type == STRING_ARG) {
         free(arg->arg_union.string);
@@ -103,9 +129,9 @@ void destroy_argument(pargument_t arg) {
 }
 
 void destroy_argument_list(pargument_t list) {
-    argument_t* current = list;
+    pargument_t current = list;
     while (current) {
-        argument_t* temp = current->next;
+        pargument_t temp = current->next;
         destroy_argument(current);
         current = temp;
     }

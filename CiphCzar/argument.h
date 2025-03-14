@@ -29,6 +29,8 @@ status_t append_float_arg(pargument_t* list, const char* description, float init
 
 status_t append_string_arg(pargument_t* list, const char* description, const char* initial_val);
 
+RESULT(pargument_t) clone_argument_list(const pargument_t source_list);
+
 void destroy_argument(pargument_t arg);
 
 void destroy_argument_list(pargument_t list);
