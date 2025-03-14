@@ -2,7 +2,26 @@
 
 #include "recipe_enumerator.h"
 
-result_t create_recipe_enumerator(recipe_t recipe, const char* input_data) {
+RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data_t input_data) {
+    recipe_enumerator_t enumerator = (recipe_enumerator_t)malloc(sizeof(struct recipe_enumerator));
+    if (!enumerator) {
+        return result_error("Failed to allocate enumerator.");
+    }
+
+    result_t recipe2_res = copy_recipe(recipe);
+    if (!recipe2_res.success) {
+        return recipe2_res;
+    }
+
+    data_t rolling_result = { 0 };
+    status_t clone_stat = clone_data(input_data, &rolling_result);
+    if (!clone_stat.success) {
+        return to_result(clone_stat);
+    }
+
+    enumerator->recipe = (recipe_t)recipe2_res.data;
+    enumerator->rolling_result = rolling_result;
+
     return result_error("Not implemented.");
 }
 
@@ -14,11 +33,11 @@ status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
     return status_error("Not implemented.");
 }
 
-result_t recipe_enumerator_current_result(recipe_enumerator_t enumerator) {
+RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enumerator) {
     return result_error("Not implemented.");
 }
 
-result_t recipe_enumerator_current_name(recipe_enumerator_t enumerator) {
+RESULT(const char*) recipe_enumerator_current_name(recipe_enumerator_t enumerator) {
     return result_error("Not implemented.");
 }
 

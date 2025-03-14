@@ -3,15 +3,16 @@
 #include <stdio.h>
 
 #include "data.h"
+#include "recipe.h"
 #include "status_result.h"
 
 status_t read_data(const char* filename, data_t* data);
 
 status_t write_data(const char* filename, data_t data);
 
-//status_t read_recipe(const char* filename, recipe_t* recipe);
+status_t read_recipe(const char* filename, recipe_t* recipe);
 
-//status_t write_recipe(const char* filename, recipe_t recipe);
+status_t write_recipe(const char* filename, recipe_t recipe);
 
 status_t write_string_to_stream(FILE* fp, char* data);
 

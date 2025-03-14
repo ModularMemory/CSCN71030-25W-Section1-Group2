@@ -17,18 +17,18 @@ status_t write_data(const char* filename, data_t data) {
 
 }
 
-//status_t read_recipe(const char* filename, recipe_t* recipe) {
-//	FILE* fp = fopen(filename, "r");
-//	if (fp == NULL) {
-//		return status_error("File not found");
-//	}
-//
-//	fclose(fp);
-//}
+status_t read_recipe(const char* filename, recipe_t* recipe) {
+	FILE* fp = fopen(filename, "r");
+	if (fp == NULL) {
+		return status_error("File not found");
+	}
 
-//status_t write_recipe(const char* filename, recipe_t recipe) {
-//
-//}
+	fclose(fp);
+}
+
+status_t write_recipe(const char* filename, recipe_t recipe) {
+
+}
 ////
 
 // these functions take an already open file 
