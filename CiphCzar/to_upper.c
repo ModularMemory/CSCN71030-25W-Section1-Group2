@@ -6,7 +6,7 @@
 #include "to_upper.h"
 #include "utils.h"
 
-static status_t execute(const data_t input, pargument_t args, data_t* output) {
+static status_t execute(const data_t input, const pargument_t args, data_t* output) {
     result_t out_res = allocate_string(input.len);
     if (!out_res.success) {
         return to_status(out_res);
@@ -29,7 +29,7 @@ static status_t execute(const data_t input, pargument_t args, data_t* output) {
     return status_ok();
 }
 
-static status_t validate_args(pargument_t args) {
+static status_t validate_args(const pargument_t args) {
     return status_ok();
 }
 

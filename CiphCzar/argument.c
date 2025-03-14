@@ -5,7 +5,7 @@
 #include "argument.h"
 #include "utils.h"
 
-static result_t create_arg(const char* description, argument_type_t arg_type, argument_union_t arg_union) {
+static RESULT(pargument_t) create_arg(const char* description, argument_type_t arg_type, argument_union_t arg_union) {
     pargument_t arg = (pargument_t)malloc(sizeof(argument_t));
     if (!arg) {
         return result_error("Failed to allocate new argument.");
