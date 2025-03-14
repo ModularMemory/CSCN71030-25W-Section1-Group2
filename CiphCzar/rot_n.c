@@ -11,6 +11,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
         return to_status(out_res);
     }
 
+    assert(args);
     assert(args->arg_type == INTEGER_ARG);
     int rotation_count = args->arg_union.integer;
 
@@ -24,6 +25,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
         if (c >= 'a' && c <= 'z') {
             c += rotation_count;
 
+            // Wrap char around range
             while (c < 'a') {
                 c += 'a';
             }
@@ -33,6 +35,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
         else if (c >= 'A' && c <= 'Z') {
             c += rotation_count;
 
+            // Wrap char around range
             while (c < 'A') {
                 c += 'A';
             }
@@ -49,6 +52,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
 }
 
 status_t rot_n_validate_args(const pargument_t args) {
+    // We accept any integer
     return status_ok();
 }
 

@@ -17,12 +17,16 @@ status_t rot_13_execute(const data_t input, const pargument_t args, data_t* outp
         char c = input.data[i];
         if (c >= 'a' && c <= 'z') {
             c += 13;
+
+            // Wrap char around range
             if (c > 'z') {
                 c -= 'z';
             }
         }
         else if (c >= 'A' && c <= 'Z') {
             c += 13;
+
+            // Wrap char around range
             if (c > 'Z') {
                 c -= 'Z';
             }
