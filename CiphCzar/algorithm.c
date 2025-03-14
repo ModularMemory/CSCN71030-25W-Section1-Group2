@@ -31,6 +31,10 @@ status_t clone_algorithm(const algorithm_t* source, algorithm_t* dest) {
     return status_ok();
 }
 
+void destroy_algorithm(algorithm_t alg) {
+    destroy_argument_list(alg.additional_args);
+}
+
 const algorithm_list_t get_algorithms(void) {
     algorithm_list_t list = { 
         .algorithms = algorithms,

@@ -14,8 +14,13 @@ typedef struct algorithm {
     pargument_t additional_args;
     void (*reset_args)(struct algorithm* alg);
 } algorithm_t;
-
+ 
 status_t clone_algorithm(const algorithm_t* source, algorithm_t* dest);
+
+/// @brief Destroys an algorithm and its members
+///
+/// Only to be called on cloned algorithms!
+void destroy_algorithm(algorithm_t alg);
 
 typedef struct {
     algorithm_t* algorithms;
