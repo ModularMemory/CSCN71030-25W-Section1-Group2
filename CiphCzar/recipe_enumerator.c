@@ -19,6 +19,7 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
         return to_result(clone_stat);
     }
 
+    enumerator->has_moved = false;
     enumerator->recipe = (recipe_t)recipe2_res.data;
     enumerator->rolling_result = rolling_result;
 
@@ -34,11 +35,28 @@ status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
 }
 
 RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enumerator) {
-    return result_error("Not implemented.");
+    if (!enumerator->has_moved) {
+        return result_error("Enumerator has not moved yet.");
+    }
+
+    // Not required to access rolling result, but maintains consistency with current_name
+    if (!enumerator->recipe->head) {
+        return result_error("Enumerator is empty.");
+    }
+
+    return result_ok(&enumerator->rolling_result);
 }
 
 RESULT(const char*) recipe_enumerator_current_name(recipe_enumerator_t enumerator) {
-    return result_error("Not implemented.");
+    if (!enumerator->has_moved) {
+        return result_error("Enumerator has not moved yet.");
+    }
+
+    if (!enumerator->recipe->head) {
+        return result_error("Enumerator is empty.");
+    }
+
+    return result_ok(enumerator->recipe->head->algorithm.name);
 }
 
 void destroy_recipe_enumerator(recipe_enumerator_t enumerator) {

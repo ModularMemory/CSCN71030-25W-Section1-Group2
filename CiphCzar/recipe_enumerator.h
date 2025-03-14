@@ -1,11 +1,13 @@
 #pragma once
 
+#include <stdbool.h>
+
 #include "algorithm.h"
 #include "recipe.h"
 #include "status_result.h"
 
-// Implementation not final
 typedef struct recipe_enumerator {
+    bool has_moved;
     recipe_t recipe;
     data_t rolling_result;
 } *recipe_enumerator_t;
