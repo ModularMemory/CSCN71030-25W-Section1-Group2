@@ -12,16 +12,16 @@ typedef struct recipe_node {
 typedef struct recipe {
     precipe_node_t head;
     precipe_node_t tail;
-} *Recipe;
+} *recipe_t;
 
-RESULT(Recipe) create_recipe(void);
+RESULT(recipe_t) create_recipe(void);
 
-bool recipe_is_empty(Recipe recipe);
+bool recipe_is_empty(recipe_t recipe);
 
-status_t recipe_push(Recipe recipe, algorithm_t algorithm);
+status_t recipe_push(recipe_t recipe, algorithm_t algorithm);
 
-bool recipe_pop(Recipe recipe, algorithm_t* algorithm);
+bool recipe_pop(recipe_t recipe, algorithm_t* algorithm);
 
-RESULT(Recipe) copy_recipe(Recipe recipe);
+RESULT(recipe_t) copy_recipe(recipe_t recipe);
 
-void destroy_recipe(Recipe recipe);
+void destroy_recipe(recipe_t recipe);

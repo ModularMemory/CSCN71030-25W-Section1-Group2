@@ -3,8 +3,8 @@
 
 #include "recipe.h"
 
-RESULT(Recipe) create_recipe(void) {
-    Recipe rec = (Recipe)malloc(sizeof(struct recipe));
+RESULT(recipe_t) create_recipe(void) {
+    recipe_t rec = (recipe_t)malloc(sizeof(struct recipe));
     if (!rec) {
         return result_error("Failed to allocate recipe.");
     }
@@ -15,12 +15,12 @@ RESULT(Recipe) create_recipe(void) {
     return result_ok(rec);
 }
 
-bool recipe_is_empty(Recipe recipe) {
+bool recipe_is_empty(recipe_t recipe) {
     assert(recipe->head == NULL ? recipe->tail == NULL : true);
     return recipe->head == NULL;
 }
 
-status_t recipe_push(Recipe recipe, algorithm_t algorithm) {
+status_t recipe_push(recipe_t recipe, algorithm_t algorithm) {
     if (!recipe) {
         return status_error("Recipe cannot be NULL.");
     }
@@ -45,7 +45,7 @@ status_t recipe_push(Recipe recipe, algorithm_t algorithm) {
     return status_ok();
 }
 
-bool recipe_pop(Recipe recipe, algorithm_t* algorithm) {
+bool recipe_pop(recipe_t recipe, algorithm_t* algorithm) {
     if (!recipe) {
         return false;
     }
@@ -68,7 +68,7 @@ bool recipe_pop(Recipe recipe, algorithm_t* algorithm) {
     return true;
 }
 
-RESULT(Recipe) copy_recipe(Recipe recipe) {
+RESULT(recipe_t) copy_recipe(recipe_t recipe) {
     if (!recipe) {
         return result_error("Source recipe was NULL.");
     }
@@ -78,7 +78,7 @@ RESULT(Recipe) copy_recipe(Recipe recipe) {
         return new_recipe_res;
     }
 
-    Recipe new_recipe = (Recipe)new_recipe_res.data;
+    recipe_t new_recipe = (recipe_t)new_recipe_res.data;
 
     precipe_node_t current = recipe->head;
     while (current) {
@@ -88,7 +88,7 @@ RESULT(Recipe) copy_recipe(Recipe recipe) {
     return result_ok(new_recipe);
 }
 
-void destroy_recipe(Recipe recipe) {
+void destroy_recipe(recipe_t recipe) {
     if (!recipe) {
         return;
     }

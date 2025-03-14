@@ -13,3 +13,12 @@ typedef struct {
     status_t (*validate_args)(const pargument_t args);
     pargument_t additional_args;
 } algorithm_t;
+
+typedef struct algorithm_list {
+    struct algorithm_list* next;
+    algorithm_t algorithm;
+} algorithm_list_t, *palgorithm_list_t;
+
+const palgorithm_list_t get_algorithms(void);
+
+algorithm_t get_algorithm_by_name(const char* name);
