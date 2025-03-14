@@ -27,20 +27,20 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
 
             // Wrap char around range
             while (c < 'a') {
-                c += 'a';
+                c += 26;
             }
 
-            c %= 'z';
+            c %= 26;
         }
         else if (c >= 'A' && c <= 'Z') {
             c += rotation_count;
 
             // Wrap char around range
             while (c < 'A') {
-                c += 'A';
+                c += 26;
             }
 
-            c %= 'Z';
+            c %= 26;
         }
 
         out_data[i] = (char)c;

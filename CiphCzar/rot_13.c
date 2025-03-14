@@ -20,7 +20,7 @@ status_t rot_13_execute(const data_t input, const pargument_t args, data_t* outp
 
             // Wrap char around range
             if (c > 'z') {
-                c -= 'z';
+                c -= 26;
             }
         }
         else if (c >= 'A' && c <= 'Z') {
@@ -28,7 +28,7 @@ status_t rot_13_execute(const data_t input, const pargument_t args, data_t* outp
 
             // Wrap char around range
             if (c > 'Z') {
-                c -= 'Z';
+                c -= 26;
             }
         }
 
