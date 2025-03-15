@@ -131,10 +131,14 @@
     <ClCompile Include="argument.c" />
     <ClCompile Include="base64_common.c" />
     <ClCompile Include="data.c" />
+    <ClCompile Include="data_options.c" />
+    <ClCompile Include="edit_recipe.c" />
     <ClCompile Include="from_base64.c" />
     <ClCompile Include="main-ui.c" />
     <ClCompile Include="fileIO.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="make_recipe.c" />
+    <ClCompile Include="make_recipe.h" />
     <ClCompile Include="recipe.c" />
     <ClCompile Include="recipe_enumerator.c" />
     <ClCompile Include="rot_13.c" />
@@ -152,6 +156,8 @@
     <ClInclude Include="argument.h" />
     <ClInclude Include="base64_common.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="data_options.h" />
+    <ClInclude Include="edit_recipe.h" />
     <ClInclude Include="from_base64.h" />
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />

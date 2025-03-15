@@ -1,8 +1,17 @@
 #pragma once
-#include "data.h"
+#include "algorithm.h"
 #include "recipe.h"
+#include "user_input.h"
+#include "data.h"
 #include "status_result.h"
 
+#include "data_options.h"
+#include "edit_recipe.h"
+#include "make_recipe.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stddef.h>
 
 typedef struct {
