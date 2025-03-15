@@ -1,4 +1,5 @@
 #include "edit_recipe.h"
+#include "make_recipe.h"
 
 void edit_recipe_menu(app_state_t* app_state) {
     bool exit_con = false;

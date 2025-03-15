@@ -161,6 +161,7 @@
     <ClInclude Include="from_base64.h" />
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="recipe.h" />
     <ClInclude Include="recipe_enumerator.h" />
     <ClInclude Include="rot_13.h" />
