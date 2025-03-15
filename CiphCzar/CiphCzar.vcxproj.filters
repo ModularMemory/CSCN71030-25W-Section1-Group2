@@ -22,6 +22,9 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{0a27141f-4320-4cbb-bc02-c917cadc9ed7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{326b552b-8805-46c6-8c19-e00aabe66a3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -84,9 +87,6 @@
     <ClCompile Include="make_recipe.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="make_recipe.h">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="edit_recipe.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -104,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="from_route_cipher.c">
       <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="make_recipe.h">
+      <Filter>Header Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="data.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="main-ui.h">
-      <Filter>Source Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="user_input.h">
       <Filter>Header Files</Filter>
@@ -161,17 +161,8 @@
     <ClInclude Include="from_base64.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="edit_recipe.h">
-      <Filter>Source Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="data_options.h">
-      <Filter>Source Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="get_args.h">
-      <Filter>Source Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="route_cipher_common.h">
       <Filter>Header Files\Algorithms</Filter>
@@ -181,6 +172,18 @@
     </ClInclude>
     <ClInclude Include="from_route_cipher.h">
       <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="data_options.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="edit_recipe.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="get_args.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="main-ui.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
