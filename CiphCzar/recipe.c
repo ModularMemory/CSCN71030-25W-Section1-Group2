@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "recipe.h"
 
@@ -110,21 +111,20 @@ void destroy_recipe(recipe_t recipe) {
 }
 
 void print_recipe(recipe_t recipe) {
+    if (recipe_is_empty(recipe)) {
+        printf("\nRecipe is currently empty\n");
+        return;
+    }
 
-  if (recipe_is_empty(recipe)) {
-    printf("\nRecipe is currently empty\n");
+    precipe_node_t cur = recipe->head;
+    printf("\ninput -> ");
+
+    while (cur != NULL) {
+        printf("%s -> ", cur->algorithm.name);
+        cur = cur->next;
+    }
+
+    printf("output\n\n");
+
     return;
-  }
-
-  precipe_node_t cur = recipe->head;
-  printf("\ninput -> ");
-
-  while (cur->next != NULL) {
-    printf("%s -> ", cur->algorithm.name);
-    cur = cur->next;
-  }
-
-  printf("output\n\n");
-
-  return;
 }
