@@ -134,6 +134,7 @@
     <ClCompile Include="data_options.c" />
     <ClCompile Include="edit_recipe.c" />
     <ClCompile Include="from_base64.c" />
+    <ClCompile Include="get_args.c" />
     <ClCompile Include="main-ui.c" />
     <ClCompile Include="fileIO.c" />
     <ClCompile Include="main.c" />
@@ -159,6 +160,7 @@
     <ClInclude Include="data_options.h" />
     <ClInclude Include="edit_recipe.h" />
     <ClInclude Include="from_base64.h" />
+    <ClInclude Include="get_args.h" />
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />
     <ClInclude Include="main.h" />

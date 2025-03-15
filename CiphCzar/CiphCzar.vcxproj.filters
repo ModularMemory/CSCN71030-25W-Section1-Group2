@@ -93,6 +93,9 @@
     <ClCompile Include="data_options.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="get_args.c">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="get_args.h">
+      <Filter>Source Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

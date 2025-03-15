@@ -1,14 +1,11 @@
 #include "make_recipe.h"
 
-static void get_algo_args(algorithm_t* alg) {
-    alg->additional_args;
-}
-
 void make_recipe(app_state_t* app_state) {
     bool exit_con = false;
     algorithm_list_t alg_list = get_algorithms();
     algorithm_t* selected_alg = { 0 };
     status_t push_status;
+    status_t get_arg_status;
 
     do {
         char response = '\0';
@@ -33,12 +30,11 @@ void make_recipe(app_state_t* app_state) {
 
             if ('a' == returned_string[0]) {
                 exit_con = true;
-                break;
             }
 
             else if ('b' == returned_string[0]) {
-                print_recipe(app_state->recipe);
-                break;
+                print_recipe_long(app_state->recipe);
+                continue;
             }
 
             result_t raw_alg_response = get_algorithm_by_name(raw_response.data);
@@ -51,11 +47,11 @@ void make_recipe(app_state_t* app_state) {
             else {
                 selected_alg = raw_alg_response.data;
 
-                get_algo_args(selected_alg);
+                get_arg_status = get_algo_args(selected_alg);
 
                 push_status = recipe_push(app_state->recipe, *selected_alg);
                 if (push_status.success)
-                    printf("Succesfully pushed %s\n", selected_alg->name);
+                    printf("Succesfully added %s\n", selected_alg->name);
             }
         }
         else {
@@ -70,11 +66,11 @@ void make_recipe(app_state_t* app_state) {
                 else {
                     selected_alg = raw_alg_response.data;
 
-                    // Check + get args
+                    get_arg_status = get_algo_args(selected_alg);
 
                     push_status = recipe_push(app_state->recipe, *selected_alg);
                     if (push_status.success)
-                        printf("Succesfully pushed %s\n", selected_alg->name);
+                        printf("\nSuccesfully added %s\n", selected_alg->name);
                 }
             }
             else
