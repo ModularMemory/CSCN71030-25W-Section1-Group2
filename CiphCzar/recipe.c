@@ -119,21 +119,46 @@ void destroy_recipe(recipe_t recipe) {
     free(recipe);
 }
 
-void print_recipe(recipe_t recipe) {
+void print_recipe(const recipe_t recipe) {
     if (recipe_is_empty(recipe)) {
         printf("\nRecipe is currently empty\n");
         return;
     }
 
-    precipe_node_t cur = recipe->head;
     printf("\ninput -> ");
 
+    precipe_node_t cur = recipe->head;
     while (cur != NULL) {
         printf("%s -> ", cur->algorithm.name);
         cur = cur->next;
     }
 
-    printf("output\n\n");
+    printf("output\n");
 
     return;
+}
+
+void print_recipe_long(const recipe_t recipe) {
+    if (recipe_is_empty(recipe)) {
+        printf("\nRecipe is currently empty\n");
+        return;
+    }
+
+    printf("\n+-> input");
+
+    precipe_node_t cur = recipe->head;
+    while (cur != NULL) {
+        printf("\n|\n+-> %s", cur->algorithm.name);
+
+        pargument_t arg = cur->algorithm.additional_args;
+        while (arg) {
+            printf(" | ");
+            print_argument(arg);
+            arg = arg->next;
+        }
+
+        cur = cur->next;
+    }
+
+    printf("\n|\n+-> output\n");
 }
