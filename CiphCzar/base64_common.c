@@ -118,20 +118,26 @@ status_t base64_decode(const data_t input, data_t* output) {
     for (size_t in_off = 0; in_off < in_len; in_off++) {
         char current = in_data[in_off];
 
-        // Search for the matching Base64 char
-        bool found = false;
-        for (int i = 0; i < 64; i++) {
-            if (base64_chars[i] == current) {
-                found = true;
-                decode_buff[buff_off] = i;
-                buff_off++;
-            }
+        if (current == padding) {
+            decode_buff[buff_off] = padding;
+            buff_off++;
         }
+        else {
+            // Search for the matching Base64 char
+            bool found = false;
+            for (int i = 0; i < 64; i++) {
+                if (base64_chars[i] == current) {
+                    found = true;
+                    decode_buff[buff_off] = i;
+                    buff_off++;
+                }
+            }
 
-        // Failed to find a matching Base64 char, abort
-        if (!found) {
-            free(out_data);
-            return status_error("Input contains invalid Base64 chars.");
+            // Failed to find a matching Base64 char, abort
+            if (!found) {
+                free(out_data);
+                return status_error("Input contains invalid Base64 chars.");
+            }
         }
 
         // Buffer is full, decode into output data
