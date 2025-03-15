@@ -19,22 +19,18 @@ static algorithm_t algorithms[] = {
 
 static size_t algorithm_count = __crt_countof(algorithms);
 
-status_t clone_algorithm(const algorithm_t* source, algorithm_t* dest) {
-    if (!source) {
-        return status_error("Source was NULL.");
-    }
-
-    result_t dest_args = clone_argument_list(source->additional_args);
+status_t clone_algorithm(const algorithm_t source, algorithm_t* dest) {
+    result_t dest_args = clone_argument_list(source.additional_args);
     if (!dest_args.success) {
         return to_status(dest_args);
     }
 
-    dest->name = source->name;
-    dest->description = source->description;
-    dest->execute = source->execute;
-    dest->validate_args = source->validate_args;
+    dest->name = source.name;
+    dest->description = source.description;
+    dest->execute = source.execute;
+    dest->validate_args = source.validate_args;
     dest->additional_args = (pargument_t)dest_args.data;
-    dest->reset_args = source->reset_args;
+    dest->reset_args = source.reset_args;
 
     return status_ok();
 }

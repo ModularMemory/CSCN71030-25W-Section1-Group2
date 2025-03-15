@@ -31,8 +31,15 @@ status_t recipe_push(recipe_t recipe, algorithm_t algorithm) {
         return status_error("Failed to allocate new recipe node.");
     }
 
+    algorithm_t new_alg = { 0 };
+    status_t new_alg_stat = clone_algorithm(algorithm, &new_alg);
+    if (!new_alg_stat.success) {
+        free(new_node);
+        return new_alg_stat;
+    }
+
     new_node->next = NULL;
-    new_node->algorithm = algorithm;
+    new_node->algorithm = new_alg;
 
     if (recipe_is_empty(recipe)) {
         recipe->head = new_node;
