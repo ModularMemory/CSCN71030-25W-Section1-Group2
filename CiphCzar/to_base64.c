@@ -1,8 +1,5 @@
-#include <stdlib.h>
-
 #include "base64_common.h"
 #include "to_base64.h"
-#include "utils.h"
 
 status_t to_base64_execute(const data_t input, const pargument_t args, data_t* output) {
     data_t out_data = { 0 };

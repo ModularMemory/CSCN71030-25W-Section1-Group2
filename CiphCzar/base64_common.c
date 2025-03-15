@@ -56,6 +56,8 @@ status_t base64_encode(const data_t input, data_t* output) {
     }
 
     *output = create_data(out_data, out_len);
+
+    return status_ok();
 }
 
 status_t base64_decode(const data_t input, data_t* output) {

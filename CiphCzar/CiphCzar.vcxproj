@@ -131,6 +131,7 @@
     <ClCompile Include="argument.c" />
     <ClCompile Include="base64_common.c" />
     <ClCompile Include="data.c" />
+    <ClCompile Include="from_base64.c" />
     <ClCompile Include="main-ui.c" />
     <ClCompile Include="fileIO.c" />
     <ClCompile Include="main.c" />
@@ -151,6 +152,7 @@
     <ClInclude Include="argument.h" />
     <ClInclude Include="base64_common.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="from_base64.h" />
     <ClInclude Include="main-ui.h" />
     <ClInclude Include="fileIO.h" />
     <ClInclude Include="recipe.h" />
