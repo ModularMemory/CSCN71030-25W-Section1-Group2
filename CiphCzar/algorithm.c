@@ -43,6 +43,10 @@ void destroy_algorithm(algorithm_t alg) {
     destroy_argument_list(alg.additional_args);
 }
 
+size_t get_algorithms_count(void) {
+    return algorithm_count;
+}
+
 const algorithm_list_t get_algorithms(void) {
     algorithm_list_t list = { 
         .algorithms = algorithms,

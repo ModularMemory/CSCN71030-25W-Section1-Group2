@@ -27,6 +27,9 @@ typedef struct {
     size_t len;
 } algorithm_list_t;
 
+/// @brief Gets the number of known algorithms
+size_t get_algorithms_count(void);
+
 /// @brief Gets a read-only list of all available algorithms 
 const algorithm_list_t get_algorithms(void);
 
