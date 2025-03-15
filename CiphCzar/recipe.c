@@ -15,7 +15,7 @@ RESULT(recipe_t) create_recipe(void) {
     return result_ok(rec);
 }
 
-bool recipe_is_empty(recipe_t recipe) {
+bool recipe_is_empty(const recipe_t recipe) {
     assert(recipe->head == NULL ? recipe->tail == NULL : true);
     return recipe->head == NULL;
 }
@@ -68,7 +68,7 @@ bool recipe_pop(recipe_t recipe, algorithm_t* algorithm) {
     return true;
 }
 
-RESULT(recipe_t) clone_recipe(recipe_t recipe) {
+RESULT(recipe_t) clone_recipe(const recipe_t recipe) {
     if (!recipe) {
         return result_error("Source recipe was NULL.");
     }
