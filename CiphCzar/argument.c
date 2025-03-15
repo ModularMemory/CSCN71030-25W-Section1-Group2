@@ -120,6 +120,21 @@ RESULT(pargument_t) clone_argument_list(const pargument_t source_list) {
     return result_ok(dest_head);
 }
 
+void print_argument(pargument_t arg) {
+    printf("%s ", arg->description);
+
+    switch (arg->arg_type) {
+    case INTEGER_ARG:
+        printf("(Integer) - %d", arg->arg_union.integer);
+    case FLOAT_ARG:
+        printf("(Float) - %f", arg->arg_union.fp);
+    case STRING_ARG:
+        printf("(String) - %s", arg->arg_union.string);
+    default:
+        printf("(Unknown Type)");
+    }
+}
+
 void destroy_argument(pargument_t arg) {
     if (arg->arg_type == STRING_ARG) {
         free(arg->arg_union.string);

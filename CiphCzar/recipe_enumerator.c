@@ -2,7 +2,7 @@
 
 #include "recipe_enumerator.h"
 
-RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data_t input_data) {
+RESULT(recipe_enumerator_t) create_recipe_enumerator(const recipe_t recipe, const data_t input_data) {
     recipe_enumerator_t enumerator = (recipe_enumerator_t)malloc(sizeof(struct recipe_enumerator));
     if (!enumerator) {
         return result_error("Failed to allocate enumerator.");
@@ -26,11 +26,11 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
     return result_ok(enumerator);
 }
 
-bool recipe_enumerator_has_moved(recipe_enumerator_t enumerator) {
+bool recipe_enumerator_has_moved(const recipe_enumerator_t enumerator) {
     return enumerator->has_moved;
 }
 
-bool recipe_enumerator_is_empty(recipe_enumerator_t enumerator) {
+bool recipe_enumerator_is_empty(const recipe_enumerator_t enumerator) {
     return recipe_is_empty(enumerator->recipe);
 }
 
@@ -70,7 +70,7 @@ status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
     return status_ok();
 }
 
-RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enumerator) {
+RESULT(const data_t*) recipe_enumerator_current_result(const recipe_enumerator_t enumerator) {
     if (!recipe_enumerator_has_moved(enumerator)) {
         return result_error("Enumerator has not moved yet.");
     }
@@ -83,7 +83,7 @@ RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enume
     return result_ok(&enumerator->rolling_result);
 }
 
-RESULT(const char*) recipe_enumerator_current_name(recipe_enumerator_t enumerator) {
+RESULT(const char*) recipe_enumerator_current_name(const recipe_enumerator_t enumerator) {
     if (!recipe_enumerator_has_moved(enumerator)) {
         return result_error("Enumerator has not moved yet.");
     }

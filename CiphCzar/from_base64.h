@@ -10,8 +10,8 @@ void from_base64_reset_args(algorithm_t* alg);
 
 #define CREATE_ALG_FROM_BASE64(void)\
 {\
-    .name = "Fom Base64",\
-    .description = "Converts the input buffer from base64 into bytes.",\
+    .name = "From Base64",\
+    .description = "Converts the input buffer from Base64 into bytes.",\
     .execute = from_base64_execute,\
     .validate_args = from_base64_validate_args,\
     .additional_args = NULL,\
