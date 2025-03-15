@@ -24,8 +24,12 @@
   "________________________________/ \n \x1b[0m"
 
 #include "main-ui.h"
+#include "algorithm.h"
+#include "recipe.h"
 #include "user_input.h"
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 void print_intro() {
@@ -36,8 +40,87 @@ void print_intro() {
   return;
 }
 
+static void make_recipe(app_state_t *app_state) {
+  bool exit_con = false;
+  algorithm_list_t alg_list = get_algorithms();
+  algorithm_t *selected_alg = {0};
+
+  do {
+    char response = '\0';
+    printf("\n-+-+-+-+-+ Recipe builder +-+-+-+-+-\n");
+    printf("A: Return to recipe options\n");
+    printf("B: View current recipe\n\n");
+
+    for (int i = 0; i < (int)alg_list.len; i++) {
+      printf("%d: %s\n", i + 1, alg_list.algorithms[i].name);
+    }
+
+    result_t raw_response = get_user_string();
+
+    // Read error
+    if (!raw_response.success) {
+      fprintf(stderr, "Error: %s", raw_response.message);
+    }
+
+    // atoi fails = probably a string
+    if (!atoi(raw_response.data)) {
+      result_t raw_alg_response = get_algorithm_by_name(raw_response.data);
+
+      // bad string
+      if (raw_alg_response.success == 0)
+        printf("Error reading input string, please double check spelling and "
+               "try again\n");
+
+      else {
+        selected_alg = raw_alg_response.data;
+        recipe_push(app_state->recipe, *selected_alg);
+      }
+
+    } else {
+      int input_symbol = atoi(raw_response.data);
+
+      if ('a' == input_symbol) {
+        exit_con = true;
+      } else if ('b' == input_symbol) {
+      }
+    }
+
+  } while (exit_con == false);
+  return;
+}
+
 // Unlikely to be depricated
-static void edit_recipe_menu() {}
+static void edit_recipe_menu(app_state_t *app_state) {
+  bool exit_con = false;
+
+  do {
+    char response = '\0';
+    printf("\n-+-+-+-+-+ Recipe options +-+-+-+-+-\n");
+    printf("A: Remake recipe\n");
+    printf("B: View current recipe\n");
+    printf("C: Return to main menu\n\n");
+
+    while ('a' > response || 'd' < response) {
+      get_user_char(&response);
+    }
+
+    switch (response) {
+    case 'a':
+      make_recipe(app_state);
+      break;
+
+    case 'b':
+      // print recipe
+      break;
+
+    case 'c':
+      exit_con = true;
+      break;
+    }
+
+  } while (exit_con == false);
+  return;
+}
 
 // Might end up depricated, depends on how this is handled
 static void execute_recipe_menu() {}
@@ -79,8 +162,8 @@ static void data_options_menu(app_state_t *app_state) {
       break;
 
     case 'b':
-      printf(
-          "Please enter the new output file's name, or hit enter to cancel\n");
+      printf("Please enter the new output file's name, or hit enter to "
+             "cancel\n");
       printf("Current output file: \"%s\"\n", app_state->filename);
 
       result_t new_filename = get_user_string();
@@ -130,7 +213,7 @@ void print_main_menu(app_state_t *app_state) {
 
     switch (response) {
     case 'a':
-      // create recipe
+      edit_recipe_menu(app_state);
       break;
 
     case 'b':
