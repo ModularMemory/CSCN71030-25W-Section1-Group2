@@ -1,12 +1,16 @@
 #include <string.h>
 
 #include "algorithm.h"
+#include "rot_13.h"
+#include "rot_n.h"
 #include "to_lower.h"
 #include "to_upper.h"
 
 static algorithm_t algorithms[] = {
     CREATE_ALG_TO_UPPER(void),
-    CREATE_ALG_TO_LOWER(void)
+    CREATE_ALG_TO_LOWER(void),
+    CREATE_ALG_ROT_13(void),
+    CREATE_ALG_ROT_N(void)
 };
 
 static size_t algorithm_count = __crt_countof(algorithms);

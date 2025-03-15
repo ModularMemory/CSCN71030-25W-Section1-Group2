@@ -22,6 +22,6 @@ status_t recipe_push(recipe_t recipe, algorithm_t algorithm);
 
 bool recipe_pop(recipe_t recipe, algorithm_t* algorithm);
 
-RESULT(recipe_t) copy_recipe(recipe_t recipe);
+RESULT(recipe_t) clone_recipe(recipe_t recipe);
 
 void destroy_recipe(recipe_t recipe);

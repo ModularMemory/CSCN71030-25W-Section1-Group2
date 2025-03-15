@@ -2,7 +2,7 @@
 
 #include "algorithm.h"
 
-status_t to_upper_execute(const data_t input,const pargument_t args, data_t* output);
+status_t to_upper_execute(const data_t input, const pargument_t args, data_t* output);
 
 status_t to_upper_validate_args(const pargument_t args);
 

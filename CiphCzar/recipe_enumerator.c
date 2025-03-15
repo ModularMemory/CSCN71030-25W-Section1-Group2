@@ -8,7 +8,7 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
         return result_error("Failed to allocate enumerator.");
     }
 
-    result_t recipe2_res = copy_recipe(recipe);
+    result_t recipe2_res = clone_recipe(recipe);
     if (!recipe2_res.success) {
         return recipe2_res;
     }
@@ -23,7 +23,7 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(recipe_t recipe, const data
     enumerator->recipe = (recipe_t)recipe2_res.data;
     enumerator->rolling_result = rolling_result;
 
-    return result_error("Not implemented.");
+    return result_ok(enumerator);
 }
 
 bool recipe_enumerator_has_moved(recipe_enumerator_t enumerator) {
@@ -48,7 +48,26 @@ bool recipe_enumerator_move_next(recipe_enumerator_t enumerator) {
 }
 
 status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
-    return status_error("Not implemented.");
+    if (!recipe_enumerator_has_moved(enumerator)) {
+        return status_error("Enumerator has not moved yet.");
+    }
+
+    if (recipe_enumerator_is_empty(enumerator)) {
+        return status_error("Enumerator is empty.");
+    }
+
+    algorithm_t current_alg = enumerator->recipe->head->algorithm;
+
+    data_t new_data = { 0 };
+    status_t execute_stat = current_alg.execute(enumerator->rolling_result, current_alg.additional_args, &new_data);
+    if (!execute_stat.success) {
+        return execute_stat;
+    }
+
+    free(enumerator->rolling_result.data);
+    enumerator->rolling_result = new_data;
+
+    return status_ok();
 }
 
 RESULT(const data_t*) recipe_enumerator_current_result(recipe_enumerator_t enumerator) {

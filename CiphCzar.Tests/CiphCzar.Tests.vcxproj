@@ -96,6 +96,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,6 +148,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,7 +158,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CiphCzar.Tests.cpp" />
+    <ClCompile Include="..\CiphCzar\algorithm.c" />
+    <ClCompile Include="..\CiphCzar\argument.c" />
+    <ClCompile Include="..\CiphCzar\data.c" />
+    <ClCompile Include="..\CiphCzar\recipe.c" />
+    <ClCompile Include="..\CiphCzar\recipe_enumerator.c" />
+    <ClCompile Include="..\CiphCzar\rot_13.c" />
+    <ClCompile Include="..\CiphCzar\rot_common.c" />
+    <ClCompile Include="..\CiphCzar\rot_n.c" />
+    <ClCompile Include="..\CiphCzar\status_result.c" />
+    <ClCompile Include="..\CiphCzar\to_base64.c" />
+    <ClCompile Include="..\CiphCzar\to_lower.c" />
+    <ClCompile Include="..\CiphCzar\to_upper.c" />
+    <ClCompile Include="..\CiphCzar\utils.c" />
+    <ClCompile Include="recipe_enumerator.tests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CiphCzar\algorithm.h" />
+    <ClInclude Include="..\CiphCzar\argument.h" />
+    <ClInclude Include="..\CiphCzar\data.h" />
+    <ClInclude Include="..\CiphCzar\recipe.h" />
+    <ClInclude Include="..\CiphCzar\recipe_enumerator.h" />
+    <ClInclude Include="..\CiphCzar\rot_13.h" />
+    <ClInclude Include="..\CiphCzar\rot_common.h" />
+    <ClInclude Include="..\CiphCzar\rot_n.h" />
+    <ClInclude Include="..\CiphCzar\status_result.h" />
+    <ClInclude Include="..\CiphCzar\to_base64.h" />
+    <ClInclude Include="..\CiphCzar\to_lower.h" />
+    <ClInclude Include="..\CiphCzar\to_upper.h" />
+    <ClInclude Include="..\CiphCzar\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
