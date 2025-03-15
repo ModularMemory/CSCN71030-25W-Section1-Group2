@@ -14,7 +14,7 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_ROT_13(void),
     CREATE_ALG_ROT_N(void),
     CREATE_ALG_TO_BASE64(void),
-    //CREATE_ALG_FROM_BASE64(void),
+    CREATE_ALG_FROM_BASE64(void),
 };
 
 static size_t algorithm_count = __crt_countof(algorithms);
