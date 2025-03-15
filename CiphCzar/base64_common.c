@@ -8,13 +8,24 @@
 static const char* base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 static const char padding = '=';
 
+static size_t get_encoded_len(const data_t input) {
+    size_t in_len = input.len;
+
+    // Round up to the nearest multiple of 3
+    if (in_len % 3 != 0) {
+        in_len += 3 - in_len % 3;
+    }
+
+    // Base64 encode produces 4 chars for every 3 input bytes
+    return in_len * 4 / 3;
+}
+
 // https://en.wikipedia.org/wiki/Base64#Output_padding
 status_t base64_encode(const data_t input, data_t* output) {
     const char* in_data = input.data;
     size_t in_len = input.len;
 
-    // Base64 encode produces 4 chars for every 3 input bytes
-    size_t out_len = in_len * 3 / 4;
+    size_t out_len = get_encoded_len(input);
     result_t out_res = allocate_string(out_len);
     if (!out_res.success) {
         return to_status(out_res);

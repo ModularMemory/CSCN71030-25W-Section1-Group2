@@ -173,6 +173,7 @@
     <ClCompile Include="..\CiphCzar\to_lower.c" />
     <ClCompile Include="..\CiphCzar\to_upper.c" />
     <ClCompile Include="..\CiphCzar\utils.c" />
+    <ClCompile Include="base64.tests.cpp" />
     <ClCompile Include="recipe_enumerator.tests.cpp" />
   </ItemGroup>
   <ItemGroup>

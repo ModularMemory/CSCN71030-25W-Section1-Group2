@@ -87,6 +87,10 @@ namespace CiphCzarTests
             for (size_t i = 0; i < actual->len; i++) {
                 Assert::AreEqual(expected[i], actual->data[i]);
             }
+
+            // Cleanup
+            free(test_data.data);
+            destroy_recipe_enumerator(enumerator);
         }
     };
 }
