@@ -62,12 +62,24 @@ static void make_recipe(app_state_t *app_state) {
       fprintf(stderr, "Error: %s", raw_response.message);
     }
 
-    // atoi fails = probably a string
+    // atoi fails = probably a string/char
     if (!atoi(raw_response.data)) {
+      char *returned_string = raw_response.data;
+
+      if ('a' == returned_string[0]) {
+        exit_con = true;
+        break;
+      }
+
+      else if ('b' == returned_string[0]) {
+        print_recipe(app_state->recipe);
+        break;
+      }
+
       result_t raw_alg_response = get_algorithm_by_name(raw_response.data);
 
       // bad string
-      if (raw_alg_response.success == 0)
+      if (raw_alg_response.success == false)
         printf("Error reading input string, please double check spelling and "
                "try again\n");
 
@@ -75,16 +87,25 @@ static void make_recipe(app_state_t *app_state) {
         selected_alg = raw_alg_response.data;
         recipe_push(app_state->recipe, *selected_alg);
       }
-
     } else {
       int input_symbol = atoi(raw_response.data);
 
-      if ('a' == input_symbol) {
-        exit_con = true;
-      } else if ('b' == input_symbol) {
-      }
-    }
+      if (0 < input_symbol && input_symbol < alg_list.len) {
+        result_t raw_alg_response = get_algorithm_by_index(input_symbol - 1);
 
+        if (raw_alg_response.success == false)
+          printf("Error when fetching from algorithm list.  This is a bug.\n");
+
+        else {
+          selected_alg = raw_alg_response.data;
+          status_t push_status = recipe_push(app_state->recipe, *selected_alg);
+          if (push_status.success)
+            printf("Succesfully pushed %s\n", selected_alg->name);
+        }
+      } else
+        printf(
+            "Error reading input symbol, please double check and try again\n");
+    }
   } while (exit_con == false);
   return;
 }
@@ -110,7 +131,7 @@ static void edit_recipe_menu(app_state_t *app_state) {
       break;
 
     case 'b':
-      // print recipe
+      print_recipe(app_state->recipe);
       break;
 
     case 'c':
