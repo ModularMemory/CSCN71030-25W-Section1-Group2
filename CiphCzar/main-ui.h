@@ -1,16 +1,14 @@
 #pragma once
-#include <stddef.h>
-#include "status_result.h"
 #include "data.h"
-
-
-void printIntro();
-
-void printMainMenu();
+#include "status_result.h"
+#include <stddef.h>
 
 typedef struct {
-	data_t current_input;
-	char* filename;
-	bool quiet;
-
+  data_t current_input;
+  bool quiet;
+  char *filename;
 } app_state_t;
+
+void print_intro();
+
+void print_main_menu(app_state_t *app_state);
