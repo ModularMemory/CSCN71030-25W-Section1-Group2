@@ -10,7 +10,7 @@ void from_route_cipher_reset_args(algorithm_t* alg);
 
 #define CREATE_ALG_FROM_ROUTE_CIPHER(void)\
 {\
-    .name = "To Route Cipher",\
+    .name = "From Route Cipher",\
     .description = "Transposes the input buffer backwards through a route cipher.",\
     .execute = from_route_cipher_execute,\
     .validate_args = from_route_cipher_validate_args,\
