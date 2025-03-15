@@ -32,7 +32,7 @@ void print_intro() {
   printf("\n%s\n\n", LOGO);
   printf("Welcome to CyphCzar!\nPlease enter the (lowercase) letter "
          "corrseponding with your "
-         "desired action below.\n\n");
+         "desired action below.\n");
   return;
 }
 
@@ -54,32 +54,52 @@ static void data_options_menu(app_state_t *app_state) {
     printf("\n-+-+-+-+-+ Data options +-+-+-+-+-\n");
     printf("A: Change input string\n");
     printf("B: Change output file name \n");
-    printf("C: Return to main menu\n\n");
+    printf("C: View current input/output name\n");
+    printf("D: Return to main menu\n\n");
 
-    while ('a' > response || 'c' < response) {
+    while ('a' > response || 'd' < response) {
       get_user_char(&response);
     }
 
     switch (response) {
     case 'a':
-        printf("Please enter the new input string, or hit enter to cancel\n");
-        if (app_state->current_input.data != NULL)
-            printf("Current input string: \"%s\"", app_state->current_input.data);
-        result_t new_input = get_user_string();
+      printf("Please enter the new input string, or hit enter to cancel\n");
 
-        if (!new_input.success) {
-            fprintf(stderr, "Error: %s", new_input.message);
-        }
+      if (app_state->current_input.data != NULL)
+        printf("Current input string: \"%s\"\n", app_state->current_input.data);
 
-        data_t new_data = create_data(new_input.data, strlen(new_input.data));
-        app_state->current_input = new_data;
-        break;
+      result_t new_input = get_user_string();
+
+      if (!new_input.success) {
+        fprintf(stderr, "Error: %s", new_input.message);
+      }
+
+      data_t new_data = create_data(new_input.data, strlen(new_input.data));
+      app_state->current_input = new_data;
+      break;
 
     case 'b':
-      // change filename
+      printf(
+          "Please enter the new output file's name, or hit enter to cancel\n");
+      printf("Current output file: \"%s\"\n", app_state->filename);
+
+      result_t new_filename = get_user_string();
+
+      if (!new_filename.success) {
+        fprintf(stderr, "Error: %s", new_filename.message);
+      }
+
+      app_state->filename = new_filename.data;
       break;
 
     case 'c':
+      printf("Current input string: ");
+      if (app_state->current_input.data != NULL)
+        printf("%s\n", app_state->current_input.data);
+      printf("File written to: %s\n", app_state->filename);
+      break;
+
+    case 'd':
       exit_con = true;
       break;
     }
@@ -96,7 +116,7 @@ void print_main_menu(app_state_t *app_state) {
 
   do {
     char response = '\0';
-    printf("-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
+    printf("\n-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
     printf("A: Edit recipe\n");
     printf("B: Execute recipe\n");
     printf("C: Print last output\n");
@@ -122,7 +142,7 @@ void print_main_menu(app_state_t *app_state) {
       break;
 
     case 'd':
-        data_options_menu(app_state);
+      data_options_menu(app_state);
 
     case 'e':
       // export to outfile
