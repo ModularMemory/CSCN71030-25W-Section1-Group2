@@ -1,9 +1,14 @@
 #include "make_recipe.h"
 
+static void get_algo_args(algorithm_t* alg) {
+    alg->additional_args;
+}
+
 void make_recipe(app_state_t* app_state) {
     bool exit_con = false;
     algorithm_list_t alg_list = get_algorithms();
     algorithm_t* selected_alg = { 0 };
+    status_t push_status;
 
     do {
         char response = '\0';
@@ -45,13 +50,18 @@ void make_recipe(app_state_t* app_state) {
 
             else {
                 selected_alg = raw_alg_response.data;
-                recipe_push(app_state->recipe, *selected_alg);
+
+                get_algo_args(selected_alg);
+
+                push_status = recipe_push(app_state->recipe, *selected_alg);
+                if (push_status.success)
+                    printf("Succesfully pushed %s\n", selected_alg->name);
             }
         }
         else {
             int input_symbol = atoi(raw_response.data);
 
-            if (0 < input_symbol && input_symbol < alg_list.len) {
+            if (0 < input_symbol && input_symbol <= alg_list.len) {
                 result_t raw_alg_response = get_algorithm_by_index(input_symbol - 1);
 
                 if (raw_alg_response.success == false)
@@ -59,7 +69,10 @@ void make_recipe(app_state_t* app_state) {
 
                 else {
                     selected_alg = raw_alg_response.data;
-                    status_t push_status = recipe_push(app_state->recipe, *selected_alg);
+
+                    // Check + get args
+
+                    push_status = recipe_push(app_state->recipe, *selected_alg);
                     if (push_status.success)
                         printf("Succesfully pushed %s\n", selected_alg->name);
                 }

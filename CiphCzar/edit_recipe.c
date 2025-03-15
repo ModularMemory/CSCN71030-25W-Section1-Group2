@@ -9,7 +9,8 @@ void edit_recipe_menu(app_state_t* app_state) {
         printf("\n-+-+-+-+-+ Recipe options +-+-+-+-+-\n");
         printf("A: Remake recipe\n");
         printf("B: View current recipe\n");
-        printf("C: Return to main menu\n\n");
+        printf("C: View current recipe w/ args\n");
+        printf("D: Return to main menu\n\n");
 
         while ('a' > response || 'd' < response) {
             get_user_char(&response);
@@ -25,6 +26,10 @@ void edit_recipe_menu(app_state_t* app_state) {
             break;
 
         case 'c':
+            print_recipe_long(app_state->recipe);
+            break;
+
+        case 'd':
             exit_con = true;
             break;
         }
