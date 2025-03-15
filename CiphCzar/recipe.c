@@ -109,6 +109,8 @@ void destroy_recipe(recipe_t recipe) {
 
     precipe_node_t node = recipe->head;
     while (node) {
+        destroy_algorithm(node->algorithm);
+
         precipe_node_t next = node->next;
         free(node);
         node = next;
