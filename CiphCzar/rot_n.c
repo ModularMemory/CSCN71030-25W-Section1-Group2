@@ -1,6 +1,4 @@
 #include <assert.h>
-#include <stddef.h>
-#include <stdlib.h>
 
 #include "rot_common.h"
 #include "to_lower.h"
@@ -27,6 +25,10 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
 }
 
 status_t rot_n_validate_args(const pargument_t args) {
+    if (!args || args->next) {
+        return status_error("ROT N must have only 1 arg.");
+    }
+
     // We accept any integer
     return status_ok();
 }

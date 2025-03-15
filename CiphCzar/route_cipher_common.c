@@ -90,10 +90,11 @@ status_t route_cipher_encode(const data_t input, size_t block_width, size_t bloc
     size_t out_off = 0;
     while (encode_block(input, out_off, block_width, block_height, block)) {
         // Copy the block contents to the output buffer in top-down, left-right order
-        for (size_t x = 0; x < block_width; x++)
-        for (size_t y = 0; y < block_height; y++) {
-            out_data[out_off] = block[x][y];
-            out_off++;
+        for (size_t x = 0; x < block_width; x++) {
+            for (size_t y = 0; y < block_height; y++) {
+                out_data[out_off] = block[x][y];
+                out_off++;
+            }
         }
     }
 
@@ -102,6 +103,53 @@ status_t route_cipher_encode(const data_t input, size_t block_width, size_t bloc
     return status_ok();
 }
 
+static bool decode_block(const data_t input, size_t start_offset, size_t block_width, size_t block_height, char** block) {
+    if (start_offset >= input.len) {
+        return false;
+    }
+
+    // Ensure the block is filled with padding in case the input is not a multiple of the block size
+    memset(block[0], padding, block_width * block_height);
+
+    size_t in_off = start_offset;
+    for (; in_off < input.len; in_off++) {
+        size_t block_pos = in_off - start_offset;
+        size_t x = (block_pos % (block_width * block_height)) / block_height;
+        size_t y = block_pos % block_height;
+
+        block[x][y] = input.data[in_off];
+    }
+
+    return true;
+}
+
 status_t route_cipher_decode(const data_t input, size_t block_width, size_t block_height, data_t* output) {
-    return status_error("Not implemented.");
+    char** block = NULL;
+    if (!alloc_block(block_width, block_height, &block)) {
+        return status_error("Failed to allocate route cipher block.");
+    }
+
+    size_t out_len = get_output_len(input, block_width, block_height);
+    result_t out_res = allocate_string(out_len);
+    if (!out_res.success) {
+        return to_status(out_res);
+    }
+
+    assert(out_res.data);
+    char* out_data = out_res.data;
+
+    size_t out_off = 0;
+    while (decode_block(input, out_off, block_width, block_height, block)) {
+        // Copy the block contents to the output buffer in top-down, left-right order
+        for (size_t y = 0; y < block_height; y++) {
+            for (size_t x = 0; x < block_width; x++) {
+                out_data[out_off] = block[x][y];
+                out_off++;
+            }
+        }
+    }
+
+    *output = create_data(out_data, out_len);
+
+    return status_ok();
 }
