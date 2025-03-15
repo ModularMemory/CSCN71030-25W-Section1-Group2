@@ -1,12 +1,10 @@
+#include "common.h"
 #include "CppUnitTest.h"
 
 extern "C" {
-    #include <string.h>
-
     #include "../CiphCzar/algorithm.h"
     #include "../CiphCzar/recipe_enumerator.h"
     #include "../CiphCzar/rot_13.h"
-    #include "../CiphCzar/utils.h"
 }
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -41,18 +39,6 @@ namespace CiphCzarTests
             Assert::IsTrue(recipe_push(rec, create_test_algorithm()).success);
 
             return rec;
-        }
-
-        data_t create_test_data(const char* str) {
-            size_t len = strlen(str);
-            char* alloced_str = (char*)malloc(len + 1);
-            if (!alloced_str) {
-                Assert::Fail(L"Failed to allocate test data string.");
-            }
-
-            strncpy_s(alloced_str, len + 1, str, len);
-
-            return create_data(alloced_str, len);
         }
 
         recipe_enumerator_t create_test_enumerator(recipe_t recipe, data_t data) {
