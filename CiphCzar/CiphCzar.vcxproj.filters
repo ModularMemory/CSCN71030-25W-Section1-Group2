@@ -45,7 +45,7 @@
     <ClCompile Include="main-ui.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="userInput.c">
+    <ClCompile Include="user_input.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fileIO.c">
@@ -86,7 +86,7 @@
     <ClInclude Include="main-ui.h">
       <Filter>Source Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="userInput.h">
+    <ClInclude Include="user_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fileIO.h">

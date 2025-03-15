@@ -1,4 +1,4 @@
-#include "userInput.h"
+#include "user_input.h"
 #include "utils.h"
     
 #include <stdio.h>
@@ -11,53 +11,50 @@
 #define NEWLINE_LEN 1
 
 // https://stackoverflow.com/a/7898516
-static void flushStdin(void) {
+static void flush_stdin(void) {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-status_t getUserInt(int* userInt) {
-    if (scanf_s("%d", userInt) != 1) {
-        fprintf(stderr, "Error: Invalid input.\n");
-        return 1;
+status_t get_user_int(int* user_int) {
+    if (scanf_s("%d", user_int) != 1) {
+        return status_error("Invalid input.");
     }
 
-    flushStdin();
+    flush_stdin();
 
-    return 0;
+    return status_ok();
 }
 
-status_t getUserFlt(float* userFlt) {
+status_t get_user_flt(float* userFlt) {
     if (scanf_s("%f", userFlt) != 1) {
-        fprintf(stderr, "Error: Invalid input.\n");
-        return 1;
+        return status_error("Invalid input.");
     }
 
-    flushStdin();
+    flush_stdin();
 
-    return 0;
+    return status_ok();
 }
 
-status_t getUserChar(char* userChar) {
+status_t get_user_char(char* userChar) {
     int c = getchar();
     if (c == EOF) {
-        fprintf(stderr, "Error: Unexpected EOF.\n");
-        return 1;
+        return status_error("Unexpected EOF.");
     }
 
     // If we got a newline, then flushing will require reading another newline,
     // which means the user will need to press enter again, which is not ideal.
     if (c != '\n') {
-        flushStdin();
+        flush_stdin();
     }
 
     *userChar = (char)c;
-    return 0;
+    return status_ok();
 }
 
-char* getUserString(void) {
+RESULT(char*) get_user_string(void) {
     char* str = NULL;
-    fpos_t pos = 0;
+    fpos_t pos = 0; 
     do {
         size_t oldLen = 0;
         size_t newLen = VAR_STR_STARTING_LEN;
@@ -83,23 +80,25 @@ char* getUserString(void) {
 
         // Check allocation failure
         if (!str) {
-            fprintf(stderr, "Failed to allocate %zu bytes.\n", allocSize);
-            return NULL;
+            return result_error("Failed to allocate string.");
         }
 
         // Read string contents
         if (!fgets(str + oldLen, (int)(newLen - oldLen), stdin)) {
-            fprintf(stderr, "An unknown error occurred, or EOF was reached unexpectedly while reading string contents.\n");
             free(str);
-            return NULL;
+            return result_error("EOF reached unexpectedly/unkown error.");
         }
 
         if (fgetpos(stdin, &pos) != 0) {
-            fprintf(stderr, "An unknown error occurred while checking stdin pos.\n");
+            if (str) {
+                free(str);
+            }
+
+            return result_error("An unknown error occurred while checking stdin pos.");
         }
     } while ((size_t)pos != strlen(str) + NEWLINE_LEN);
 
     str[strcspn(str, "\n")] = '\0'; // Trim newline
 
-    return str;
+    return result_ok(str);
 }
