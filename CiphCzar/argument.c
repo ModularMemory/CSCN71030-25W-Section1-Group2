@@ -132,12 +132,16 @@ void print_argument(const pargument_t arg) {
     switch (arg->arg_type) {
     case INTEGER_ARG:
         printf("(Integer) - %d", arg->arg_union.integer);
+        break;
     case FLOAT_ARG:
         printf("(Float) - %f", arg->arg_union.fp);
+        break;
     case STRING_ARG:
         printf("(String) - %s", arg->arg_union.string);
+        break;
     default:
         printf("(Unknown Type)");
+        break;
     }
 }
 
