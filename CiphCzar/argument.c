@@ -43,7 +43,7 @@ status_t append_integer_arg(pargument_t* list, const char* description, int init
         return status_error("List cannot be NULL!");
     }
 
-    argument_union_t arg_union = (argument_union_t){ .integer = initial_val };
+    argument_union_t arg_union = (argument_union_t) { .integer = initial_val };
     result_t res = create_arg(description, INTEGER_ARG, arg_union);
     if (!res.success) {
         return to_status(res);
@@ -60,7 +60,7 @@ status_t append_float_arg(pargument_t* list, const char* description, float init
         return status_error("List cannot be NULL!");
     }
 
-    argument_union_t arg_union = (argument_union_t){ .fp = initial_val };
+    argument_union_t arg_union = (argument_union_t) { .fp = initial_val };
     result_t res = create_arg(description, FLOAT_ARG, arg_union);
     if (!res.success) {
         return to_status(res);
@@ -81,8 +81,8 @@ status_t append_string_arg(pargument_t* list, const char* description, const cha
     if (!copied_string.success) {
         return to_status(copied_string);
     }
-    
-    argument_union_t arg_union = (argument_union_t){ .string = (char*)copied_string.data };
+
+    argument_union_t arg_union = (argument_union_t) { .string = (char*)copied_string.data };
     result_t res = create_arg(description, STRING_ARG, arg_union);
     if (!res.success) {
         return to_status(res);
@@ -95,32 +95,38 @@ status_t append_string_arg(pargument_t* list, const char* description, const cha
 }
 
 RESULT(pargument_t) clone_argument_list(const pargument_t source_list) {
+    pargument_t new_list = NULL;
+
     pargument_t source_current = source_list;
-    
-    pargument_t dest_prev = NULL;
-    pargument_t dest_current = NULL;
-    pargument_t dest_head = NULL;
     while (source_current) {
-        dest_current = (pargument_t)malloc(sizeof(argument_t));
-        if (!dest_current) {
-            destroy_argument_list(dest_head);
-            return result_error("Failed to allocate argument node.");
+        status_t append_stat;
+        switch (source_current->arg_type) {
+        case INTEGER_ARG:
+            append_stat = append_integer_arg(&new_list, source_current->description, source_current->arg_union.integer);
+            break;
+        case FLOAT_ARG:
+            append_stat = append_float_arg(&new_list, source_current->description, source_current->arg_union.fp);
+            break;
+        case STRING_ARG:
+            append_stat = append_string_arg(&new_list, source_current->description, source_current->arg_union.string);
+            break;
+        default:
+            append_stat = status_error("Unknown arg type.");
+            break;
         }
 
-        if (!dest_head) {
-            dest_head = dest_current;
-            dest_prev = dest_current;
+        if (!append_stat.success) {
+            destroy_argument_list(new_list);
+            return to_result(append_stat);
         }
-        else {
-            dest_prev->next = dest_current;
-            dest_prev = dest_current;
-        }
+
+        source_current = source_current->next;
     }
 
-    return result_ok(dest_head);
+    return result_ok(new_list);
 }
 
-void print_argument(pargument_t arg) {
+void print_argument(const pargument_t arg) {
     printf("%s ", arg->description);
 
     switch (arg->arg_type) {
