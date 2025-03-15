@@ -145,6 +145,7 @@
     <ClCompile Include="rot_13.c" />
     <ClCompile Include="rot_common.c" />
     <ClCompile Include="rot_n.c" />
+    <ClCompile Include="route_cipher_common.c" />
     <ClCompile Include="status_result.c" />
     <ClCompile Include="to_base64.c" />
     <ClCompile Include="to_lower.c" />
@@ -169,6 +170,7 @@
     <ClInclude Include="rot_13.h" />
     <ClInclude Include="rot_common.h" />
     <ClInclude Include="rot_n.h" />
+    <ClInclude Include="route_cipher_common.h" />
     <ClInclude Include="status_result.h" />
     <ClInclude Include="to_base64.h" />
     <ClInclude Include="to_lower.h" />

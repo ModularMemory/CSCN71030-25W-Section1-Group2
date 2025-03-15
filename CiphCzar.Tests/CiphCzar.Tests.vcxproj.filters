@@ -72,6 +72,15 @@
     <ClCompile Include="base64.tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\route_cipher_common.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="route_cipher.tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -118,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="..\CiphCzar\from_base64.h">
       <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\route_cipher_common.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

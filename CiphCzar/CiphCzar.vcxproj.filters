@@ -96,6 +96,9 @@
     <ClCompile Include="get_args.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="route_cipher_common.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="get_args.h">
       <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="route_cipher_common.h">
+      <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
