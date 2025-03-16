@@ -2,6 +2,7 @@
 #include "from_base64.h"
 
 status_t from_base64_execute(const data_t input, const pargument_t args, data_t* output) {
+    // Run Base64 decode
     data_t out_data = { 0 };
     status_t stat = base64_decode(input, &out_data);
     if (!stat.success) {

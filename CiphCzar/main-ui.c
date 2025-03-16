@@ -28,7 +28,7 @@
 void print_intro() {
   printf("\n%s\n\n", LOGO);
   printf("Welcome to CyphCzar!\nPlease enter the (lowercase) letter "
-         "corrseponding with your "
+         "corresponding with your "
          "desired action below.\n");
   return;
 }
@@ -76,6 +76,7 @@ void print_main_menu(app_state_t *app_state) {
 
     case 'd':
       data_options_menu(app_state);
+      break;
 
     case 'e':
       // export to outfile

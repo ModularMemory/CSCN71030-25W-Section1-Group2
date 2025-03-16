@@ -13,6 +13,12 @@ static char substitute_proc(char input, size_t i, void* state) {
 }
 
 status_t xor_execute(const data_t input, const pargument_t args, data_t* output) {
+    // Validate args
+    status_t validate_stat = xor_validate_args(args);
+    if (!validate_stat.success) {
+        return validate_stat;
+    }
+
     // Get key from args
     assert(args);
     assert(args->arg_type == STRING_ARG);
