@@ -144,7 +144,7 @@ void print_recipe_long(const recipe_t recipe) {
         return;
     }
 
-    printf("\n+-> input");
+    printf("\n+-> Input");
 
     precipe_node_t cur = recipe->head;
     while (cur != NULL) {
@@ -160,5 +160,5 @@ void print_recipe_long(const recipe_t recipe) {
         cur = cur->next;
     }
 
-    printf("\n|\n+-> output\n");
+    printf("\n|\n+-> Output\n");
 }
