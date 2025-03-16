@@ -34,14 +34,51 @@ void print_intro() {
 }
 
 // Might end up depricated, depends on how this is handled
-static void execute_recipe_(app_state_t *app_state) {
-  precipe_node_t cur = app_state->recipe->head;
+static void execute_recipe(app_state_t *app_state) {
+  result_t raw_enum =
+      create_recipe_enumerator(app_state->recipe, app_state->current_input);
+
+  if (!raw_enum.success) {
+    fprintf(stderr, "Error: %s\n", raw_enum.message);
+    return;
+  }
+
+  recipe_enumerator_t enumerator = raw_enum.data;
+
+  if (recipe_enumerator_is_empty(enumerator)) {
+    fprintf(stderr, "Recipe is empty!\n");
+    return;
+  }
+
+  while (recipe_enumerator_move_next(enumerator)) {
+    status_t execute_stat = recipe_enumerator_execute(enumerator);
+    if (!execute_stat.success) {
+      fprintf(stderr, "Error: %s\n", execute_stat.message);
+    }
+
+    result_t res = recipe_enumerator_current_result(enumerator);
+    if (!res.success) {
+      fprintf(stderr, "Error: %s\n", res.message);
+      return;
+    }
+
+    if (app_state->current_output.data) {
+      // Free previous execution result
+      free(app_state->current_output.data);
+    }
+
+    const data_t *dat = (const data_t *)res.data;
+    status_t clone_status = clone_data(*dat, &app_state->current_output);
+
+    if (!clone_status.success)
+      fprintf(stderr, "Error: %s\n", clone_status.message);
+  }
 }
 
 // Also might end up depricated
 static void print_last_out_menu() {}
 
-// Also also might be depricated
+// also also might be depricated
 static void export_menu() {}
 
 void print_main_menu(app_state_t *app_state) {

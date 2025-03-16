@@ -4,6 +4,7 @@
 #include "user_input.h"
 #include "data.h"
 #include "status_result.h"
+#include "recipe_enumerator.h"
 
 #include "data_options.h"
 #include "edit_recipe.h"
