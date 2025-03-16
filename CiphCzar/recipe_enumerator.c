@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 
 #include "recipe_enumerator.h"
@@ -44,7 +45,12 @@ bool recipe_enumerator_move_next(recipe_enumerator_t enumerator) {
     }
 
     algorithm_t discard;
-    return recipe_pop(enumerator->recipe, &discard);
+    bool pop = recipe_pop(enumerator->recipe, &discard);
+    assert(pop);
+    
+    // Because the first move_next is a no-op, return the emptiness of the
+    // recipe rather than the success of the pop operation
+    return !recipe_is_empty(enumerator->recipe);
 }
 
 status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
