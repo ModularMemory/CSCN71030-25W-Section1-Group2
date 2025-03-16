@@ -34,7 +34,9 @@ void print_intro() {
 }
 
 // Might end up depricated, depends on how this is handled
-static void execute_recipe_menu() {}
+static void execute_recipe_(app_state_t *app_state) {
+  precipe_node_t cur = app_state->recipe->head;
+}
 
 // Also might end up depricated
 static void print_last_out_menu() {}
@@ -65,7 +67,7 @@ void print_main_menu(app_state_t *app_state) {
       break;
 
     case 'b':
-      // mods, execute him
+      execute_recipe(app_state);
       break;
 
     case 'c':

@@ -4,6 +4,7 @@
 
 typedef struct {
 	data_t current_input;
+	data_t current_output;
 	bool quiet;
 	char *filename;
 	recipe_t recipe;

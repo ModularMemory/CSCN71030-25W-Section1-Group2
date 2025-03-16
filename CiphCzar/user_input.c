@@ -18,6 +18,7 @@ static void flush_stdin(void) {
 
 status_t get_user_int(int* user_int) {
     if (scanf_s("%d", user_int) != 1) {
+        flush_stdin();
         return status_error("Invalid input.");
     }
 
@@ -28,6 +29,7 @@ status_t get_user_int(int* user_int) {
 
 status_t get_user_flt(float* userFlt) {
     if (scanf_s("%f", userFlt) != 1) {
+        flush_stdin();
         return status_error("Invalid input.");
     }
 
@@ -39,6 +41,7 @@ status_t get_user_flt(float* userFlt) {
 status_t get_user_char(char* userChar) {
     int c = getchar();
     if (c == EOF) {
+        flush_stdin();
         return status_error("Unexpected EOF.");
     }
 
