@@ -26,8 +26,8 @@ status_t get_user_int(int* user_int) {
     return status_ok();
 }
 
-status_t get_user_flt(float* userFlt) {
-    if (scanf_s("%f", userFlt) != 1) {
+status_t get_user_flt(float* user_flt) {
+    if (scanf_s("%f", user_flt) != 1) {
         return status_error("Invalid input.");
     }
 
@@ -36,7 +36,7 @@ status_t get_user_flt(float* userFlt) {
     return status_ok();
 }
 
-status_t get_user_char(char* userChar) {
+status_t get_user_char(char* user_char) {
     int c = getchar();
     if (c == EOF) {
         return status_error("Unexpected EOF.");
@@ -48,7 +48,7 @@ status_t get_user_char(char* userChar) {
         flush_stdin();
     }
 
-    *userChar = (char)c;
+    *user_char = (char)c;
     return status_ok();
 }
 
@@ -86,7 +86,7 @@ RESULT(char*) get_user_string(void) {
         // Read string contents
         if (!fgets(str + oldLen, (int)(newLen - oldLen), stdin)) {
             free(str);
-            return result_error("EOF reached unexpectedly/unkown error.");
+            return result_error("EOF reached unexpectedly/unknown error.");
         }
 
         if (fgetpos(stdin, &pos) != 0) {

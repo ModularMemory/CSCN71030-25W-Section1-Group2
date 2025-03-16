@@ -24,7 +24,7 @@ typedef struct {
     void* data;
 } result_t;
 
-/// @brief Denotes the data type of a result struct
+/// @brief Denotes the data type held by the result struct
 #define RESULT(type) result_t
 
 /// @brief Creates a success result with data

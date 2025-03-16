@@ -1,5 +1,7 @@
 #include "make_recipe.h"
 
+#include <stdlib.h>
+
 void make_recipe(app_state_t* app_state) {
     bool exit_con = false;
     algorithm_list_t alg_list = get_algorithms();
@@ -51,7 +53,7 @@ void make_recipe(app_state_t* app_state) {
 
                 push_status = recipe_push(app_state->recipe, *selected_alg);
                 if (push_status.success)
-                    printf("Succesfully added %s\n", selected_alg->name);
+                    printf("Successfully added %s\n", selected_alg->name);
             }
         }
         else {
@@ -70,7 +72,7 @@ void make_recipe(app_state_t* app_state) {
 
                     push_status = recipe_push(app_state->recipe, *selected_alg);
                     if (push_status.success)
-                        printf("\nSuccesfully added %s\n", selected_alg->name);
+                        printf("\nSuccessfully added %s\n", selected_alg->name);
                 }
             }
             else

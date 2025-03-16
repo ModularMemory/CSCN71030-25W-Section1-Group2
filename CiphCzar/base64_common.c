@@ -1,6 +1,5 @@
 #include <assert.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "base64_common.h"
 #include "utils.h"
@@ -130,7 +129,7 @@ status_t base64_decode(const data_t input, data_t* output) {
             for (int i = 0; i < 64; i++) {
                 if (base64_chars[i] == current) {
                     found = true;
-                    decode_buff[buff_off] = i;
+                    decode_buff[buff_off] = (char)i;
                     buff_off++;
                 }
             }
