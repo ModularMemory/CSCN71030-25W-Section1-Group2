@@ -1,29 +1,33 @@
 #include <assert.h>
 #include <string.h>
 
+#include "substitution_cipher_common.h"
 #include "utils.h"
 #include "xor.h"
 
-status_t xor_execute(const data_t input, const pargument_t args, data_t* output) {
-    result_t out_res = allocate_string(input.len);
-    if (!out_res.success) {
-        return to_status(out_res);
-    }
+static char substitute_proc(char input, size_t i, void* state) {
+    const data_t* key = (data_t*)state;
 
+    char key_char = key->data[i % key->len];
+    return input ^ key_char;
+}
+
+status_t xor_execute(const data_t input, const pargument_t args, data_t* output) {
+    // Get key from args
     assert(args);
     assert(args->arg_type == STRING_ARG);
-    const char* key = args->arg_union.string;
+    char* key = args->arg_union.string;
     size_t key_len = strlen(key);
+    data_t key_data = create_data(key, key_len);
 
-    assert(out_res.data);
-    char* out_data = out_res.data;
-
-    for (size_t i = 0; i < input.len; i++) {
-        char key_char = key[i % key_len];
-        out_data[i] = input.data[i] ^ key_char;
+    // Run substitution
+    data_t out_data = { 0 };
+    status_t sub_stat = run_substitution(input, &key_data, substitute_proc, &out_data);
+    if (!sub_stat.success) {
+        return sub_stat;
     }
 
-    *output = create_data(out_data, input.len);
+    *output = out_data;
 
     return status_ok();
 }

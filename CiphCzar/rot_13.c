@@ -14,6 +14,7 @@ status_t rot_13_execute(const data_t input, const pargument_t args, data_t* outp
     assert(out_res.data);
     char* out_data = out_res.data;
 
+    // Rotate
     rotate_impl(input.data, out_data, input.len, true, true, false, 13);
 
     *output = create_data(out_data, input.len);

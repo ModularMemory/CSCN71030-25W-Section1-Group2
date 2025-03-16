@@ -10,6 +10,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
         return to_status(out_res);
     }
 
+    // Get rotate count from args
     assert(args);
     assert(args->arg_type == INTEGER_ARG);
     int rotate_count = args->arg_union.integer;
@@ -17,6 +18,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
     assert(out_res.data);
     char* out_data = out_res.data;
 
+    // Rotate
     rotate_impl(input.data, out_data, input.len, true, true, false, rotate_count);
 
     *output = create_data(out_data, input.len);

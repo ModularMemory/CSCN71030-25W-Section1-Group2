@@ -3,28 +3,22 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#include "substitution_cipher_common.h"
 #include "to_lower.h"
-#include "utils.h"
+
+static char substitute_proc(char c, size_t i, void* state) {
+    return (char)tolower(c);
+}
 
 status_t to_lower_execute(const data_t input, const pargument_t args, data_t* output) {
-    result_t out_res = allocate_string(input.len);
-    if (!out_res.success) {
-        return to_status(out_res);
+    // Run substitution
+    data_t out_data = { 0 };
+    status_t sub_stat = run_substitution(input, NULL, substitute_proc, &out_data);
+    if (!sub_stat.success) {
+        return sub_stat;
     }
 
-    assert(out_res.data);
-    char* out_data = out_res.data;
-
-    for (size_t i = 0; i < input.len; i++) {
-        char c = input.data[i];
-        if (c >= 'A' && c <= 'Z') {
-            c = (char)tolower(c);
-        }
-
-        out_data[i] = c;
-    }
-
-    *output = create_data(out_data, input.len);
+    *output = out_data;
 
     return status_ok();
 }

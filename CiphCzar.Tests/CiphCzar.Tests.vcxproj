@@ -171,6 +171,7 @@
     <ClCompile Include="..\CiphCzar\rot_n.c" />
     <ClCompile Include="..\CiphCzar\route_cipher_common.c" />
     <ClCompile Include="..\CiphCzar\status_result.c" />
+    <ClCompile Include="..\CiphCzar\substitution_cipher_common.c" />
     <ClCompile Include="..\CiphCzar\to_base64.c" />
     <ClCompile Include="..\CiphCzar\to_lower.c" />
     <ClCompile Include="..\CiphCzar\to_route_cipher.c" />
@@ -197,6 +198,7 @@
     <ClInclude Include="..\CiphCzar\rot_n.h" />
     <ClInclude Include="..\CiphCzar\route_cipher_common.h" />
     <ClInclude Include="..\CiphCzar\status_result.h" />
+    <ClInclude Include="..\CiphCzar\substitution_cipher_common.h" />
     <ClInclude Include="..\CiphCzar\to_base64.h" />
     <ClInclude Include="..\CiphCzar\to_lower.h" />
     <ClInclude Include="..\CiphCzar\to_route_cipher.h" />

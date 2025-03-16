@@ -111,6 +111,9 @@
     <ClCompile Include="xor.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
+    <ClCompile Include="substitution_cipher_common.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -189,6 +192,9 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="xor.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="substitution_cipher_common.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
