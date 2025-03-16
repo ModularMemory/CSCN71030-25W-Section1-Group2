@@ -87,6 +87,12 @@
     <ClCompile Include="..\CiphCzar\to_route_cipher.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="xor.tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\xor.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -144,6 +150,9 @@
       <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="..\CiphCzar\from_route_cipher.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\xor.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
   </ItemGroup>

@@ -176,10 +176,12 @@
     <ClCompile Include="..\CiphCzar\to_route_cipher.c" />
     <ClCompile Include="..\CiphCzar\to_upper.c" />
     <ClCompile Include="..\CiphCzar\utils.c" />
+    <ClCompile Include="..\CiphCzar\xor.c" />
     <ClCompile Include="base64.tests.cpp" />
     <ClCompile Include="common.cpp" />
     <ClCompile Include="recipe_enumerator.tests.cpp" />
     <ClCompile Include="route_cipher.tests.cpp" />
+    <ClCompile Include="xor.tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\algorithm.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="..\CiphCzar\to_route_cipher.h" />
     <ClInclude Include="..\CiphCzar\to_upper.h" />
     <ClInclude Include="..\CiphCzar\utils.h" />
+    <ClInclude Include="..\CiphCzar\xor.h" />
     <ClInclude Include="common.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

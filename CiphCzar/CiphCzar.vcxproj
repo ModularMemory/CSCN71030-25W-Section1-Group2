@@ -154,6 +154,7 @@
     <ClCompile Include="to_upper.c" />
     <ClCompile Include="user_input.c" />
     <ClCompile Include="utils.c" />
+    <ClCompile Include="xor.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="to_upper.h" />
     <ClInclude Include="user_input.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="xor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

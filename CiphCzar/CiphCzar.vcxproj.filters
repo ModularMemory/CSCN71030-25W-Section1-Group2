@@ -108,6 +108,9 @@
     <ClCompile Include="make_recipe.h">
       <Filter>Header Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="xor.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="main-ui.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="xor.h">
+      <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
