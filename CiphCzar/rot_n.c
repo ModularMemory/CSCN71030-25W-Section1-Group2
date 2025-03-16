@@ -1,7 +1,7 @@
 #include <assert.h>
 
 #include "rot_common.h"
-#include "to_lower.h"
+#include "rot_n.h"
 #include "utils.h"
 
 status_t rot_n_execute(const data_t input, const pargument_t args, data_t* output) {

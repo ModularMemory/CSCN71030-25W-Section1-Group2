@@ -1,8 +1,8 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#include "rot_13.h"
 #include "rot_common.h"
-#include "to_lower.h"
 #include "utils.h"
 
 status_t rot_13_execute(const data_t input, const pargument_t args, data_t* output) {
