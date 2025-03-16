@@ -60,6 +60,7 @@ static bool encode_block(const data_t input, size_t start_offset, size_t block_w
     // Ensure the block is filled with padding in case the input is not a multiple of the block size
     memset(block[0], padding, block_width * block_height);
 
+    // Fill the block
     size_t in_off = start_offset;
     for (; in_off < input.len; in_off++) {
         size_t block_pos = in_off - start_offset;
@@ -78,6 +79,7 @@ status_t route_cipher_encode(const data_t input, size_t block_width, size_t bloc
         return status_error("Failed to allocate route cipher block.");
     }
 
+    // Alloc output
     size_t out_len = get_output_len(input, block_width, block_height);
     result_t out_res = allocate_string(out_len);
     if (!out_res.success) {
@@ -111,6 +113,7 @@ static bool decode_block(const data_t input, size_t start_offset, size_t block_w
     // Ensure the block is filled with padding in case the input is not a multiple of the block size
     memset(block[0], padding, block_width * block_height);
 
+    // Fill the block
     size_t in_off = start_offset;
     for (; in_off < input.len; in_off++) {
         size_t block_pos = in_off - start_offset;
@@ -129,6 +132,7 @@ status_t route_cipher_decode(const data_t input, size_t block_width, size_t bloc
         return status_error("Failed to allocate route cipher block.");
     }
 
+    // Alloc output
     size_t out_len = get_output_len(input, block_width, block_height);
     result_t out_res = allocate_string(out_len);
     if (!out_res.success) {
@@ -140,7 +144,7 @@ status_t route_cipher_decode(const data_t input, size_t block_width, size_t bloc
 
     size_t out_off = 0;
     while (decode_block(input, out_off, block_width, block_height, block)) {
-        // Copy the block contents to the output buffer in top-down, left-right order
+        // Copy the block contents to the output buffer in left-right, top-down order
         for (size_t y = 0; y < block_height; y++) {
             for (size_t x = 0; x < block_width; x++) {
                 out_data[out_off] = block[x][y];

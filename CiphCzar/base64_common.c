@@ -25,6 +25,7 @@ status_t base64_encode(const data_t input, data_t* output) {
     const char* in_data = input.data;
     size_t in_len = input.len;
 
+    // Alloc output
     size_t out_len = get_encoded_len(input);
     result_t out_res = allocate_string(out_len);
     if (!out_res.success) {
@@ -101,6 +102,7 @@ status_t base64_decode(const data_t input, data_t* output) {
         return status_error("Input is not valid Base64.");
     }
 
+    // Alloc output
     size_t out_len = get_decoded_len(input);
     result_t out_res = allocate_string(out_len);
     if (!out_res.success) {
