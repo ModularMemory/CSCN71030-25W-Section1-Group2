@@ -20,8 +20,7 @@ status_t xor_execute(const data_t input, const pargument_t args, data_t* output)
 
     for (size_t i = 0; i < input.len; i++) {
         char key_char = key[i % key_len];
-        char res = (input.data[i]) ^ key_char;
-        out_data[i] = res;
+        out_data[i] = input.data[i] ^ key_char;
     }
 
     *output = create_data(out_data, input.len);
