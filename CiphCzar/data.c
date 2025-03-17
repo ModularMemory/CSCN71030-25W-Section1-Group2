@@ -1,7 +1,8 @@
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include <ctype.h>
 
 #include "data.h"
 
@@ -23,11 +24,24 @@ status_t clone_data(const data_t source, data_t* dest) {
 }
 
 status_t print_data(const data_t data) {
-    char c = '\0';
-    for (int i = 0; i < data.len; i++) {
-        c = data.data[i];
+    bool wrote_unprintable = false;
 
-        if (!isprint(c)) printf("\x1b[31m0\x1b[0m");
-        else printf("%c", c);
+    for (int i = 0; i < data.len; i++) {
+        char c = data.data[i];
+
+        if (!iscntrl((unsigned char)c)) {
+            // If the char isn't a control char, print it
+            printf("%c", c);
+        }
+        else {
+            // Else print a substitution
+            wrote_unprintable = true;
+            printf("\x1b[31m0\x1b[0m");
+        }
+    }
+
+    printf("\n");
+    if (wrote_unprintable) {
+        printf("Buffer contained unprintable characters. These have been substituted with \x1b[31m0\x1b[0m.\n");
     }
 }
