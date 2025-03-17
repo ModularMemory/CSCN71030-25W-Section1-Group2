@@ -81,11 +81,6 @@ RESULT(const data_t*) recipe_enumerator_current_result(const recipe_enumerator_t
         return result_error("Enumerator has not moved yet.");
     }
 
-    // Not required to access rolling result, but maintains consistency with current_name
-    if (recipe_enumerator_is_empty(enumerator)) {
-        return result_error("Enumerator is empty.");
-    }
-
     return result_ok(&enumerator->rolling_result);
 }
 
