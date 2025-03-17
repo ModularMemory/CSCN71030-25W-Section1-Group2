@@ -1,19 +1,23 @@
+#include <ctype.h>
+#include <stdio.h>
+
 #include "edit_recipe.h"
 #include "make_recipe.h"
+#include "user_input.h"
 
 void edit_recipe_menu(app_state_t* app_state) {
-    bool exit_con = false;
-
     do {
         char response = '\0';
         printf("\n-+-+-+-+-+ Recipe options +-+-+-+-+-\n");
-        printf("A: Remake recipe\n");
+        printf("A: Add to recipe\n");
         printf("B: View current recipe\n");
         printf("C: View current recipe w/ args\n");
-        printf("D: Return to main menu\n\n");
+        printf("D: Delete current recipe\n");
+        printf("E: Return to main menu\n\n");
 
-        while ('a' > response || 'd' < response) {
+        while ('a' > response || 'e' < response) {
             get_user_char(&response);
+            response = tolower(response);
         }
 
         switch (response) {
@@ -30,10 +34,23 @@ void edit_recipe_menu(app_state_t* app_state) {
             break;
 
         case 'd':
-            exit_con = true;
+        {
+            result_t recipe_remake = create_recipe();
+            if (!recipe_remake.success) {
+                fprintf(stderr, "Error on recipe clear: %s\nRecipe left unchanged", recipe_remake.message);
+                break;
+            }
+
+            recipe_t wiped_recipe = recipe_remake.data;
+
+            destroy_recipe(app_state->recipe);
+            app_state->recipe = wiped_recipe;
             break;
         }
 
-    } while (exit_con == false);
-    return;
+        case 'e':
+            return;
+        }
+
+    } while (1);
 }

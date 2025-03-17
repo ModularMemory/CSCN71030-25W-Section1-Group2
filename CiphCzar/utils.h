@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stddef.h>
-
 #include "status_result.h"
 
 RESULT(char*) allocate_string(size_t length);

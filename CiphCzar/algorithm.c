@@ -1,11 +1,17 @@
 #include <string.h>
 
 #include "algorithm.h"
+#include "alternating_case.h"
 #include "from_base64.h"
 #include "from_route_cipher.h"
+#include "random_case.h"
+#include "random_shuffle.h"
 #include "rot_13.h"
 #include "rot_n.h"
+#include "swap_case.h"
 #include "to_base64.h"
+#include "to_decimal.h"
+#include "to_hex.h"
 #include "to_lower.h"
 #include "to_route_cipher.h"
 #include "to_upper.h"
@@ -14,6 +20,9 @@
 static algorithm_t algorithms[] = {
     CREATE_ALG_TO_LOWER(void),
     CREATE_ALG_TO_UPPER(void),
+    CREATE_ALG_SWAP_CASE(void),
+    CREATE_ALG_RANDOM_CASE(void),
+    CREATE_ALG_ALTERNATE_CASE(void),
     CREATE_ALG_ROT_13(void),
     CREATE_ALG_ROT_N(void),
     CREATE_ALG_TO_BASE64(void),
@@ -21,6 +30,9 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_TO_ROUTE_CIPHER(void),
     CREATE_ALG_FROM_ROUTE_CIPHER(void),
     CREATE_ALG_XOR(void),
+    CREATE_ALG_TO_HEX(void),
+    CREATE_ALG_TO_DECIMAL(void),
+    CREATE_ALG_RANDOM_SHUFFLE(void),
 };
 
 static size_t algorithm_count = __crt_countof(algorithms);

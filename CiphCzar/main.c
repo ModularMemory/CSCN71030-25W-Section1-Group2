@@ -1,4 +1,5 @@
-#include "main-ui.h"
+#include "app_state.h"
+#include "main_ui.h"
 #include "recipe.h"
 
 #include <stdbool.h>
@@ -8,7 +9,7 @@ int main(void) {
   result_t rec = create_recipe();
   app_state.recipe = rec.data;
   app_state.quiet = false;
-  app_state.filename = "output";
+  app_state.output_file = "output";
 
   // TEMPS!!!
   bool QUIET_BOOL_PLACEHOLDER = false;
@@ -18,7 +19,7 @@ int main(void) {
   if (QUIET_BOOL_PLACEHOLDER == true)
     app_state.quiet = true;
   if (NAME_GIVEN == true)
-    app_state.filename = "put the filename given in arg here";
+    app_state.output_file = "put the filename given in arg here";
 
   print_intro();
   print_main_menu(&app_state);

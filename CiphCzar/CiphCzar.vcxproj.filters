@@ -45,7 +45,7 @@
     <ClCompile Include="data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main-ui.c">
+    <ClCompile Include="main_ui.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="user_input.c">
@@ -114,6 +114,33 @@
     <ClCompile Include="substitution_cipher_common.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
+    <ClCompile Include="executor.c">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="num_conv_common.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="to_hex.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="to_decimal.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="to_decimal.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="swap_case.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="random_case.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="alternating_case.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="random_shuffle.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -167,9 +194,6 @@
     <ClInclude Include="from_base64.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="route_cipher_common.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
@@ -188,7 +212,7 @@
     <ClInclude Include="get_args.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="main-ui.h">
+    <ClInclude Include="main_ui.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="xor.h">
@@ -196,6 +220,30 @@
     </ClInclude>
     <ClInclude Include="substitution_cipher_common.h">
       <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="executor.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="num_conv_common.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="to_hex.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="swap_case.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="random_case.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="alternating_case.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="random_shuffle.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="app_state.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

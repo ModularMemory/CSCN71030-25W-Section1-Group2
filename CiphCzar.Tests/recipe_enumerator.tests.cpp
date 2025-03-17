@@ -13,7 +13,7 @@ namespace CiphCzarTests
 {
     TEST_CLASS(RecipeEnumeratorTests)
     {
-        algorithm_t create_test_algorithm() {
+        static algorithm_t create_test_algorithm() {
             algorithm_t alg = {0};
 
             alg.name = "Name";
@@ -28,7 +28,7 @@ namespace CiphCzarTests
             return alg;
         }
 
-        recipe_t create_test_recipe() {
+        static recipe_t create_test_recipe() {
             result_t res = create_recipe();
             Assert::IsTrue(res.success);
             Assert::IsNotNull(res.data);
@@ -41,7 +41,7 @@ namespace CiphCzarTests
             return rec;
         }
 
-        recipe_enumerator_t create_test_enumerator(recipe_t recipe, data_t data) {
+        static recipe_enumerator_t create_test_enumerator(recipe_t recipe, data_t data) {
             result_t res = create_recipe_enumerator(recipe, data);
             Assert::IsTrue(res.success);
             Assert::IsNotNull(res.data);

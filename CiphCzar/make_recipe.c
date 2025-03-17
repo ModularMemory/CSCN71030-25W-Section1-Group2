@@ -1,20 +1,24 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "get_args.h"
 #include "make_recipe.h"
+#include "user_input.h"
 
 void make_recipe(app_state_t* app_state) {
-    bool exit_con = false;
     algorithm_list_t alg_list = get_algorithms();
     algorithm_t* selected_alg = { 0 };
     status_t push_status;
     status_t get_arg_status;
 
     do {
-        char response = '\0';
         printf("\n-+-+-+-+-+ Recipe builder +-+-+-+-+-\n");
         printf("A: Return to recipe options\n");
         printf("B: View current recipe\n\n");
 
         for (int i = 0; i < (int)alg_list.len; i++) {
-            printf("%d: %s\n", i + 1, alg_list.algorithms[i].name);
+            printf("%2d: %s - %s\n", i + 1, alg_list.algorithms[i].name, alg_list.algorithms[i].description);
         }
 
         result_t raw_response = get_user_string();
@@ -28,11 +32,10 @@ void make_recipe(app_state_t* app_state) {
         if (!atoi(raw_response.data)) {
             char* returned_string = raw_response.data;
 
-            if ('a' == returned_string[0]) {
-                exit_con = true;
+            if ('a' == tolower(returned_string[0])) {
+                return;
             }
-
-            else if ('b' == returned_string[0]) {
+            else if ('b' == tolower(returned_string[0])) {
                 print_recipe_long(app_state->recipe);
                 continue;
             }
@@ -51,7 +54,7 @@ void make_recipe(app_state_t* app_state) {
 
                 push_status = recipe_push(app_state->recipe, *selected_alg);
                 if (push_status.success)
-                    printf("Succesfully added %s\n", selected_alg->name);
+                    printf("Successfully added %s\n", selected_alg->name);
             }
         }
         else {
@@ -70,13 +73,13 @@ void make_recipe(app_state_t* app_state) {
 
                     push_status = recipe_push(app_state->recipe, *selected_alg);
                     if (push_status.success)
-                        printf("\nSuccesfully added %s\n", selected_alg->name);
+                        printf("\nSuccessfully added %s\n", selected_alg->name);
                 }
             }
-            else
+            else {
                 printf(
                     "Error reading input symbol, please double check and try again\n");
+            }
         }
-    } while (exit_con == false);
-    return;
+    } while (1);
 }

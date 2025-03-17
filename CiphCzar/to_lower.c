@@ -1,7 +1,5 @@
 #include <assert.h>
 #include <ctype.h>
-#include <stddef.h>
-#include <stdlib.h>
 
 #include "substitution_cipher_common.h"
 #include "to_lower.h"

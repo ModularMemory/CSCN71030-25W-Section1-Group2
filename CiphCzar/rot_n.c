@@ -1,10 +1,17 @@
 #include <assert.h>
 
 #include "rot_common.h"
-#include "to_lower.h"
+#include "rot_n.h"
 #include "utils.h"
 
 status_t rot_n_execute(const data_t input, const pargument_t args, data_t* output) {
+    // Validate args
+    status_t validate_stat = rot_n_validate_args(args);
+    if (!validate_stat.success) {
+        return validate_stat;
+    }
+
+    // Alloc output
     result_t out_res = allocate_string(input.len);
     if (!out_res.success) {
         return to_status(out_res);
@@ -18,7 +25,7 @@ status_t rot_n_execute(const data_t input, const pargument_t args, data_t* outpu
     assert(out_res.data);
     char* out_data = out_res.data;
 
-    // Rotate
+    // Run rotation
     rotate_impl(input.data, out_data, input.len, true, true, false, rotate_count);
 
     *output = create_data(out_data, input.len);

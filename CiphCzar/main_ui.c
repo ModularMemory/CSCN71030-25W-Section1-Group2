@@ -23,23 +23,25 @@
   "/_________________________________________________________________________" \
   "________________________________/ \n \x1b[0m"
 
-#include "main-ui.h"
+#include "app_state.h"
+#include "data_options.h"
+#include "edit_recipe.h"
+#include "executor.h"
+#include "main_ui.h"
+#include "user_input.h"
+
+#include <ctype.h>
+#include <stdio.h>
 
 void print_intro() {
   printf("\n%s\n\n", LOGO);
-  printf("Welcome to CyphCzar!\nPlease enter the (lowercase) letter "
-         "corrseponding with your "
+  printf("Welcome to CyphCzar!\nPlease enter the letter "
+         "corresponding with your "
          "desired action below.\n");
   return;
 }
 
-// Might end up depricated, depends on how this is handled
-static void execute_recipe_menu() {}
-
-// Also might end up depricated
-static void print_last_out_menu() {}
-
-// Also also might be depricated
+// also also might be depricated
 static void export_menu() {}
 
 void print_main_menu(app_state_t *app_state) {
@@ -50,13 +52,14 @@ void print_main_menu(app_state_t *app_state) {
     printf("\n-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
     printf("A: Edit recipe\n");
     printf("B: Execute recipe\n");
-    printf("C: Print last output\n");
+    printf("C: Print recipe result\n");
     printf("D: Data options\n");
     printf("E: Export to file\n");
     printf("F: Exit\n\n");
 
     while ('a' > response || 'f' < response) {
       get_user_char(&response);
+      response = tolower(response);
     }
 
     switch (response) {
@@ -65,15 +68,22 @@ void print_main_menu(app_state_t *app_state) {
       break;
 
     case 'b':
-      // mods, execute him
+      execute_recipe(app_state);
       break;
 
     case 'c':
-      // print output
+      if (!app_state->current_output.data) {
+        printf("A recipe has not been executed yet.");
+        break;
+      }
+
+      printf("Last output (as text)\n");
+      print_data(app_state->current_output);
       break;
 
     case 'd':
       data_options_menu(app_state);
+      break;
 
     case 'e':
       // export to outfile

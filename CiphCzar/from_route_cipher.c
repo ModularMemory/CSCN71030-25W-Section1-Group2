@@ -4,6 +4,11 @@
 #include "from_route_cipher.h"
 
 status_t from_route_cipher_execute(const data_t input, const pargument_t args, data_t* output) {
+    status_t validate_stat = from_route_cipher_validate_args(args);
+    if (!validate_stat.success) {
+        return validate_stat;
+    }
+
     assert(args);
     assert(args->arg_type == INTEGER_ARG);
     int block_width = args->arg_union.integer;
