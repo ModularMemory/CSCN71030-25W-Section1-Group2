@@ -5,7 +5,7 @@ void edit_recipe_menu(app_state_t* app_state) {
     do {
         char response = '\0';
         printf("\n-+-+-+-+-+ Recipe options +-+-+-+-+-\n");
-        printf("A: Remake recipe\n");
+        printf("A: Add to recipe\n");
         printf("B: View current recipe\n");
         printf("C: View current recipe w/ args\n");
         printf("D: Delete current recipe\n");
