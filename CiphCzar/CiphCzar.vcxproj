@@ -152,6 +152,8 @@
     <ClCompile Include="status_result.c" />
     <ClCompile Include="substitution_cipher_common.c" />
     <ClCompile Include="to_base64.c" />
+    <ClCompile Include="to_decimal.c" />
+    <ClCompile Include="to_decimal.h" />
     <ClCompile Include="to_hex.c" />
     <ClCompile Include="to_lower.c" />
     <ClCompile Include="to_route_cipher.c" />

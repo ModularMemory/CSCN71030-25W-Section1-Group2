@@ -102,6 +102,12 @@
     <ClCompile Include="..\CiphCzar\to_hex.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_decimal.h">
+      <Filter>Header Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_decimal.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">

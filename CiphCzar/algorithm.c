@@ -6,6 +6,7 @@
 #include "rot_13.h"
 #include "rot_n.h"
 #include "to_base64.h"
+#include "to_decimal.h"
 #include "to_hex.h"
 #include "to_lower.h"
 #include "to_route_cipher.h"
@@ -23,6 +24,7 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_FROM_ROUTE_CIPHER(void),
     CREATE_ALG_XOR(void),
     CREATE_ALG_TO_HEX(void),
+    CREATE_ALG_TO_DECIMAL(void),
 };
 
 static size_t algorithm_count = __crt_countof(algorithms);
