@@ -1,4 +1,7 @@
 #include "get_args.h"
+#include "user_input.h"
+
+#include <stdio.h>
 
 status_t get_algo_args(algorithm_t *alg) {
   if (alg->additional_args == NULL)

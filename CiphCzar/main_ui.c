@@ -23,7 +23,12 @@
   "/_________________________________________________________________________" \
   "________________________________/ \n \x1b[0m"
 
+#include "data_options.h"
+#include "edit_recipe.h"
+#include "executor.h"
 #include "main_ui.h"
+#include "make_recipe.h"
+#include "user_input.h"
 
 #include <ctype.h>
 
@@ -34,9 +39,6 @@ void print_intro() {
          "desired action below.\n");
   return;
 }
-
-// Also might end up depricated
-static void print_last_out_menu() {}
 
 // also also might be depricated
 static void export_menu() {}

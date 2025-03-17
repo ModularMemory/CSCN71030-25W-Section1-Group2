@@ -1,7 +1,6 @@
 #pragma once
+
 #include "main.h"
-#include "status_result.h"
-#include "user_input.h"
 
 #include <stdio.h>
 
