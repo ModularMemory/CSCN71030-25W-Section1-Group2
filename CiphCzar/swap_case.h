@@ -11,7 +11,7 @@ void swap_case_reset_args(algorithm_t* alg);
 #define CREATE_ALG_SWAP_CASE(void)\
 {\
     .name = "Swap Case",\
-    .description = "Swaps the casing all of the readable characters in the input buffer.",\
+    .description = "Swaps the casing of all readable characters in the input buffer.",\
     .execute = swap_case_execute,\
     .validate_args = swap_case_validate_args,\
     .additional_args = NULL,\
