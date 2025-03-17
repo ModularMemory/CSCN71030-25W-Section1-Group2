@@ -61,7 +61,8 @@ static bool encode_block(const data_t input, size_t start_offset, size_t block_w
     memset(block[0], padding, block_width * block_height);
 
     // Fill the block
-    for (size_t in_off = start_offset; in_off < input.len; in_off++) {
+    size_t end = min(input.len, start_offset + block_width * block_height);
+    for (size_t in_off = start_offset; in_off < end; in_off++) {
         size_t block_pos = in_off - start_offset;
         size_t x = block_pos % block_width;
         size_t y = block_pos / block_width;
@@ -115,8 +116,8 @@ static bool decode_block(const data_t input, size_t start_offset, size_t block_w
     memset(block[0], padding, block_width * block_height);
 
     // Fill the block
-    size_t in_off = start_offset;
-    for (; in_off < input.len; in_off++) {
+    size_t end = min(input.len, start_offset + block_width * block_height);
+    for (size_t in_off = start_offset; in_off < end; in_off++) {
         size_t block_pos = in_off - start_offset;
         size_t x = (block_pos % (block_width * block_height)) / block_height;
         size_t y = block_pos % block_height;

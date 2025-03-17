@@ -63,6 +63,37 @@ namespace CiphCzarTests
             free(actual.data);
         }
 
+        TEST_METHOD(Encode_ProducesCorrectOutput_For3By3_WithLongInput)
+        {
+            // Arrange
+            data_t input = create_test_data("Meet at midnight");
+
+            // Mee
+            // t a
+            // 
+            // t m
+            // idn
+            //
+            // igh
+            // t  
+            const char* expected = "Mte eati dmnitg h ";
+
+            // Act
+            data_t actual;
+            status_t stat = route_cipher_encode(input, 3, 2, &actual);
+            Assert::IsTrue(stat.success);
+
+            // Assert
+            Assert::AreEqual(strlen(expected), actual.len);
+            for (size_t i = 0; i < actual.len; i++) {
+                Assert::AreEqual(expected[i], actual.data[i]);
+            }
+
+            // Cleanup
+            free(input.data);
+            free(actual.data);
+        }
+
         TEST_METHOD(Decode_ProducesCorrectOutput_For4By2)
         {
             // Arrange
@@ -101,6 +132,37 @@ namespace CiphCzarTests
             // Act
             data_t actual;
             status_t stat = route_cipher_decode(input, 3, 3, &actual);
+            Assert::IsTrue(stat.success);
+
+            // Assert
+            Assert::AreEqual(strlen(expected), actual.len);
+            for (size_t i = 0; i < actual.len; i++) {
+                Assert::AreEqual(expected[i], actual.data[i]);
+            }
+
+            // Cleanup
+            free(input.data);
+            free(actual.data);
+        }
+
+        TEST_METHOD(Decode_ProducesCorrectOutput_For3By3_WithLongInput)
+        {
+            // Arrange
+            data_t input = create_test_data("Mte eati dmnitg h");
+
+            // Mte
+            //  ea
+            // 
+            // ti 
+            // dmn
+            //
+            // nit
+            // g h 
+            const char* expected = "Meet at midnight  ";
+
+            // Act
+            data_t actual;
+            status_t stat = route_cipher_decode(input, 3, 2, &actual);
             Assert::IsTrue(stat.success);
 
             // Assert
