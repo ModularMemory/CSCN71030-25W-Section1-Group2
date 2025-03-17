@@ -1,6 +1,9 @@
-#include "make_recipe.h"
-
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "get_args.h"
+#include "make_recipe.h"
+#include "user_input.h"
 
 void make_recipe(app_state_t* app_state) {
     algorithm_list_t alg_list = get_algorithms();
