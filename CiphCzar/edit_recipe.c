@@ -1,10 +1,9 @@
+#include <ctype.h>
 #include <stdio.h>
 
 #include "edit_recipe.h"
 #include "make_recipe.h"
 #include "user_input.h"
-
-#include <ctype.h>
 
 void edit_recipe_menu(app_state_t* app_state) {
     do {
@@ -16,11 +15,10 @@ void edit_recipe_menu(app_state_t* app_state) {
         printf("D: Delete current recipe\n");
         printf("E: Return to main menu\n\n");
 
-        while ('a' > tolower(response) || 'e' < tolower(response)) {
+        while ('a' > response || 'e' < response) {
             get_user_char(&response);
+            response = tolower(response);
         }
-
-        response = tolower(response);
 
         switch (response) {
         case 'a':
@@ -36,8 +34,8 @@ void edit_recipe_menu(app_state_t* app_state) {
             break;
 
         case 'd':
-            // adding a semicolon gets intellisense to stop complaining about nothing so :p
-            ;result_t recipe_remake = create_recipe();
+        {
+            result_t recipe_remake = create_recipe();
             if (!recipe_remake.success) {
                 fprintf(stderr, "Error on recipe clear: %s\nRecipe left unchanged", recipe_remake.message);
                 break;
@@ -48,6 +46,7 @@ void edit_recipe_menu(app_state_t* app_state) {
             destroy_recipe(app_state->recipe);
             app_state->recipe = wiped_recipe;
             break;
+        }
 
         case 'e':
             return;

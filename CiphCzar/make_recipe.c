@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,7 +13,6 @@ void make_recipe(app_state_t* app_state) {
     status_t get_arg_status;
 
     do {
-        char response = '\0';
         printf("\n-+-+-+-+-+ Recipe builder +-+-+-+-+-\n");
         printf("A: Return to recipe options\n");
         printf("B: View current recipe\n\n");
@@ -32,11 +32,10 @@ void make_recipe(app_state_t* app_state) {
         if (!atoi(raw_response.data)) {
             char* returned_string = raw_response.data;
 
-            if ('a' == returned_string[0]) {
+            if ('a' == tolower(returned_string[0])) {
                 return;
             }
-
-            else if ('b' == returned_string[0]) {
+            else if ('b' == tolower(returned_string[0])) {
                 print_recipe_long(app_state->recipe);
                 continue;
             }
@@ -77,9 +76,10 @@ void make_recipe(app_state_t* app_state) {
                         printf("\nSuccessfully added %s\n", selected_alg->name);
                 }
             }
-            else
+            else {
                 printf(
                     "Error reading input symbol, please double check and try again\n");
+            }
         }
     } while (1);
 }

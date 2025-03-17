@@ -54,11 +54,10 @@ void print_main_menu(app_state_t *app_state) {
     printf("E: Export to file\n");
     printf("F: Exit\n\n");
 
-    while ('a' > tolower(response) || 'f' < tolower(response)) {
+    while ('a' > response || 'f' < response) {
       get_user_char(&response);
+      response = tolower(response);
     }
-
-    response = tolower(response);
 
     switch (response) {
     case 'a':
