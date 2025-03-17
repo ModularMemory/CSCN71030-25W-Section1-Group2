@@ -47,7 +47,7 @@ void print_main_menu(app_state_t *app_state) {
     printf("\n-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
     printf("A: Edit recipe\n");
     printf("B: Execute recipe\n");
-    printf("C: Print last output\n");
+    printf("C: Print recipe result\n");
     printf("D: Data options\n");
     printf("E: Export to file\n");
     printf("F: Exit\n\n");
