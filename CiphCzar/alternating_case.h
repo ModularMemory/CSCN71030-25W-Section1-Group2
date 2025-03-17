@@ -11,7 +11,7 @@ void alternate_case_reset_args(algorithm_t* alg);
 #define CREATE_ALG_ALTERNATE_CASE(void)\
 {\
     .name = "Alternate Case",\
-    .description = "Alternates the casing of all readable characters in the input buffer.",\
+    .description = "Alternates the casing of all readable characters in the input buffer, ignoring spaces.",\
     .execute = alternate_case_execute,\
     .validate_args = alternate_case_validate_args,\
     .additional_args = NULL,\
