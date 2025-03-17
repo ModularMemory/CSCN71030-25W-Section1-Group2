@@ -63,7 +63,7 @@ namespace CiphCzarTests
             free(actual.data);
         }
 
-        TEST_METHOD(Encode_ProducesCorrectOutput_For3By3_WithLongInput)
+        TEST_METHOD(Encode_ProducesCorrectOutput_For3By2_WithLongInput)
         {
             // Arrange
             data_t input = create_test_data("Meet at midnight");
@@ -145,7 +145,7 @@ namespace CiphCzarTests
             free(actual.data);
         }
 
-        TEST_METHOD(Decode_ProducesCorrectOutput_For3By3_WithLongInput)
+        TEST_METHOD(Decode_ProducesCorrectOutput_For3By2_WithLongInput)
         {
             // Arrange
             data_t input = create_test_data("Mte eati dmnitg h");
