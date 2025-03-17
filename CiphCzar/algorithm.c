@@ -5,6 +5,7 @@
 #include "from_route_cipher.h"
 #include "rot_13.h"
 #include "rot_n.h"
+#include "swap_case.h"
 #include "to_base64.h"
 #include "to_decimal.h"
 #include "to_hex.h"
@@ -16,6 +17,7 @@
 static algorithm_t algorithms[] = {
     CREATE_ALG_TO_LOWER(void),
     CREATE_ALG_TO_UPPER(void),
+    CREATE_ALG_SWAP_CASE(void),
     CREATE_ALG_ROT_13(void),
     CREATE_ALG_ROT_N(void),
     CREATE_ALG_TO_BASE64(void),

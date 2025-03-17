@@ -173,6 +173,7 @@
     <ClCompile Include="..\CiphCzar\route_cipher_common.c" />
     <ClCompile Include="..\CiphCzar\status_result.c" />
     <ClCompile Include="..\CiphCzar\substitution_cipher_common.c" />
+    <ClCompile Include="..\CiphCzar\swap_case.c" />
     <ClCompile Include="..\CiphCzar\to_base64.c" />
     <ClCompile Include="..\CiphCzar\to_decimal.c" />
     <ClCompile Include="..\CiphCzar\to_hex.c" />
@@ -203,6 +204,7 @@
     <ClInclude Include="..\CiphCzar\route_cipher_common.h" />
     <ClInclude Include="..\CiphCzar\status_result.h" />
     <ClInclude Include="..\CiphCzar\substitution_cipher_common.h" />
+    <ClInclude Include="..\CiphCzar\swap_case.h" />
     <ClInclude Include="..\CiphCzar\to_base64.h" />
     <ClCompile Include="..\CiphCzar\to_decimal.h" />
     <ClInclude Include="..\CiphCzar\to_hex.h" />
