@@ -27,7 +27,7 @@
 
 void print_intro() {
   printf("\n%s\n\n", LOGO);
-  printf("Welcome to CyphCzar!\nPlease enter the (lowercase) letter "
+  printf("Welcome to CyphCzar!\nPlease enter the letter "
          "corresponding with your "
          "desired action below.\n");
   return;
@@ -52,9 +52,11 @@ void print_main_menu(app_state_t *app_state) {
     printf("E: Export to file\n");
     printf("F: Exit\n\n");
 
-    while ('a' > response || 'f' < response) {
+    while ('a' > tolower(response) || 'f' < tolower(response)) {
       get_user_char(&response);
     }
+
+    response = tolower(response);
 
     switch (response) {
     case 'a':

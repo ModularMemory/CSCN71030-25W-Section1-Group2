@@ -13,9 +13,11 @@ void data_options_menu(app_state_t* app_state) {
         printf("C: View current input/output name\n");
         printf("D: Return to main menu\n\n");
 
-        while ('a' > response || 'd' < response) {
+        while ('a' > tolower(response) || 'd' < tolower(response)) {
             get_user_char(&response);
         }
+
+        response = tolower(response);
 
         switch (response) {
         case 'a':

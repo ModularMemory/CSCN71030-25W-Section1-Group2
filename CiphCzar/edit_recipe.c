@@ -11,9 +11,11 @@ void edit_recipe_menu(app_state_t* app_state) {
         printf("D: Delete current recipe\n");
         printf("E: Return to main menu\n\n");
 
-        while ('a' > response || 'e' < response) {
+        while ('a' > tolower(response) || 'e' < tolower(response)) {
             get_user_char(&response);
         }
+
+        response = tolower(response);
 
         switch (response) {
         case 'a':
