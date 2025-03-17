@@ -133,6 +133,7 @@
     <ClCompile Include="data.c" />
     <ClCompile Include="data_options.c" />
     <ClCompile Include="edit_recipe.c" />
+    <ClCompile Include="executor.c" />
     <ClCompile Include="from_base64.c" />
     <ClCompile Include="from_route_cipher.c" />
     <ClCompile Include="get_args.c" />
@@ -164,6 +165,7 @@
     <ClInclude Include="data.h" />
     <ClInclude Include="data_options.h" />
     <ClInclude Include="edit_recipe.h" />
+    <ClInclude Include="executor.h" />
     <ClInclude Include="from_base64.h" />
     <ClInclude Include="from_route_cipher.h" />
     <ClInclude Include="get_args.h" />

@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 void make_recipe(app_state_t* app_state) {
-    bool exit_con = false;
     algorithm_list_t alg_list = get_algorithms();
     algorithm_t* selected_alg = { 0 };
     status_t push_status;
@@ -31,7 +30,7 @@ void make_recipe(app_state_t* app_state) {
             char* returned_string = raw_response.data;
 
             if ('a' == returned_string[0]) {
-                exit_con = true;
+                return;
             }
 
             else if ('b' == returned_string[0]) {
@@ -79,6 +78,5 @@ void make_recipe(app_state_t* app_state) {
                 printf(
                     "Error reading input symbol, please double check and try again\n");
         }
-    } while (exit_con == false);
-    return;
+    } while (1);
 }

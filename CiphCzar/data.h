@@ -13,3 +13,6 @@ typedef struct {
 data_t create_data(char* data, size_t len);
 
 status_t clone_data(const data_t source, data_t* dest);
+
+status_t print_data(const data_t data);
+
