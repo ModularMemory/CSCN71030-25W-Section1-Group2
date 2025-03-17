@@ -5,7 +5,7 @@
 #include "utils.h"
 
 status_t to_decimal_execute(const data_t input, const pargument_t args, data_t* output) {
-    // Run hex conversion decode
+    // Run decimal conversion
     data_t out_data = { 0 };
     status_t stat = to_number_string(input, "%03d", 3, &out_data);
     if (!stat.success) {
