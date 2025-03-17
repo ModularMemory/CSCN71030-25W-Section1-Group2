@@ -2,7 +2,6 @@
 
 #include "num_conv_common.h"
 #include "to_decimal.h"
-#include "utils.h"
 
 status_t to_decimal_execute(const data_t input, const pargument_t args, data_t* output) {
     // Run decimal conversion
