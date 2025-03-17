@@ -96,6 +96,30 @@
     <ClCompile Include="..\CiphCzar\substitution_cipher_common.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\num_conv_common.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_hex.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_decimal.h">
+      <Filter>Header Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\to_decimal.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\swap_case.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\random_case.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\alternating_case.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\random_shuffle.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -159,6 +183,24 @@
       <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="..\CiphCzar\substitution_cipher_common.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\to_hex.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\num_conv_common.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\swap_case.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\random_case.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\alternating_case.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\random_shuffle.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
   </ItemGroup>

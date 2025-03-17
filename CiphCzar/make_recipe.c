@@ -1,6 +1,9 @@
-#include "make_recipe.h"
-
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "get_args.h"
+#include "make_recipe.h"
+#include "user_input.h"
 
 void make_recipe(app_state_t* app_state) {
     algorithm_list_t alg_list = get_algorithms();
@@ -15,7 +18,7 @@ void make_recipe(app_state_t* app_state) {
         printf("B: View current recipe\n\n");
 
         for (int i = 0; i < (int)alg_list.len; i++) {
-            printf("%d: %s\n", i + 1, alg_list.algorithms[i].name);
+            printf("%2d: %s - %s\n", i + 1, alg_list.algorithms[i].name, alg_list.algorithms[i].description);
         }
 
         result_t raw_response = get_user_string();

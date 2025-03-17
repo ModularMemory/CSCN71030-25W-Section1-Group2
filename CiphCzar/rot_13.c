@@ -1,5 +1,4 @@
 #include <assert.h>
-#include <stdlib.h>
 
 #include "rot_13.h"
 #include "rot_common.h"

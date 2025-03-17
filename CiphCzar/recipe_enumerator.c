@@ -44,9 +44,11 @@ bool recipe_enumerator_move_next(recipe_enumerator_t enumerator) {
         return !recipe_enumerator_is_empty(enumerator);
     }
 
-    algorithm_t discard;
-    bool pop = recipe_pop(enumerator->recipe, &discard);
+    algorithm_t alg;
+    bool pop = recipe_pop(enumerator->recipe, &alg);
     assert(pop);
+
+    destroy_algorithm(alg);
     
     // Because the first move_next is a no-op, return the emptiness of the
     // recipe rather than the success of the pop operation
@@ -79,11 +81,6 @@ status_t recipe_enumerator_execute(recipe_enumerator_t enumerator) {
 RESULT(const data_t*) recipe_enumerator_current_result(const recipe_enumerator_t enumerator) {
     if (!recipe_enumerator_has_moved(enumerator)) {
         return result_error("Enumerator has not moved yet.");
-    }
-
-    // Not required to access rolling result, but maintains consistency with current_name
-    if (recipe_enumerator_is_empty(enumerator)) {
-        return result_error("Enumerator is empty.");
     }
 
     return result_ok(&enumerator->rolling_result);

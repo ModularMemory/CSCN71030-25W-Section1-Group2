@@ -39,7 +39,7 @@ void data_options_menu(app_state_t* app_state) {
         case 'b':
             printf("Please enter the new output file's name, or hit enter to "
                 "cancel\n");
-            printf("Current output file: \"%s\"\n", app_state->filename);
+            printf("Current output file: \"%s\"\n", app_state->output_file);
 
             result_t new_filename = get_user_string();
 
@@ -47,14 +47,14 @@ void data_options_menu(app_state_t* app_state) {
                 fprintf(stderr, "Error: %s", new_filename.message);
             }
 
-            app_state->filename = new_filename.data;
+            app_state->output_file = new_filename.data;
             break;
 
         case 'c':
             printf("Current input string: ");
             if (app_state->current_input.data != NULL)
                 printf("%s\n", app_state->current_input.data);
-            printf("File written to: %s\n", app_state->filename);
+            printf("File written to: %s\n", app_state->output_file);
             break;
 
         case 'd':

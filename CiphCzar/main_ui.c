@@ -23,7 +23,7 @@
   "/_________________________________________________________________________" \
   "________________________________/ \n \x1b[0m"
 
-#include "main-ui.h"
+#include "main_ui.h"
 
 void print_intro() {
   printf("\n%s\n\n", LOGO);
@@ -47,7 +47,7 @@ void print_main_menu(app_state_t *app_state) {
     printf("\n-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
     printf("A: Edit recipe\n");
     printf("B: Execute recipe\n");
-    printf("C: Print last output\n");
+    printf("C: Print recipe result\n");
     printf("D: Data options\n");
     printf("E: Export to file\n");
     printf("F: Exit\n\n");
@@ -68,6 +68,11 @@ void print_main_menu(app_state_t *app_state) {
       break;
 
     case 'c':
+      if (!app_state->current_output.data) {
+        printf("A recipe has not been executed yet.");
+        break;
+      }
+
       printf("Last output (as text)\n");
       print_data(app_state->current_output);
       break;
