@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\CiphCzar\algorithm.c" />
+    <ClCompile Include="..\CiphCzar\alternating_case.c" />
     <ClCompile Include="..\CiphCzar\argument.c" />
     <ClCompile Include="..\CiphCzar\base64_common.c" />
     <ClCompile Include="..\CiphCzar\data.c" />
@@ -191,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\algorithm.h" />
+    <ClInclude Include="..\CiphCzar\alternating_case.h" />
     <ClInclude Include="..\CiphCzar\argument.h" />
     <ClInclude Include="..\CiphCzar\base64_common.h" />
     <ClInclude Include="..\CiphCzar\data.h" />

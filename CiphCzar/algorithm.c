@@ -1,6 +1,7 @@
 #include <string.h>
 
 #include "algorithm.h"
+#include "alternating_case.h"
 #include "from_base64.h"
 #include "from_route_cipher.h"
 #include "random_case.h"
@@ -20,6 +21,7 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_TO_UPPER(void),
     CREATE_ALG_SWAP_CASE(void),
     CREATE_ALG_RANDOM_CASE(void),
+    CREATE_ALG_ALTERNATING_CASE(void),
     CREATE_ALG_ROT_13(void),
     CREATE_ALG_ROT_N(void),
     CREATE_ALG_TO_BASE64(void),

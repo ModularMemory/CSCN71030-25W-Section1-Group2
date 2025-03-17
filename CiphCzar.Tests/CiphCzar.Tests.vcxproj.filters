@@ -114,6 +114,9 @@
     <ClCompile Include="..\CiphCzar\random_case.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\alternating_case.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -189,6 +192,9 @@
       <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="..\CiphCzar\random_case.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\alternating_case.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
   </ItemGroup>
