@@ -21,7 +21,7 @@ static char substitute_proc(char c, size_t i, void* state) {
     return (char)toupper(c);
 }
 
-status_t alternating_case_execute(const data_t input, const pargument_t args, data_t* output) {
+status_t alternate_case_execute(const data_t input, const pargument_t args, data_t* output) {
     bool alternate = true;
 
     // Run substitution
@@ -36,8 +36,8 @@ status_t alternating_case_execute(const data_t input, const pargument_t args, da
     return status_ok();
 }
 
-status_t alternating_case_validate_args(const pargument_t args) {
+status_t alternate_case_validate_args(const pargument_t args) {
     return status_ok();
 }
 
-void alternating_case_reset_args(algorithm_t* alg) {}
+void alternate_case_reset_args(algorithm_t* alg) {}
