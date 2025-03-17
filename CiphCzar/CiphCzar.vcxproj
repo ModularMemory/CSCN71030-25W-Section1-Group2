@@ -142,6 +142,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="make_recipe.c" />
     <ClCompile Include="make_recipe.h" />
+    <ClCompile Include="num_conv_common.c" />
     <ClCompile Include="recipe.c" />
     <ClCompile Include="recipe_enumerator.c" />
     <ClCompile Include="rot_13.c" />
@@ -151,6 +152,7 @@
     <ClCompile Include="status_result.c" />
     <ClCompile Include="substitution_cipher_common.c" />
     <ClCompile Include="to_base64.c" />
+    <ClCompile Include="to_hex.c" />
     <ClCompile Include="to_lower.c" />
     <ClCompile Include="to_route_cipher.c" />
     <ClCompile Include="to_upper.c" />
@@ -172,6 +174,7 @@
     <ClInclude Include="main_ui.h" />
     <ClInclude Include="fileIO.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="num_conv_common.h" />
     <ClInclude Include="recipe.h" />
     <ClInclude Include="recipe_enumerator.h" />
     <ClInclude Include="rot_13.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="status_result.h" />
     <ClInclude Include="substitution_cipher_common.h" />
     <ClInclude Include="to_base64.h" />
+    <ClInclude Include="to_hex.h" />
     <ClInclude Include="to_lower.h" />
     <ClInclude Include="to_route_cipher.h" />
     <ClInclude Include="to_upper.h" />

@@ -23,7 +23,7 @@ status_t clone_data(const data_t source, data_t* dest) {
     return status_ok();
 }
 
-status_t print_data(const data_t data) {
+void print_data(const data_t data) {
     bool wrote_unprintable = false;
 
     for (int i = 0; i < data.len; i++) {
