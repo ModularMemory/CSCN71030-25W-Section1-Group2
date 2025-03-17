@@ -66,6 +66,11 @@ void print_main_menu(app_state_t *app_state) {
       break;
 
     case 'c':
+      if (!app_state->current_output.data) {
+        printf("A recipe has not been executed yet.");
+        break;
+      }
+
       printf("Last output (as text)\n");
       print_data(app_state->current_output);
       break;
