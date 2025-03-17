@@ -1,6 +1,7 @@
 #include "data_options.h"
 #include "user_input.h"
 
+#include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 

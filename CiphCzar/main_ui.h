@@ -1,6 +1,6 @@
 #pragma once
 
-#include "main.h"
+#include "app_state.h"
 
 void print_intro();
 

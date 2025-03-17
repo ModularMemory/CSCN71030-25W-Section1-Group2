@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="alternating_case.h" />
+    <ClInclude Include="app_state.h" />
     <ClInclude Include="argument.h" />
     <ClInclude Include="base64_common.h" />
     <ClInclude Include="data.h" />
@@ -178,8 +179,7 @@
     <ClInclude Include="get_args.h" />
     <ClInclude Include="main_ui.h" />
     <ClInclude Include="fileIO.h" />
-    <ClInclude Include="main.h" />
-    <ClCompile Include="make_recipe.h" />
+    <ClInclude Include="make_recipe.h" />
     <ClInclude Include="num_conv_common.h" />
     <ClInclude Include="random_case.h" />
     <ClInclude Include="random_shuffle.h" />
@@ -193,7 +193,7 @@
     <ClInclude Include="substitution_cipher_common.h" />
     <ClInclude Include="swap_case.h" />
     <ClInclude Include="to_base64.h" />
-    <ClCompile Include="to_decimal.h" />
+    <ClInclude Include="to_decimal.h" />
     <ClInclude Include="to_hex.h" />
     <ClInclude Include="to_lower.h" />
     <ClInclude Include="to_route_cipher.h" />

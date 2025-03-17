@@ -23,14 +23,15 @@
   "/_________________________________________________________________________" \
   "________________________________/ \n \x1b[0m"
 
+#include "app_state.h"
 #include "data_options.h"
 #include "edit_recipe.h"
 #include "executor.h"
 #include "main_ui.h"
-#include "make_recipe.h"
 #include "user_input.h"
 
 #include <ctype.h>
+#include <stdio.h>
 
 void print_intro() {
   printf("\n%s\n\n", LOGO);
