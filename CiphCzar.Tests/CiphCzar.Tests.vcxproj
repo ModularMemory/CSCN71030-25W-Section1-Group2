@@ -167,6 +167,7 @@
     <ClCompile Include="..\CiphCzar\from_route_cipher.c" />
     <ClCompile Include="..\CiphCzar\num_conv_common.c" />
     <ClCompile Include="..\CiphCzar\random_case.c" />
+    <ClCompile Include="..\CiphCzar\random_shuffle.c" />
     <ClCompile Include="..\CiphCzar\recipe.c" />
     <ClCompile Include="..\CiphCzar\recipe_enumerator.c" />
     <ClCompile Include="..\CiphCzar\rot_13.c" />
@@ -200,6 +201,7 @@
     <ClInclude Include="..\CiphCzar\from_route_cipher.h" />
     <ClInclude Include="..\CiphCzar\num_conv_common.h" />
     <ClInclude Include="..\CiphCzar\random_case.h" />
+    <ClInclude Include="..\CiphCzar\random_shuffle.h" />
     <ClInclude Include="..\CiphCzar\recipe.h" />
     <ClInclude Include="..\CiphCzar\recipe_enumerator.h" />
     <ClInclude Include="..\CiphCzar\rot_13.h" />

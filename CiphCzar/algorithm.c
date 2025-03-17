@@ -5,6 +5,7 @@
 #include "from_base64.h"
 #include "from_route_cipher.h"
 #include "random_case.h"
+#include "random_shuffle.h"
 #include "rot_13.h"
 #include "rot_n.h"
 #include "swap_case.h"
@@ -31,6 +32,7 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_XOR(void),
     CREATE_ALG_TO_HEX(void),
     CREATE_ALG_TO_DECIMAL(void),
+    CREATE_ALG_RANDOM_SHUFFLE(void),
 };
 
 static size_t algorithm_count = __crt_countof(algorithms);

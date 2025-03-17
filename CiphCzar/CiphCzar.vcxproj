@@ -145,6 +145,7 @@
     <ClCompile Include="make_recipe.h" />
     <ClCompile Include="num_conv_common.c" />
     <ClCompile Include="random_case.c" />
+    <ClCompile Include="random_shuffle.c" />
     <ClCompile Include="recipe.c" />
     <ClCompile Include="recipe_enumerator.c" />
     <ClCompile Include="rot_13.c" />
@@ -182,6 +183,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="num_conv_common.h" />
     <ClInclude Include="random_case.h" />
+    <ClInclude Include="random_shuffle.h" />
     <ClInclude Include="recipe.h" />
     <ClInclude Include="recipe_enumerator.h" />
     <ClInclude Include="rot_13.h" />

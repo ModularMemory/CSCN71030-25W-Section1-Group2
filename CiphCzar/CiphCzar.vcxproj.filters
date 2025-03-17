@@ -138,6 +138,9 @@
     <ClCompile Include="alternating_case.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
+    <ClCompile Include="random_shuffle.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -237,6 +240,9 @@
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
     <ClInclude Include="alternating_case.h">
+      <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="random_shuffle.h">
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
