@@ -4,6 +4,8 @@
 #include "make_recipe.h"
 #include "user_input.h"
 
+#include <ctype.h>
+
 void edit_recipe_menu(app_state_t* app_state) {
     do {
         char response = '\0';

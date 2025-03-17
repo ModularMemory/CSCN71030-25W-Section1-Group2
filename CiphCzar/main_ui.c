@@ -25,6 +25,8 @@
 
 #include "main_ui.h"
 
+#include <ctype.h>
+
 void print_intro() {
   printf("\n%s\n\n", LOGO);
   printf("Welcome to CyphCzar!\nPlease enter the letter "

@@ -1,6 +1,7 @@
 #include "data_options.h"
 
 #include <string.h>
+#include <ctype.h>
 
 void data_options_menu(app_state_t* app_state) {
     char exit_con = false;
