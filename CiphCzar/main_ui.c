@@ -44,7 +44,7 @@ void print_intro() {
 // also also might be depricated
 static void export_menu() {}
 
-void print_main_menu(app_state_t *app_state) {
+void main_menu(app_state_t* app_state) {
   bool exit_con = false;
 
   do {
@@ -77,7 +77,7 @@ void print_main_menu(app_state_t *app_state) {
         break;
       }
 
-      printf("Last output (as text)\n");
+      printf("Last recipe result (as text)\n");
       print_data(app_state->current_output);
       break;
 

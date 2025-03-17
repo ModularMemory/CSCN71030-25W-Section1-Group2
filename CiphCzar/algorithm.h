@@ -40,3 +40,5 @@ RESULT(const algorithm_t *) get_algorithm_by_index(int index);
 
 /// @brief Gets a read-only pointer to an algorithm by name (case insensitive).
 RESULT(const algorithm_t *) get_algorithm_by_name(const char *name);
+
+void destroy_algorithm_list(void);

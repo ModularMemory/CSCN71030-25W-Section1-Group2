@@ -2,6 +2,7 @@
 #include "user_input.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -32,6 +33,11 @@ void data_options_menu(app_state_t* app_state) {
 
             if (!new_input.success) {
                 fprintf(stderr, "Error: %s", new_input.message);
+                break;
+            }
+
+            if (app_state->current_input.data) {
+                free(app_state->current_input.data);
             }
 
             data_t new_data = create_data(new_input.data, strlen(new_input.data));
@@ -39,24 +45,34 @@ void data_options_menu(app_state_t* app_state) {
             break;
 
         case 'b':
-            printf("Please enter the new output file's name, or hit enter to "
-                "cancel\n");
+            printf("Please enter the new output file's name, or hit enter to cancel\n");
             printf("Current output file: \"%s\"\n", app_state->output_file);
 
             result_t new_filename = get_user_string();
 
             if (!new_filename.success) {
                 fprintf(stderr, "Error: %s", new_filename.message);
+                break;
+            }
+
+            if (app_state->output_file) {
+                free(app_state->output_file);
             }
 
             app_state->output_file = new_filename.data;
             break;
 
         case 'c':
-            printf("Current input string: ");
             if (app_state->current_input.data != NULL)
-                printf("%s\n", app_state->current_input.data);
-            printf("File written to: %s\n", app_state->output_file);
+                printf("Current input string: \"%s\"\n", app_state->current_input.data);
+            else 
+                printf("No input string.\n");
+
+            if (app_state->output_file != NULL)
+                printf("Output file path: \"%s\"\n", app_state->output_file);
+            else
+                printf("No output file.\n");
+
             break;
 
         case 'd':
