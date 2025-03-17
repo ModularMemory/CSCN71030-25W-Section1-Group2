@@ -1,10 +1,12 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "executor.h"
 #include "recipe_enumerator.h"
 
 void execute_recipe(app_state_t* app_state) {
     result_t raw_enum =
         create_recipe_enumerator(app_state->recipe, app_state->current_input);
-    result_t res = { 0 };
 
     if (!raw_enum.success) {
         fprintf(stderr, "Error: %s\n", raw_enum.message);
@@ -20,11 +22,16 @@ void execute_recipe(app_state_t* app_state) {
 
     while (recipe_enumerator_move_next(enumerator)) {
         status_t execute_stat = recipe_enumerator_execute(enumerator);
-        res = recipe_enumerator_current_result(enumerator);
         if (!execute_stat.success) {
             fprintf(stderr, "Error: %s\n", execute_stat.message);
             return;
         }
+    }
+
+    result_t res = recipe_enumerator_current_result(enumerator);
+    if (!res.success) {
+        fprintf(stderr, "Error: %s\nStored result has not been updated.\n", res.message);
+        return;
     }
 
     if (app_state->current_output.data) {
@@ -32,12 +39,11 @@ void execute_recipe(app_state_t* app_state) {
         free(app_state->current_output.data);
     }
 
-
     const data_t* dat = (const data_t*)res.data;
     status_t clone_status = clone_data(*dat, &app_state->current_output);
 
     if (!clone_status.success) {
-        fprintf(stderr, "Error: %s\n", clone_status.message);
+        fprintf(stderr, "Error: %s\nStored result has not been updated.\n", clone_status.message);
         return;
     }
 

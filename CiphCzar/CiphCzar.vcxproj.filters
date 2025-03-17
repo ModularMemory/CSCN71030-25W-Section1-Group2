@@ -45,7 +45,7 @@
     <ClCompile Include="data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main-ui.c">
+    <ClCompile Include="main_ui.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="user_input.c">
@@ -191,7 +191,7 @@
     <ClInclude Include="get_args.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="main-ui.h">
+    <ClInclude Include="main_ui.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="xor.h">
