@@ -17,6 +17,7 @@ void execute_recipe(app_state_t* app_state) {
 
     if (recipe_enumerator_is_empty(enumerator)) {
         fprintf(stderr, "Recipe is empty!\n");
+        destroy_recipe_enumerator(enumerator);
         return;
     }
 
@@ -24,6 +25,7 @@ void execute_recipe(app_state_t* app_state) {
         status_t execute_stat = recipe_enumerator_execute(enumerator);
         if (!execute_stat.success) {
             fprintf(stderr, "Error: %s\n", execute_stat.message);
+            destroy_recipe_enumerator(enumerator);
             return;
         }
     }
@@ -31,6 +33,7 @@ void execute_recipe(app_state_t* app_state) {
     result_t res = recipe_enumerator_current_result(enumerator);
     if (!res.success) {
         fprintf(stderr, "Error: %s\nStored result has not been updated.\n", res.message);
+        destroy_recipe_enumerator(enumerator);
         return;
     }
 
@@ -44,8 +47,10 @@ void execute_recipe(app_state_t* app_state) {
 
     if (!clone_status.success) {
         fprintf(stderr, "Error: %s\nStored result has not been updated.\n", clone_status.message);
+        destroy_recipe_enumerator(enumerator);
         return;
     }
 
     printf("Recipe executed successfully, check output for results!\n");
+    destroy_recipe_enumerator(enumerator);
 }
