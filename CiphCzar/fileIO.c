@@ -49,9 +49,7 @@ status_t read_data(const char* filename, data_t* data) {
 	fgets(out_res.data, length + NULL_TERMINATOR_LEN, fp);
 	
 	//create the data wrapper 
-	data_t* output;
-	*output = create_data(out_res.data, sizeof(out_res.data));
-	data = output;
+	*data = create_data(out_res.data, sizeof(out_res.data));
 
 	fclose(fp);
 	return status_ok();

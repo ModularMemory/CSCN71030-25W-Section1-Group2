@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="algorithm.c" />
     <ClCompile Include="alternating_case.c" />
+    <ClCompile Include="app_state.c" />
     <ClCompile Include="argument.c" />
     <ClCompile Include="base64_common.c" />
     <ClCompile Include="data.c" />
