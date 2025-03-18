@@ -1,3 +1,4 @@
+#include "app_args.h"
 #include "app_state.h"
 #include "main_ui.h"
 #include "recipe.h"
@@ -9,21 +10,27 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-int main(void) {
-    // TEMPS!!!
-    bool TEMP_QUIET = false;
-    char* TEMP_OUTPUT_PATH = NULL;
+int main(int argc, const char** argv) {
+    app_args_t args = { 0 };
+    if (!parse_app_arguments(argc, argv, &args)) {
+        return 1;
+    }
 
     app_state_t app_state = { 0 };
-    status_t populate_stat = create_app_state(&app_state, TEMP_QUIET, TEMP_OUTPUT_PATH);
+    status_t populate_stat = create_app_state(&app_state, args);
     if (!populate_stat.success) {
         fprintf(stderr, "Error: %s", populate_stat.message);
         return 1;
     }
 
-    // Run REPL
-    print_intro();
-    main_menu(&app_state);
+    if (!app_state.quiet) {
+        // Run REPL
+        print_intro();
+        main_menu(&app_state);
+    }
+    else {
+        // TODO: Execute recipe and write to output file
+    }
 
     // Free memory
     destroy_algorithm_list();

@@ -33,3 +33,19 @@ RESULT(char*) clone_string(const char* origin) {
 
     return result_ok(str);
 }
+
+const char* get_file_name(const char* path) {
+    const char* file = strrchr(path, '\\');
+    if (file && file[1] != '\0') {
+        file++;
+        return file;
+    }
+
+    file = strrchr(path, '/');
+    if (file && file[1] != '\0') {
+        file++;
+        return file;
+    }
+
+    return path;
+}

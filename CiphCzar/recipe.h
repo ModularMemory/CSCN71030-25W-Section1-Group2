@@ -29,3 +29,5 @@ void destroy_recipe(recipe_t recipe);
 void print_recipe(const recipe_t recipe);
 
 void print_recipe_long(const recipe_t recipe);
+
+size_t get_recipe_count(const recipe_t recipe);
