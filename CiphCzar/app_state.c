@@ -11,11 +11,21 @@ status_t create_app_state(app_state_t* app_state, app_args_t args) {
         return to_status(rec_res);
     }
 
+    recipe_t recipe = (recipe_t)rec_res.data;
+
     if (args.recipe_file) {
-        // TODO: Read recipe from file.
+        recipe_t new_recipe = { 0 };
+        status_t read_res = read_recipe(args.recipe_file, &new_recipe);
+        if (read_res.success) {
+            destroy_recipe(recipe);
+            recipe = new_recipe;
+        }
+        else {
+            fprintf(stderr, "Error: Failed to read recipe from %s: %s\n", args.recipe_file, read_res.message);
+        }
     }
 
-    app_state->recipe = rec_res.data;
+    app_state->recipe = recipe;
     app_state->quiet = args.quiet;
 
     if (args.output_file) {

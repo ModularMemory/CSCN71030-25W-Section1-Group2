@@ -1,5 +1,6 @@
 #include "app_args.h"
 #include "app_state.h"
+#include "executor.h"
 #include "main_ui.h"
 #include "recipe.h"
 #include "utils.h"
@@ -29,7 +30,8 @@ int main(int argc, const char** argv) {
         main_menu(&app_state);
     }
     else {
-        // TODO: Execute recipe and write to output file
+        execute_recipe(&app_state);
+        // TODO: Write result to output file
     }
 
     // Free memory

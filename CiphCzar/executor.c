@@ -51,6 +51,9 @@ void execute_recipe(app_state_t* app_state) {
         return;
     }
 
-    printf("Recipe executed successfully, check output for results!\n");
+    if (!app_state->quiet) {
+        printf("Recipe executed successfully, check output for results!\n");
+    }
+
     destroy_recipe_enumerator(enumerator);
 }
