@@ -11,7 +11,7 @@ status_t read_data(const char* filename, data_t* data);
 
 status_t write_data(const char* filename, data_t data);
 
-status_t read_recipe(const char* filename, recipe_t* recipe, pargument_t arguments);
+status_t read_recipe(const char* filename, recipe_t* recipe);
 
 status_t write_recipe(const char* filename, recipe_t recipe);
 
@@ -25,4 +25,4 @@ status_t read_string_from_stream(FILE* fp, char** data);
 
 status_t read_int_from_stream(FILE* fp, int* data);
 
-status_t read_float_from_file(FILE* fp, float* data);
+status_t read_float_from_stream(FILE* fp, float* data);
