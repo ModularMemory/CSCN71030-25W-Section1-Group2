@@ -61,7 +61,10 @@ status_t write_data(const char* filename, const data_t data) {
 	if (fp == NULL) {
 		return status_error("File not found");
 	}
+
 	fwrite(data.data, sizeof(char), data.len, fp);
+
+	fclose(fp);
 	return status_ok();
 }
 
