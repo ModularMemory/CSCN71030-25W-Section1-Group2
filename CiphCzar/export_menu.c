@@ -7,7 +7,9 @@
 
 void export_menu(const app_state_t state) {
     while (1) {
+        status_t write_state = { 0 };
         char response = '\0';
+
         printf("\n-+-+-+-+-+ Export options +-+-+-+-+-\n");
         printf("A: Write output to file\n");
         printf("B: Write recipe to file\n");
@@ -20,11 +22,13 @@ void export_menu(const app_state_t state) {
 
         switch (response) {
         case 'a':
-            write_data(state.output_file, state.current_output);
+            write_state = write_data(state.output_file, state.current_output);
+            if (!write_state.success) fprintf(stderr, "%s", write_state.message);
             break;
 
         case 'b':
-            write_recipe(state.output_file, state.recipe);
+            write_state = write_recipe(state.output_file, state.recipe);
+            if (!write_state.success) fprintf(stderr, "%s", write_state.message);
             break;
 
         case 'c':

@@ -9,6 +9,7 @@ typedef struct {
 	data_t current_output;
 	bool quiet;
 	char *output_file;
+	char* output_recipe_file;
 	recipe_t recipe;
 } app_state_t;
 
