@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "app_args.h"
 #include "app_state.h"
 #include "fileIO.h"
 #include "utils.h"

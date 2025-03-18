@@ -13,7 +13,7 @@ bool parse_app_arguments(int argc, const char** argv, app_args_t* args) {
     *args = (app_args_t) { 0 };
 
     if (argc <= 1) {
-        return;
+        return true;
     }
 
     for (int i = 1; i < argc; i++) {
@@ -42,7 +42,7 @@ bool parse_app_arguments(int argc, const char** argv, app_args_t* args) {
             // Invalid argument read; stop parsing.
             if (!args->quiet) {
                 // Write argument help message
-                fprintf(stderr, "Usage: %s");
+                fprintf(stderr, "Usage: %s", argv[0]);
                 fprintf(stderr, " [%s]", QUIET_ARG);
                 fprintf(stderr, " [%s <recipe path>]", INPUT_RECIPE_ARG);
                 fprintf(stderr, " [%s <output path>]", OUTPUT_FILE_ARG);

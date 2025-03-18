@@ -4,10 +4,10 @@
 
 typedef struct {
     bool quiet;
-    char* recipe_file;
-    char* output_file;
-    char* default_input;
-    char* input_file;
+    const char* recipe_file;
+    const char* output_file;
+    const char* default_input;
+    const char* input_file;
 } app_args_t;
 
 bool parse_app_arguments(int argc, const char** argv, app_args_t* args);
