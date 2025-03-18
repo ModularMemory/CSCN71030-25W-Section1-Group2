@@ -162,3 +162,16 @@ void print_recipe_long(const recipe_t recipe) {
 
     printf("\n|\n+-> Output\n");
 }
+
+size_t get_recipe_count(const recipe_t recipe) {
+    if (!recipe || recipe_is_empty(recipe)) {
+        return 0;
+    }
+
+    size_t count = 0;
+    for (precipe_node_t current = recipe->head; current != NULL; current = current->next) {
+        count++;
+    }
+
+    return count;
+}
