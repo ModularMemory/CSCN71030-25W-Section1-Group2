@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <math.h>
+
 #include "fileIO.h"
 #include "algorithm.h"
 #include "argument.h"
@@ -11,10 +12,6 @@
 #include "status_result.h"
 #include "utils.h"
 #include "recipe.h"
-
-#define NULL_TERMINATOR_LEN 1
-#define MAXALG 30
-#define MAXARG 10
 
 static long long get_file_size(const char* filename) {
     struct __stat64 st;
@@ -50,7 +47,7 @@ status_t read_data(const char* filename, data_t* data) {
 	}
 	
 	//get the data from the file and put it in the allocated space
-	fgets(out_res.data, length + NULL_TERMINATOR_LEN, fp);
+	fgets(out_res.data, length, fp);
 	
 	//create the data wrapper 
 	*data = create_data(out_res.data, sizeof(out_res.data));
@@ -68,8 +65,6 @@ status_t write_data(const char* filename, data_t data) {
 	return status_ok();
 }
 
-
-
 status_t read_recipe(const char* filename, recipe_t* recipe) {
 	FILE* fp = fopen(filename, "r");
 	if (fp == NULL) {
@@ -79,10 +74,10 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 	status_t res_count = read_int_from_stream(fp, &count);
 	int i = 0;
 	while(i < count) {
-		char** alg_name;
-		read_string_from_stream(fp, alg_name);
+		char* alg_name;
+		read_string_from_stream(fp, &alg_name);
 
-		result_t alg_res = get_algorithm_by_name(*alg_name);
+		result_t alg_res = get_algorithm_by_name(alg_name);
 		if (!alg_res.success) {
 			return status_error("Failed to load algorithm");
 		}
@@ -94,19 +89,26 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		while (current) {
 			switch (current->arg_type) {
 			case INTEGER_ARG:
+			{
 				int data_int;
 				status_t res_int = read_int_from_stream(fp, &data_int);
 				current->arg_union.integer = data_int;
+				break;
+			}
 			case FLOAT_ARG:
+			{
 				float data_flt;
 				status_t res_flt = read_float_from_stream(fp, &data_flt);
 				current->arg_union.integer = data_flt;
-			case STRING_ARG:
-				char** data_str;
-				status_t res_str = read_string_from_stream(fp, data_str);
-				current->arg_union.string = *data_str;
 			}
-					current = current->next;
+			case STRING_ARG:
+			{
+				char* data_str;
+				status_t res_str = read_string_from_stream(fp, &data_str);
+				current->arg_union.string = data_str;
+			}
+			}
+			current = current->next;
 		}
 		status_t validation = alg.validate_args(alg.additional_args);
 		if (!validation.success) {
@@ -123,9 +125,7 @@ status_t write_recipe(const char* filename, recipe_t recipe) {
 
 	return status_ok();
 }
-////
 
-// these functions take an already open file 
 status_t write_string_to_stream(FILE* fp, char* data) {
 	if (strlen(data) <= 0) {
 		return status_error("Failed to write to stream (data empty)");
@@ -159,8 +159,8 @@ status_t read_string_from_stream(FILE* fp, char** data) {
 	if (!res_str.success) {
 		return status_error("Failed to allocate memory");
 	}
-	char* str = res_str.data;
-	fscanf_s(fp, "%s\n", str);
+	*data = res_str.data;
+	fread(*data, sizeof(char), len, fp);
 	return status_ok();
 }
 
@@ -182,4 +182,3 @@ status_t read_float_from_stream(FILE* fp, float* data) {
 		return status_ok();
 	}
 }
-////
