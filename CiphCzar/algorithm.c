@@ -96,3 +96,10 @@ RESULT(algorithm_t) get_algorithm_by_name(const char* name) {
 
     return result_error("Algorithm not found.");
 }
+
+void destroy_algorithm_list(void) {
+    algorithm_list_t list = get_algorithms();
+    for (size_t i = 0; i < list.len; i++) {
+        destroy_algorithm(list.algorithms[i]);
+    }
+}

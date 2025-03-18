@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="algorithm.c" />
     <ClCompile Include="alternating_case.c" />
+    <ClCompile Include="app_args.c" />
+    <ClCompile Include="app_state.c" />
     <ClCompile Include="argument.c" />
     <ClCompile Include="base64_common.c" />
     <ClCompile Include="data.c" />
@@ -167,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="algorithm.h" />
     <ClInclude Include="alternating_case.h" />
+    <ClInclude Include="app_args.h" />
     <ClInclude Include="app_state.h" />
     <ClInclude Include="argument.h" />
     <ClInclude Include="base64_common.h" />

@@ -1,28 +1,42 @@
+#include "app_args.h"
 #include "app_state.h"
 #include "main_ui.h"
 #include "recipe.h"
+#include "utils.h"
 
+//#define _CRTDBG_MAP_ALLOC
+//#include <crtdbg.h>
+//#include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-int main(void) {
-  app_state_t app_state = {0};
-  result_t rec = create_recipe();
-  app_state.recipe = rec.data;
-  app_state.quiet = false;
-  app_state.output_file = "output";
+int main(int argc, const char** argv) {
+    app_args_t args = { 0 };
+    if (!parse_app_arguments(argc, argv, &args)) {
+        return 1;
+    }
 
-  // TEMPS!!!
-  bool QUIET_BOOL_PLACEHOLDER = false;
-  bool NAME_GIVEN = false;
+    app_state_t app_state = { 0 };
+    status_t populate_stat = create_app_state(&app_state, args);
+    if (!populate_stat.success) {
+        fprintf(stderr, "Error: %s", populate_stat.message);
+        return 1;
+    }
 
-  // Plug it in when arg passing is implemented
-  if (QUIET_BOOL_PLACEHOLDER == true)
-    app_state.quiet = true;
-  if (NAME_GIVEN == true)
-    app_state.output_file = "put the filename given in arg here";
+    if (!app_state.quiet) {
+        // Run REPL
+        print_intro();
+        main_menu(&app_state);
+    }
+    else {
+        // TODO: Execute recipe and write to output file
+    }
 
-  print_intro();
-  print_main_menu(&app_state);
+    // Free memory
+    destroy_algorithm_list();
+    destroy_app_state(app_state);
 
-  return 0;
+    //_CrtDumpMemoryLeaks();
+
+    return 0;
 }

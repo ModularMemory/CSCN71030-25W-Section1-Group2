@@ -4,7 +4,7 @@
 
 #include "status_result.h"
 
-/// @brief Stores a pointer to a buffer + the length of the buffer.a
+/// @brief Stores a pointer to a buffer + the length of the buffer.
 typedef struct {
     char* data;
     size_t len;

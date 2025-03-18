@@ -105,9 +105,6 @@
     <ClCompile Include="from_route_cipher.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
-    <ClCompile Include="make_recipe.h">
-      <Filter>Header Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="xor.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
@@ -126,9 +123,6 @@
     <ClCompile Include="to_decimal.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
-    <ClCompile Include="to_decimal.h">
-      <Filter>Header Files\Algorithms</Filter>
-    </ClCompile>
     <ClCompile Include="swap_case.c">
       <Filter>Source Files\Algorithms</Filter>
     </ClCompile>
@@ -140,6 +134,12 @@
     </ClCompile>
     <ClCompile Include="random_shuffle.c">
       <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="app_state.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="app_args.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +243,15 @@
       <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
     <ClInclude Include="app_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="make_recipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="to_decimal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="app_args.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

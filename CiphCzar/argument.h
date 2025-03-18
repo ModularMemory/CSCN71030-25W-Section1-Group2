@@ -17,9 +17,13 @@ typedef union {
 } argument_union_t;
 
 typedef struct argument {
+    /// @brief The next argument in the list, or NULL.
     struct argument* next;
+    /// @brief A short description of the argument.
     const char* description;
+    /// @brief The type of the argument.
     argument_type_t arg_type;
+    /// @brief The value of the argument.
     argument_union_t arg_union;
 } argument_t, *pargument_t;
 
