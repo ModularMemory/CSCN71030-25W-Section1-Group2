@@ -28,7 +28,7 @@ status_t read_data(const char* filename, data_t* data) {
 	//open the file
 	FILE* fp = fopen(filename, "r");
 	if (fp == NULL) {
-		return status_error("File not found");
+		return status_error("File could not be opened");
 	}
 
 	//find the length of the file
@@ -59,7 +59,7 @@ status_t read_data(const char* filename, data_t* data) {
 status_t write_data(const char* filename, const data_t data) {
 	FILE* fp = fopen(filename, "w");
 	if (fp == NULL) {
-		return status_error("File not found");
+		return status_error("File could not be opened");
 	}
 
 	fwrite(data.data, sizeof(char), data.len, fp);
@@ -71,11 +71,10 @@ status_t write_data(const char* filename, const data_t data) {
 status_t read_recipe(const char* filename, recipe_t* recipe) {
 	FILE* fp = fopen(filename, "r");
 	if (fp == NULL) {
-		return status_error("File not found");
+		return status_error("File could not be opened");
 	}
 
 	int count;
-
 	status_t res_count = read_int_from_stream(fp, &count);
 	if (!res_count.success) {
 		fclose(fp);
@@ -152,6 +151,10 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 
 status_t write_recipe(const char* filename, const recipe_t recipe) {
 	FILE* fp = fopen(filename, "w");
+	if (fp == NULL) {
+		return status_error("File could not be opened");
+	}
+
 	int recipe_count = get_recipe_count(recipe);
 	status_t count_status = write_int_to_stream(fp, recipe_count);
 	if (!count_status.success) {
