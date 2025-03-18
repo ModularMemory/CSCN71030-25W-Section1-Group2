@@ -7,11 +7,17 @@
 #include "status_result.h"
 
 typedef struct algorithm {
+    /// @brief The name of the algorithm
     const char *name;
+    /// @brief A description of the algorithm
     const char *description;
+    /// @brief A pointer to the execute function of the algorithm
     status_t (*execute)(const data_t input, const pargument_t args, data_t *output);
+    /// @brief A pointer to the argument validation function of the algorithm
     status_t (*validate_args)(const pargument_t args);
+    /// @brief Arguments required to execute the algorithm besides the input data. Can be NULL.
     pargument_t additional_args;
+    /// @brief A pointer to the argument (re)initialize function of the algorithm
     void (*reset_args)(struct algorithm *alg);
 } algorithm_t;
 
