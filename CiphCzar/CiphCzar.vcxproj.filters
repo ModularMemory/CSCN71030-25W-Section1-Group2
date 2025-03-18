@@ -141,6 +141,9 @@
     <ClCompile Include="app_args.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="export_menu.c">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="app_args.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="export_menu.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

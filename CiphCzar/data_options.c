@@ -14,7 +14,7 @@ void data_options_menu(app_state_t* app_state) {
         printf("\n-+-+-+-+-+ Data options +-+-+-+-+-\n");
         printf("A: Change input string\n");
         printf("B: Change output file name \n");
-        printf("C: View current input/output name\n");
+        printf("C: View current input string & output filename\n");
         printf("D: Return to main menu\n\n");
 
         while ('a' > response || 'd' < response) {
