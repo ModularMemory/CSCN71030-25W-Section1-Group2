@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "app_args.h"
+#include "utils.h"
 
 #define QUIET_ARG "--quiet"
 #define INPUT_RECIPE_ARG "--recipe"
@@ -42,7 +43,7 @@ bool parse_app_arguments(int argc, const char** argv, app_args_t* args) {
             // Invalid argument read; stop parsing.
             if (!args->quiet) {
                 // Write argument help message
-                fprintf(stderr, "Usage: %s", argv[0]);
+                fprintf(stderr, "Usage: %s", get_file_name(argv[0]));
                 fprintf(stderr, " [%s]", QUIET_ARG);
                 fprintf(stderr, " [%s <recipe path>]", INPUT_RECIPE_ARG);
                 fprintf(stderr, " [%s <output path>]", OUTPUT_FILE_ARG);
