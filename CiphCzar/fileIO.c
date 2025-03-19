@@ -156,6 +156,7 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 					free(data_str);
 					return res_str;
 				}
+				free(current->arg_union.string);
 				current->arg_union.string = data_str;
 			}
 			}
