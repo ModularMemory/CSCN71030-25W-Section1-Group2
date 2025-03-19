@@ -24,7 +24,7 @@ int main(int argc, const char** argv) {
         return 1;
     }
 
-    if (!app_state.quiet) {
+    if (!app_state.headless) {
         // Run REPL
         print_intro();
         main_menu(&app_state);

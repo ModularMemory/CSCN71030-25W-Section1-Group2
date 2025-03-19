@@ -26,7 +26,7 @@ status_t create_app_state(app_state_t* app_state, app_args_t args) {
     }
 
     app_state->recipe = recipe;
-    app_state->quiet = args.quiet;
+    app_state->headless = args.headless;
 
     if (args.output_file) {
         result_t str_res = clone_string(args.output_file);
