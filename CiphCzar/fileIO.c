@@ -71,25 +71,37 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		return status_error("File not found");
 	}
 
+	result_t res_recipe = create_recipe();
+	if (!res_recipe.success) {
+		fclose(fp);
+		return to_status(res_recipe);
+	}
+	*recipe = res_recipe.data;
+	
 	int count;
-
 	status_t res_count = read_int_from_stream(fp, &count);
 	if (!res_count.success) {
 		fclose(fp);
+		destroy_recipe(*recipe);
+		*recipe = NULL;
 		return res_count;
 	}
-
+	
 	for (int i = 0; i < count; i++) {
 		char* alg_name;
 		status_t res_alg_name = read_string_from_stream(fp, &alg_name);
 		if (!res_alg_name.success) {
 			fclose(fp);
+			destroy_recipe(*recipe);
+			*recipe = NULL;
 			return res_alg_name;
 		}
 
 		result_t alg_res = get_algorithm_by_name(alg_name);
 		if (!alg_res.success) {
 			fclose(fp);
+			destroy_recipe(*recipe);
+			*recipe = NULL;
 			return to_status(alg_res);
 		}
 
@@ -97,6 +109,8 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		status_t res_clone = clone_algorithm(*((algorithm_t*)alg_res.data), &alg);
 		if (!res_clone.success) {
 			fclose(fp);
+			destroy_recipe(*recipe);
+			*recipe = NULL;
 			return res_clone;
 		}
 
@@ -109,6 +123,8 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 				status_t res_int = read_int_from_stream(fp, &data_int);
 				if (!res_int.success) {
 					fclose(fp);
+					destroy_recipe(*recipe);
+					*recipe = NULL;
 					return res_int;
 				}
 				current->arg_union.integer = data_int;
@@ -120,6 +136,8 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 				status_t res_flt = read_float_from_stream(fp, &data_flt);
 				if (!res_flt.success) {
 					fclose(fp);
+					destroy_recipe(*recipe);
+					*recipe = NULL;
 					return res_flt;
 				}
 				current->arg_union.integer = data_flt;
@@ -130,6 +148,8 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 				status_t res_str = read_string_from_stream(fp, &data_str);
 				if (!res_str.success) {
 					fclose(fp);
+					destroy_recipe(*recipe);
+					*recipe = NULL;
 					return res_str;
 				}
 				current->arg_union.string = data_str;
@@ -141,6 +161,14 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		if (!validation.success) {
 			fprintf(stderr, "Failed to validate args for %s. Using default values.", alg.name);
 			alg.reset_args(&alg);
+		}
+
+		status_t res_recipe = recipe_push(*recipe, alg);
+		if (!res_recipe.success) {
+			fclose(fp);
+			destroy_recipe(*recipe);
+			*recipe = NULL;
+			return res_recipe;
 		}
 	}
 	fclose(fp);
@@ -203,24 +231,39 @@ status_t write_recipe(const char* filename, const recipe_t recipe) {
 }
 
 status_t write_string_to_stream(FILE* fp, const char* data) {
-	fprintf(fp, "%llu\n", strlen(data));
-	fwrite(data, sizeof(char), strlen(data), fp);
+	unsigned long long len = strlen(data);
+	if (fprintf(fp, "%llu\n", len) <= 0) {
+		return status_error("Failed to write string length");
+	}
+
+	if (fwrite(data, sizeof(char), len, fp) < len) {
+		return status_error("Failed to write string string");
+	}
+
 	return status_ok();
 }
 
 status_t write_int_to_stream(FILE* fp, int data) {
-	fprintf(fp, "%d\n", data);
+	if (fprintf(fp, "%d\n", data) <= 0) {
+		return status_error("Failed to write an integer");
+	}
+
 	return status_ok();
 }
 
 status_t write_float_to_stream(FILE* fp, float data) {
-	fprintf(fp, "%f\n", data);
+	if (fprintf(fp, "%f\n", data) <= 0) {
+		return status_error("Failed to write a float");
+	}
+
 	return status_ok();
 }
 
 status_t read_string_from_stream(FILE* fp, char** data) {
 	unsigned long long len;
-	fscanf_s(fp, "%llu\n", &len);
+	if (fscanf_s(fp, "%llu\n", &len) <= 0) {
+		return status_error("Failed to read string length");
+	}
 
 	result_t res_str = allocate_string(len);
 	if (!res_str.success) {
@@ -228,13 +271,17 @@ status_t read_string_from_stream(FILE* fp, char** data) {
 	}
 
 	*data = res_str.data;
-	fread(*data, sizeof(char), len, fp);
+	if (fread(*data, sizeof(char), len, fp) < len) {
+		free(*data);
+		return status_error("Failed to read string");
+	}
+
 	return status_ok();
 }
 
 status_t read_int_from_stream(FILE* fp, int* data) {
 	if (fscanf_s(fp, "%d\n", data) <= 0) {
-		return status_error("failed to read an integer");
+		return status_error("Failed to read an integer");
 	}
 
 	return status_ok();
@@ -242,7 +289,7 @@ status_t read_int_from_stream(FILE* fp, int* data) {
 
 status_t read_float_from_stream(FILE* fp, float* data) {
 	if (fscanf_s(fp, "%f\n", data) <= 0) {
-		return status_error("failed to read a float");
+		return status_error("Failed to read a float");
 	}
 
 	return status_ok();
