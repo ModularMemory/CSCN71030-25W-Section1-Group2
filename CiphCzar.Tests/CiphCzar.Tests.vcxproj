@@ -183,6 +183,7 @@
     <ClCompile Include="..\CiphCzar\to_lower.c" />
     <ClCompile Include="..\CiphCzar\to_route_cipher.c" />
     <ClCompile Include="..\CiphCzar\to_upper.c" />
+    <ClCompile Include="..\CiphCzar\trim_spaces.c" />
     <ClCompile Include="..\CiphCzar\utils.c" />
     <ClCompile Include="..\CiphCzar\xor.c" />
     <ClCompile Include="base64.tests.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="..\CiphCzar\to_lower.h" />
     <ClInclude Include="..\CiphCzar\to_route_cipher.h" />
     <ClInclude Include="..\CiphCzar\to_upper.h" />
+    <ClInclude Include="..\CiphCzar\trim_spaces.h" />
     <ClInclude Include="..\CiphCzar\utils.h" />
     <ClInclude Include="..\CiphCzar\xor.h" />
     <ClInclude Include="common.h" />

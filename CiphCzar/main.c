@@ -18,6 +18,8 @@ int main(int argc, const char** argv) {
         return 1;
     }
 
+    //_CrtSetBreakAlloc(106);
+
     app_state_t app_state = { 0 };
     status_t populate_stat = create_app_state(&app_state, args);
     if (!populate_stat.success) {

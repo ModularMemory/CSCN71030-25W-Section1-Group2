@@ -117,6 +117,9 @@
     <ClCompile Include="..\CiphCzar\random_shuffle.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\trim_spaces.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -201,6 +204,9 @@
       <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="..\CiphCzar\random_shuffle.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\trim_spaces.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,6 +26,7 @@ void make_recipe(app_state_t* app_state) {
         // Read error
         if (!raw_response.success) {
             fprintf(stderr, "Error: %s", raw_response.message);
+            continue;
         }
 
         // atoi fails = probably a string/char
@@ -33,20 +34,21 @@ void make_recipe(app_state_t* app_state) {
             char* returned_string = raw_response.data;
 
             if ('a' == tolower(returned_string[0])) {
+                free(returned_string);
                 return;
             }
             else if ('b' == tolower(returned_string[0])) {
                 print_recipe_long(app_state->recipe);
+                free(returned_string);
                 continue;
             }
 
             result_t raw_alg_response = get_algorithm_by_name(raw_response.data);
 
             // bad string
-            if (raw_alg_response.success == false)
-                printf("Error reading input string, please double check spelling and "
-                    "try again\n");
-
+            if (raw_alg_response.success == false) {
+                printf("Error reading input string, please double check spelling and try again\n");
+            }
             else {
                 selected_alg = raw_alg_response.data;
 
@@ -63,9 +65,9 @@ void make_recipe(app_state_t* app_state) {
             if (0 < input_symbol && input_symbol <= alg_list.len) {
                 result_t raw_alg_response = get_algorithm_by_index(input_symbol - 1);
 
-                if (raw_alg_response.success == false)
+                if (raw_alg_response.success == false) {
                     printf("Error when fetching from algorithm list.  This is a bug.\n");
-
+                }
                 else {
                     selected_alg = raw_alg_response.data;
 
@@ -81,5 +83,7 @@ void make_recipe(app_state_t* app_state) {
                     "Error reading input symbol, please double check and try again\n");
             }
         }
+
+        free(raw_response.data);
     } while (1);
 }
