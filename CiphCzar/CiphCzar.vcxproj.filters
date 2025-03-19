@@ -144,6 +144,9 @@
     <ClCompile Include="export_menu.c">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="trim_spaces.c">
+      <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument.h">
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="export_menu.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="trim_spaces.h">
+      <Filter>Header Files\Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

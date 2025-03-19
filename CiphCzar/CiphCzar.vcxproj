@@ -163,6 +163,7 @@
     <ClCompile Include="to_lower.c" />
     <ClCompile Include="to_route_cipher.c" />
     <ClCompile Include="to_upper.c" />
+    <ClCompile Include="trim_spaces.c" />
     <ClCompile Include="user_input.c" />
     <ClCompile Include="utils.c" />
     <ClCompile Include="xor.c" />
@@ -203,6 +204,7 @@
     <ClInclude Include="to_lower.h" />
     <ClInclude Include="to_route_cipher.h" />
     <ClInclude Include="to_upper.h" />
+    <ClInclude Include="trim_spaces.h" />
     <ClInclude Include="user_input.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="xor.h" />

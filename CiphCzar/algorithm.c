@@ -15,6 +15,7 @@
 #include "to_lower.h"
 #include "to_route_cipher.h"
 #include "to_upper.h"
+#include "trim_spaces.h"
 #include "xor.h"
 
 static algorithm_t algorithms[] = {
@@ -33,6 +34,7 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_TO_HEX(void),
     CREATE_ALG_TO_DECIMAL(void),
     CREATE_ALG_RANDOM_SHUFFLE(void),
+    CREATE_ALG_TRIM_SPACES(void),
 };
 
 static size_t algorithm_count = __crt_countof(algorithms);
