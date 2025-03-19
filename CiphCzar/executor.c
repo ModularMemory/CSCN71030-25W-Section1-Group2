@@ -4,21 +4,25 @@
 #include "executor.h"
 #include "recipe_enumerator.h"
 
-void execute_recipe(app_state_t* app_state) {
-    result_t raw_enum =
-        create_recipe_enumerator(app_state->recipe, app_state->current_input);
-
-    if (!raw_enum.success) {
-        fprintf(stderr, "Error: %s\n", raw_enum.message);
-        return;
+bool execute_recipe(app_state_t* app_state) {
+    // If the input data is NULL then we dont execute
+    if (!app_state->current_input.data) {
+        printf("No input data.  Please navigate to the data options to set some.\n");
+        return false;
     }
 
+    result_t raw_enum = create_recipe_enumerator(app_state->recipe, app_state->current_input);
+    if (!raw_enum.success) {
+        fprintf(stderr, "Error: %s\n", raw_enum.message);
+        return false;
+    }
+    
     recipe_enumerator_t enumerator = raw_enum.data;
 
     if (recipe_enumerator_is_empty(enumerator)) {
         fprintf(stderr, "Recipe is empty!\n");
         destroy_recipe_enumerator(enumerator);
-        return;
+        return false;
     }
 
     while (recipe_enumerator_move_next(enumerator)) {
@@ -26,7 +30,7 @@ void execute_recipe(app_state_t* app_state) {
         if (!execute_stat.success) {
             fprintf(stderr, "Error: %s\n", execute_stat.message);
             destroy_recipe_enumerator(enumerator);
-            return;
+            return false;
         }
     }
 
@@ -34,7 +38,7 @@ void execute_recipe(app_state_t* app_state) {
     if (!res.success) {
         fprintf(stderr, "Error: %s\nStored result has not been updated.\n", res.message);
         destroy_recipe_enumerator(enumerator);
-        return;
+        return false;
     }
 
     if (app_state->current_output.data) {
@@ -48,9 +52,11 @@ void execute_recipe(app_state_t* app_state) {
     if (!clone_status.success) {
         fprintf(stderr, "Error: %s\nStored result has not been updated.\n", clone_status.message);
         destroy_recipe_enumerator(enumerator);
-        return;
+        return false;
     }
-
+    
     printf("Recipe executed successfully, check output for results!\n");
+
     destroy_recipe_enumerator(enumerator);
+    return true;
 }

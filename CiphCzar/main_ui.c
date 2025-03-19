@@ -29,6 +29,7 @@
 #include "executor.h"
 #include "main_ui.h"
 #include "user_input.h"
+#include "export_menu.h"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -40,9 +41,6 @@ void print_intro() {
          "desired action below.\n");
   return;
 }
-
-// also also might be depricated
-static void export_menu() {}
 
 void main_menu(app_state_t* app_state) {
   bool exit_con = false;
@@ -86,7 +84,7 @@ void main_menu(app_state_t* app_state) {
       break;
 
     case 'e':
-      // export to outfile
+      export_menu(*app_state);
       break;
 
     case 'f':

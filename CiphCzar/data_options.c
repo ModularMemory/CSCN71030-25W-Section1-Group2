@@ -7,24 +7,24 @@
 #include <ctype.h>
 
 void data_options_menu(app_state_t* app_state) {
-    char exit_con = false;
-
     do {
+        result_t new_filename = { 0 };
         char response = '\0';
         printf("\n-+-+-+-+-+ Data options +-+-+-+-+-\n");
         printf("A: Change input string\n");
-        printf("B: Change output file name \n");
-        printf("C: View current input/output name\n");
-        printf("D: Return to main menu\n\n");
+        printf("B: Change data output file name\n");
+        printf("C: Change recipe output file name\n");
+        printf("D: View input string & output filenames\n");
+        printf("E: Return to main menu\n\n");
 
-        while ('a' > response || 'd' < response) {
+        while ('a' > response || 'e' < response) {
             get_user_char(&response);
             response = tolower(response);
         }
 
         switch (response) {
         case 'a':
-            printf("Please enter the new input string, or hit enter to cancel\n");
+            printf("Please enter the new input string.\n");
 
             if (app_state->current_input.data != NULL)
                 printf("Current input string: \"%s\"\n", app_state->current_input.data);
@@ -45,10 +45,10 @@ void data_options_menu(app_state_t* app_state) {
             break;
 
         case 'b':
-            printf("Please enter the new output file's name, or hit enter to cancel\n");
+            printf("Please enter the new data output file's name.\n");
             printf("Current output file: \"%s\"\n", app_state->output_file);
 
-            result_t new_filename = get_user_string();
+           new_filename = get_user_string();
 
             if (!new_filename.success) {
                 fprintf(stderr, "Error: %s", new_filename.message);
@@ -63,23 +63,43 @@ void data_options_menu(app_state_t* app_state) {
             break;
 
         case 'c':
+            printf("Please enter the new recipe output file's name\n");
+            printf("Current output file: \"%s\"\n", app_state->output_recipe_file);
+
+            new_filename = get_user_string();
+
+            if (!new_filename.success) {
+                fprintf(stderr, "Error: %s", new_filename.message);
+                break;
+            }
+
+            if (app_state->output_recipe_file) {
+                free(app_state->output_recipe_file);
+            }
+
+            app_state->output_recipe_file = new_filename.data;
+            break;
+
+        case 'd':
             if (app_state->current_input.data != NULL)
                 printf("Current input string: \"%s\"\n", app_state->current_input.data);
             else 
                 printf("No input string.\n");
 
             if (app_state->output_file != NULL)
-                printf("Output file path: \"%s\"\n", app_state->output_file);
+                printf("Output data file path: \"%s\"\n", app_state->output_file);
             else
-                printf("No output file.\n");
+                printf("No data output file.\n");
+
+            if (app_state->output_recipe_file != NULL)
+                printf("Output recipe data file path: \"%s\"\n", app_state->output_recipe_file);
+            else
+                printf("No recipe output file.\n");
 
             break;
 
-        case 'd':
-            exit_con = true;
-            break;
+        case 'e':
+            return;
         }
-
-    } while (exit_con == false);
-    return;
+    } while (1);
 }

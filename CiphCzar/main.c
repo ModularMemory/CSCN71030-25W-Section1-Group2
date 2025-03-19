@@ -1,5 +1,7 @@
 #include "app_args.h"
 #include "app_state.h"
+#include "executor.h"
+#include "fileIO.h"
 #include "main_ui.h"
 #include "recipe.h"
 #include "utils.h"
@@ -23,13 +25,25 @@ int main(int argc, const char** argv) {
         return 1;
     }
 
-    if (!app_state.quiet) {
+    if (!app_state.headless) {
         // Run REPL
         print_intro();
         main_menu(&app_state);
     }
     else {
-        // TODO: Execute recipe and write to output file
+        if (!execute_recipe(&app_state)) {
+            destroy_algorithm_list();
+            destroy_app_state(app_state);
+            return 1;
+        }
+
+        status_t write_stat = write_data(app_state.output_file, app_state.current_output);
+        if (!write_stat.success) {
+            fprintf(stderr, "Error: %s\n", write_stat.message);
+            destroy_algorithm_list();
+            destroy_app_state(app_state);
+            return 1;
+        }
     }
 
     // Free memory

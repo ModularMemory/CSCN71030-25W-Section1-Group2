@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 typedef struct {
-    bool quiet;
+    bool headless;
     const char* recipe_file;
     const char* output_file;
     const char* default_input;
