@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "recipe_enumerator.h"
+#include "recipe.h"
 
 RESULT(recipe_enumerator_t) create_recipe_enumerator(const recipe_t recipe, const data_t input_data) {
     recipe_enumerator_t enumerator = (recipe_enumerator_t)malloc(sizeof(struct recipe_enumerator));
@@ -17,6 +18,7 @@ RESULT(recipe_enumerator_t) create_recipe_enumerator(const recipe_t recipe, cons
     data_t rolling_result = { 0 };
     status_t clone_stat = clone_data(input_data, &rolling_result);
     if (!clone_stat.success) {
+        destroy_recipe((recipe_t)recipe2_res.data);
         return to_result(clone_stat);
     }
 

@@ -41,10 +41,10 @@ void edit_recipe_menu(app_state_t* app_state) {
                 break;
             }
 
-            recipe_t wiped_recipe = recipe_remake.data;
+            recipe_t new_recipe = recipe_remake.data;
 
             destroy_recipe(app_state->recipe);
-            app_state->recipe = wiped_recipe;
+            app_state->recipe = new_recipe;
             break;
         }
 

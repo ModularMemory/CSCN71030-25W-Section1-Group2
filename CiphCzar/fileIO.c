@@ -86,7 +86,6 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 	if (!res_count.success) {
 		fclose(fp);
 		destroy_recipe(*recipe);
-		*recipe = NULL;
 		return res_count;
 	}
 	
@@ -96,7 +95,6 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		if (!res_alg_name.success) {
 			fclose(fp);
 			destroy_recipe(*recipe);
-			*recipe = NULL;
 			return res_alg_name;
 		}
 
@@ -116,7 +114,6 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		if (!res_clone.success) {
 			fclose(fp);
 			destroy_recipe(*recipe);
-			*recipe = NULL;
 			return res_clone;
 		}
 
@@ -130,7 +127,7 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 				if (!res_int.success) {
 					fclose(fp);
 					destroy_recipe(*recipe);
-					*recipe = NULL;
+					destroy_algorithm(alg);
 					return res_int;
 				}
 				current->arg_union.integer = data_int;
@@ -143,7 +140,7 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 				if (!res_flt.success) {
 					fclose(fp);
 					destroy_recipe(*recipe);
-					*recipe = NULL;
+					destroy_algorithm(alg);
 					return res_flt;
 				}
 				current->arg_union.integer = data_flt;
@@ -155,12 +152,11 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 				if (!res_str.success) {
 					fclose(fp);
 					destroy_recipe(*recipe);
-					*recipe = NULL;
+					destroy_algorithm(alg);
 					free(data_str);
 					return res_str;
 				}
 				current->arg_union.string = data_str;
-				free(data_str);
 			}
 			}
 			current = current->next;
@@ -175,9 +171,11 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 		if (!res_recipe.success) {
 			fclose(fp);
 			destroy_recipe(*recipe);
-			*recipe = NULL;
+			destroy_algorithm(alg);
 			return res_recipe;
 		}
+
+		destroy_algorithm(alg);
 	}
 	fclose(fp);
 	return status_ok();
