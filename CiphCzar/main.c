@@ -37,9 +37,9 @@ int main(int argc, const char** argv) {
             return 1;
         }
 
-        status_t write_state = write_data(app_state.output_file, app_state.current_output);
-        if (!write_state.success) {
-            fprintf(stderr, "Error: %s\n", write_state.message);
+        status_t write_stat = write_data(app_state.output_file, app_state.current_output);
+        if (!write_stat.success) {
+            fprintf(stderr, "Error: %s\n", write_stat.message);
             destroy_algorithm_list();
             destroy_app_state(app_state);
             return 1;
