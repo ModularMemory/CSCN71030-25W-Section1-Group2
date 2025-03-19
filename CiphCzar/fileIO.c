@@ -105,8 +105,11 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 			fclose(fp);
 			destroy_recipe(*recipe);
 			*recipe = NULL;
+			free(alg_name);
 			return to_status(alg_res);
 		}
+
+		free(alg_name);
 
 		algorithm_t alg;
 		status_t res_clone = clone_algorithm(*((algorithm_t*)alg_res.data), &alg);
@@ -153,9 +156,11 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 					fclose(fp);
 					destroy_recipe(*recipe);
 					*recipe = NULL;
+					free(data_str);
 					return res_str;
 				}
 				current->arg_union.string = data_str;
+				free(data_str);
 			}
 			}
 			current = current->next;
