@@ -1,6 +1,7 @@
 #include "get_args.h"
 #include "user_input.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 
 status_t get_algo_args(algorithm_t* alg) {
@@ -33,6 +34,7 @@ status_t get_algo_args(algorithm_t* alg) {
                 return status_error("Error when getting user input");
             }
 
+            free(cur->arg_union.string);
             cur->arg_union = (argument_union_t) { .string = get_str_result.data };
             break;
 
