@@ -1,6 +1,7 @@
 #include "app_args.h"
 #include "app_state.h"
 #include "executor.h"
+#include "fileIO.h"
 #include "main_ui.h"
 #include "recipe.h"
 #include "utils.h"
@@ -30,8 +31,19 @@ int main(int argc, const char** argv) {
         main_menu(&app_state);
     }
     else {
-        execute_recipe(&app_state);
-        // TODO: Write result to output file
+        if (!execute_recipe(&app_state)) {
+            destroy_algorithm_list();
+            destroy_app_state(app_state);
+            return 1;
+        }
+
+        status_t write_state = write_data(app_state.output_file, app_state.current_output);
+        if (!write_state.success) {
+            fprintf(stderr, "Error: %s\n", write_state.message);
+            destroy_algorithm_list();
+            destroy_app_state(app_state);
+            return 1;
+        }
     }
 
     // Free memory

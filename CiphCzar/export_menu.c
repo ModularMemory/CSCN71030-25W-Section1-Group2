@@ -28,7 +28,7 @@ void export_menu(const app_state_t state) {
             }
 
             write_state = write_data(state.output_file, state.current_output);
-            if (!write_state.success) fprintf(stderr, "%s", write_state.message);
+            if (!write_state.success) fprintf(stderr, "Error: %s\n", write_state.message);
             break;
 
         case 'b':
@@ -38,7 +38,7 @@ void export_menu(const app_state_t state) {
             }
 
             write_state = write_recipe(state.output_recipe_file, state.recipe);
-            if (!write_state.success) fprintf(stderr, "%s", write_state.message);
+            if (!write_state.success) fprintf(stderr, "Error: %s\n", write_state.message);
             break;
 
         case 'c':
