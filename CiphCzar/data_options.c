@@ -14,7 +14,7 @@ void data_options_menu(app_state_t* app_state) {
         printf("A: Change input string\n");
         printf("B: Change data output file name\n");
         printf("C: Change recipe output file name\n");
-        printf("D: View current input string & output filename\n");
+        printf("D: View input string & output filenames\n");
         printf("E: Return to main menu\n\n");
 
         while ('a' > response || 'e' < response) {
@@ -89,12 +89,12 @@ void data_options_menu(app_state_t* app_state) {
             if (app_state->output_file != NULL)
                 printf("Output data file path: \"%s\"\n", app_state->output_file);
             else
-                printf("No output file.\n");
+                printf("No data output file.\n");
 
             if (app_state->output_recipe_file != NULL)
                 printf("Output recipe data file path: \"%s\"\n", app_state->output_recipe_file);
             else
-                printf("No output file.\n");
+                printf("No recipe output file.\n");
 
             break;
 

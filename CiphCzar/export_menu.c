@@ -13,7 +13,7 @@ void export_menu(const app_state_t state) {
         printf("\n-+-+-+-+-+ Export options +-+-+-+-+-\n");
         printf("A: Write output to file\n");
         printf("B: Write recipe to file\n");
-        printf("c: Return to main menu\n\n");
+        printf("C: Return to main menu\n\n");
 
         while ('a' > response || 'c' < response) {
             get_user_char(&response);
@@ -22,12 +22,22 @@ void export_menu(const app_state_t state) {
 
         switch (response) {
         case 'a':
+            if (!state.output_file) {
+                printf("No data output file set, please set one and try again\n");
+                break;
+            }
+
             write_state = write_data(state.output_file, state.current_output);
             if (!write_state.success) fprintf(stderr, "%s", write_state.message);
             break;
 
         case 'b':
-            write_state = write_recipe(state.output_file, state.recipe);
+            if (!state.output_recipe_file) {
+                printf("No recipe output file set, please set one and try again\n");
+                break;
+            }
+
+            write_state = write_recipe(state.output_recipe_file, state.recipe);
             if (!write_state.success) fprintf(stderr, "%s", write_state.message);
             break;
 

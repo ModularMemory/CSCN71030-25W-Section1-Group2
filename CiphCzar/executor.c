@@ -13,6 +13,12 @@ void execute_recipe(app_state_t* app_state) {
         return;
     }
 
+    // If the input data is NULL then we dont execute
+    if (!app_state->current_input.data) {
+        printf("No input data.  Please navigate to the data options to set some.\n");
+        return;
+    }
+    
     recipe_enumerator_t enumerator = raw_enum.data;
 
     if (recipe_enumerator_is_empty(enumerator)) {
