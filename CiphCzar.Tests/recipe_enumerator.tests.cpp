@@ -119,7 +119,36 @@ namespace CiphCzarTests
             destroy_recipe_enumerator(enumerator);
         }
 
-        TEST_METHOD(Execute_Produces_Ouput)
+        TEST_METHOD(Execute_Updates_InternalData)
+        {
+            // Arrange
+            recipe_t recipe = create_test_recipe();
+            data_t test_data = create_test_data("ABC123 foo");
+            recipe_enumerator_t enumerator = create_test_enumerator(recipe, test_data);
+            
+            const char* expected = "NOP123 sbb";
+
+            // Act
+            char* data_before = enumerator->rolling_result.data;
+
+            Assert::IsTrue(recipe_enumerator_move_next(enumerator));
+            Assert::IsTrue(recipe_enumerator_execute(enumerator).success);
+
+            result_t actual_res = recipe_enumerator_current_result(enumerator);
+            const data_t* actual = (const data_t*)actual_res.data;
+
+            // Assert
+            Assert::IsTrue(actual_res.success);
+            Assert::IsNotNull(actual_res.data);
+            Assert::AreNotEqual(data_before, actual->data);
+
+            // Cleanup
+            destroy_recipe(recipe);
+            free(test_data.data);
+            destroy_recipe_enumerator(enumerator);
+        }
+
+        TEST_METHOD(Execute_Produces_CorrectOuput)
         {
             // Arrange
             recipe_t recipe = create_test_recipe();
@@ -133,14 +162,46 @@ namespace CiphCzarTests
             Assert::IsTrue(recipe_enumerator_execute(enumerator).success);
 
             result_t actual_res = recipe_enumerator_current_result(enumerator);
-            Assert::IsTrue(actual_res.success);
-            Assert::IsNotNull(actual_res.data);
-
             const data_t* actual = (const data_t*)actual_res.data;
 
             // Assert
+            Assert::IsTrue(actual_res.success);
+            Assert::IsNotNull(actual_res.data);
             for (size_t i = 0; i < actual->len; i++) {
                 Assert::AreEqual(expected[i], actual->data[i]);
+            }
+
+            // Cleanup
+            destroy_recipe(recipe);
+            free(test_data.data);
+            destroy_recipe_enumerator(enumerator);
+        }
+
+        TEST_METHOD(Create_DeepClonesInput)
+        {
+            // Arrange
+            recipe_t recipe = create_test_recipe();
+            size_t expected_count = get_recipe_count(recipe);
+            data_t test_data = create_test_data("ABC123 foo");
+
+            // Act
+            recipe_enumerator_t enumerator = create_test_enumerator(recipe, test_data);
+            size_t actual_count = get_recipe_count(enumerator->recipe);
+
+            // Assert
+            Assert::AreNotEqual(test_data.data, enumerator->rolling_result.data);
+            Assert::AreNotEqual((void*)recipe, (void*)enumerator->recipe);
+            Assert::AreEqual(expected_count, actual_count);
+
+            precipe_node_t expected_cur = recipe->head;
+            precipe_node_t actual_cur = enumerator->recipe->head;
+            for (size_t i = 0; i < expected_count; i++) {
+                Assert::IsNotNull(expected_cur);
+                Assert::IsNotNull(actual_cur);
+                Assert::AreNotEqual((void*)expected_cur, (void*)actual_cur);
+
+                expected_cur = expected_cur->next;
+                actual_cur = actual_cur->next;
             }
 
             // Cleanup
