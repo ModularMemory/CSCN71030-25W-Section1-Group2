@@ -164,6 +164,8 @@
     <ClCompile Include="..\CiphCzar\base64_common.c" />
     <ClCompile Include="..\CiphCzar\data.c" />
     <ClCompile Include="..\CiphCzar\from_base64.c" />
+    <ClCompile Include="..\CiphCzar\from_decimal.c" />
+    <ClCompile Include="..\CiphCzar\from_hex.c" />
     <ClCompile Include="..\CiphCzar\from_route_cipher.c" />
     <ClCompile Include="..\CiphCzar\num_conv_common.c" />
     <ClCompile Include="..\CiphCzar\random_case.c" />
@@ -199,6 +201,8 @@
     <ClInclude Include="..\CiphCzar\base64_common.h" />
     <ClInclude Include="..\CiphCzar\data.h" />
     <ClInclude Include="..\CiphCzar\from_base64.h" />
+    <ClInclude Include="..\CiphCzar\from_decimal.h" />
+    <ClInclude Include="..\CiphCzar\from_hex.h" />
     <ClInclude Include="..\CiphCzar\from_route_cipher.h" />
     <ClInclude Include="..\CiphCzar\num_conv_common.h" />
     <ClInclude Include="..\CiphCzar\random_case.h" />

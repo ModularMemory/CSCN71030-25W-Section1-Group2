@@ -139,6 +139,7 @@
     <ClCompile Include="executor.c" />
     <ClCompile Include="export_menu.c" />
     <ClCompile Include="from_base64.c" />
+    <ClCompile Include="from_decimal.c" />
     <ClCompile Include="from_hex.c" />
     <ClCompile Include="from_route_cipher.c" />
     <ClCompile Include="get_args.c" />
@@ -182,6 +183,7 @@
     <ClInclude Include="executor.h" />
     <ClInclude Include="export_menu.h" />
     <ClInclude Include="from_base64.h" />
+    <ClInclude Include="from_decimal.h" />
     <ClInclude Include="from_hex.h" />
     <ClInclude Include="from_route_cipher.h" />
     <ClInclude Include="get_args.h" />

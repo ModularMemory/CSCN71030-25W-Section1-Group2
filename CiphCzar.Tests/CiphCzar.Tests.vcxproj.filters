@@ -120,6 +120,12 @@
     <ClCompile Include="..\CiphCzar\trim_spaces.c">
       <Filter>Source Files\External</Filter>
     </ClCompile>
+    <ClCompile Include="..\CiphCzar\from_hex.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CiphCzar\from_decimal.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CiphCzar\utils.h">
@@ -207,6 +213,12 @@
       <Filter>Header Files\External</Filter>
     </ClInclude>
     <ClInclude Include="..\CiphCzar\trim_spaces.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\from_hex.h">
+      <Filter>Header Files\External</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CiphCzar\from_decimal.h">
       <Filter>Header Files\External</Filter>
     </ClInclude>
   </ItemGroup>

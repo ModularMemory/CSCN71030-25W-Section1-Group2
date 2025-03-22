@@ -3,6 +3,7 @@
 #include "algorithm.h"
 #include "alternating_case.h"
 #include "from_base64.h"
+#include "from_decimal.h"
 #include "from_hex.h"
 #include "from_route_cipher.h"
 #include "random_case.h"
@@ -35,6 +36,7 @@ static algorithm_t algorithms[] = {
     CREATE_ALG_TO_HEX(void),
     CREATE_ALG_FROM_HEX(void),
     CREATE_ALG_TO_DECIMAL(void),
+    CREATE_ALG_FROM_DECIMAL(void),
     CREATE_ALG_RANDOM_SHUFFLE(void),
     CREATE_ALG_TRIM_SPACES(void),
 };
