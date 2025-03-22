@@ -78,28 +78,19 @@ static size_t get_decoded_len(const data_t input) {
         return 0;
     }
 
+    // Get padding count
     size_t pad_count = 0;
-    if (input.data[input.len - 1] == padding) {
-        if (input.data[input.len - 2] == padding) {
-            pad_count = 2;
-        }
-        else {
-            pad_count = 1;
-        }
+    while (input.data[input.len - 1 - pad_count] == padding) {
+        pad_count++;
     }
 
     // Base64 decode produces 3 bytes for every 4 input chars
-    return input.len / 4 * 3 - pad_count;
+    return (input.len - pad_count) * 3 / 4;
 }
 
 status_t base64_decode(const data_t input, data_t* output) {
     const char* in_data = input.data;
     size_t in_len = input.len;
-
-    // If the input is not the correct length, abort
-    if (in_len % 4 != 0) {
-        return status_error("Input is not valid Base64.");
-    }
 
     // Alloc output
     size_t out_len = get_decoded_len(input);
@@ -128,9 +119,11 @@ status_t base64_decode(const data_t input, data_t* output) {
             bool found = false;
             for (int i = 0; i < 64; i++) {
                 if (base64_chars[i] == current) {
-                    found = true;
                     decode_buff[buff_off] = (char)i;
                     buff_off++;
+
+                    found = true;
+                    break;
                 }
             }
 
@@ -143,7 +136,9 @@ status_t base64_decode(const data_t input, data_t* output) {
 
         // Buffer is full, decode into output data
         if (buff_off == 4) {
-            out_data[out_off] = (decode_buff[0] << 2) | (decode_buff[1] >> 4);
+            if (decode_buff[0] != padding) {
+                out_data[out_off] = (decode_buff[0] << 2) | (decode_buff[1] >> 4);
+            }
 
             if (decode_buff[2] != padding) {
                 out_data[out_off + 1] = (decode_buff[1] << 4) | (decode_buff[2] >> 2);
@@ -155,6 +150,27 @@ status_t base64_decode(const data_t input, data_t* output) {
 
             out_off += 3;
             buff_off = 0;
+        }
+    }
+
+    // Decode the remaining bytes in the buffer
+    if (buff_off > 0) {
+        if (decode_buff[0] != padding) {
+            out_data[out_off] = buff_off == 1
+                ? (decode_buff[0] << 2)
+                : (decode_buff[0] << 2) | (decode_buff[1] >> 4);
+        }
+        
+        if (buff_off >= 2 && decode_buff[2] != padding) {
+            out_data[out_off + 1] = buff_off == 2
+                ? (decode_buff[1] << 4)
+                : (decode_buff[1] << 4) | (decode_buff[2] >> 2);
+        }
+
+        if (buff_off >= 3 && decode_buff[3] != padding) {
+            out_data[out_off + 2] = buff_off == 3
+                ? (decode_buff[2] << 6)
+                : (decode_buff[2] << 6) | decode_buff[3];
         }
     }
 

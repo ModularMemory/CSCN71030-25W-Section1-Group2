@@ -22,9 +22,9 @@ namespace CiphCzarTests
             // Act
             data_t actual;
             status_t stat = base64_encode(input, &actual);
-            Assert::IsTrue(stat.success);
 
             // Assert
+            Assert::IsTrue(stat.success);
             Assert::AreEqual(strlen(expected), actual.len);
             for (size_t i = 0; i < actual.len; i++) {
                 Assert::AreEqual(expected[i], actual.data[i]);
@@ -44,9 +44,9 @@ namespace CiphCzarTests
             // Act
             data_t actual;
             status_t stat = base64_encode(input, &actual);
-            Assert::IsTrue(stat.success);
 
             // Assert
+            Assert::IsTrue(stat.success);
             Assert::AreEqual(strlen(expected), actual.len);
             for (size_t i = 0; i < actual.len; i++) {
                 Assert::AreEqual(expected[i], actual.data[i]);
@@ -57,7 +57,6 @@ namespace CiphCzarTests
             free(actual.data);
         }
 
-
         TEST_METHOD(Decode_ProducesCorrectOutput_ForText)
         {
             // Arrange
@@ -67,9 +66,9 @@ namespace CiphCzarTests
             // Act
             data_t actual;
             status_t stat = base64_decode(input, &actual);
-            Assert::IsTrue(stat.success);
-
+            
             // Assert
+            Assert::IsTrue(stat.success);
             Assert::AreEqual(strlen(expected), actual.len);
             for (size_t i = 0; i < actual.len; i++) {
                 Assert::AreEqual(expected[i], actual.data[i]);
@@ -89,9 +88,9 @@ namespace CiphCzarTests
             // Act
             data_t actual;
             status_t stat = base64_decode(input, &actual);
-            Assert::IsTrue(stat.success);
 
             // Assert
+            Assert::IsTrue(stat.success);
             Assert::AreEqual(strlen(expected), actual.len);
             for (size_t i = 0; i < actual.len; i++) {
                 Assert::AreEqual(expected[i], actual.data[i]);
