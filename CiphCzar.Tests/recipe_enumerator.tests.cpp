@@ -156,17 +156,31 @@ namespace CiphCzarTests
             data_t test_data = create_test_data("ABC123 foo");
             recipe_enumerator_t enumerator = create_test_enumerator(recipe, test_data);
 
-            // Act
             _CrtMemState before = {0};
-            _CrtMemDumpStatistics(&before);
+            _CrtMemCheckpoint(&before);
 
+            // Act
             destroy_recipe_enumerator(enumerator);
 
             _CrtMemState after = {0};
-            _CrtMemDumpStatistics(&after);
+            _CrtMemCheckpoint(&after);
+
+            _CrtMemState diff = {0};
+            _CrtMemDifference(&diff, &before, &after);
+            _CrtMemDumpStatistics(&diff);
 
             // Assert
-            Assert::IsTrue(after.lCounts < before.lCounts);
+            bool found_diff = false;
+            for (size_t i = 0; i < _MAX_BLOCKS; i++) {
+                if (diff.lCounts[i] != 0) {
+                    // Check that the memory usage decreased
+                    Assert::IsTrue((int64_t)diff.lCounts[i] < 0);
+                    Assert::IsTrue((int64_t)diff.lSizes[i] < 0);
+                    found_diff = true;
+                }
+            }
+
+            Assert::IsTrue(found_diff);
 
             // Cleanup
             destroy_recipe(recipe);
