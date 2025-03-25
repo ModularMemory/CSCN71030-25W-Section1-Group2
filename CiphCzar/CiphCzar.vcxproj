@@ -177,6 +177,7 @@
     <ClInclude Include="app_state.h" />
     <ClInclude Include="argument.h" />
     <ClInclude Include="base64_common.h" />
+    <ClInclude Include="colour_codes.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="data_options.h" />
     <ClInclude Include="edit_recipe.h" />

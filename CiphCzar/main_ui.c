@@ -30,6 +30,7 @@
 #include "main_ui.h"
 #include "user_input.h"
 #include "export_menu.h"
+#include "colour_codes.h"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -48,12 +49,12 @@ void main_menu(app_state_t* app_state) {
   do {
     char response = '\0';
     printf("\n-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
-    printf("A: Edit recipe\n");
-    printf("B: Execute recipe\n");
-    printf("C: Print recipe result\n");
-    printf("D: Data options\n");
-    printf("E: Export to file\n");
-    printf("F: Exit\n\n");
+    printf(YELLOW "A: Edit recipe\n" RESET);
+    printf(YELLOW "B: Execute recipe\n" RESET);
+    printf(GREEN "C: Print recipe result\n" RESET);
+    printf(GREEN "D: Data options\n" RESET);
+    printf(CYAN "E: Export to file\n" RESET);
+    printf(RED "F: Exit\n\n" RESET);
 
     while ('a' > response || 'f' < response) {
       get_user_char(&response);
