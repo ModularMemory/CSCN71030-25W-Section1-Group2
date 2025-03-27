@@ -49,12 +49,12 @@ void main_menu(app_state_t* app_state) {
   do {
     char response = '\0';
     printf("\n-+-+-+-+-+ Main Menu +-+-+-+-+-\n");
-    printf(YELLOW "A: Edit recipe\n" RESET);
-    printf(YELLOW "B: Execute recipe\n" RESET);
-    printf(GREEN "C: Print recipe result\n" RESET);
-    printf(GREEN "D: Data options\n" RESET);
-    printf(CYAN "E: Export to file\n" RESET);
-    printf(RED "F: Exit\n\n" RESET);
+    printf(YELLOW "A: " RESET "Edit recipe\n");
+    printf(YELLOW "B: " RESET "Execute recipe\n");
+    printf(GREEN "C: " RESET "Print recipe result\n");
+    printf(GREEN "D: " RESET "Data options\n");
+    printf(CYAN "E: " RESET "Export to file\n");
+    printf(RED "F: " RESET "Exit\n\n");
 
     while ('a' > response || 'f' < response) {
       get_user_char(&response);
@@ -72,7 +72,7 @@ void main_menu(app_state_t* app_state) {
 
     case 'c':
       if (!app_state->current_output.data) {
-        printf("A recipe has not been executed yet.");
+        printf(RED "Error: " RESET "A recipe has not been executed yet.");
         break;
       }
 
