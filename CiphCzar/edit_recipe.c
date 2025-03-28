@@ -4,16 +4,17 @@
 #include "edit_recipe.h"
 #include "make_recipe.h"
 #include "user_input.h"
+#include "colour_codes.h"
 
 void edit_recipe_menu(app_state_t* app_state) {
     do {
         char response = '\0';
         printf("\n-+-+-+-+-+ Recipe options +-+-+-+-+-\n");
-        printf("A: Add to recipe\n");
-        printf("B: View current recipe\n");
-        printf("C: View current recipe w/ args\n");
-        printf("D: Delete current recipe\n");
-        printf("E: Return to main menu\n\n");
+        printf(YELLOW "A: " RESET "Add to recipe\n");
+        printf(YELLOW "B: " RESET "View current recipe\n");
+        printf(YELLOW "C: " RESET "View current recipe w/ args\n");
+        printf(YELLOW "D: " RESET "Delete current recipe\n");
+        printf(RED "E: " RESET "Return to main menu\n\n");
 
         while ('a' > response || 'e' < response) {
             get_user_char(&response);
@@ -37,7 +38,7 @@ void edit_recipe_menu(app_state_t* app_state) {
         {
             result_t recipe_remake = create_recipe();
             if (!recipe_remake.success) {
-                fprintf(stderr, "Error on recipe clear: %s\nRecipe left unchanged", recipe_remake.message);
+                fprintf(stderr, RED "Error on recipe clear: " RESET "%s\nRecipe left unchanged", recipe_remake.message);
                 break;
             }
 
