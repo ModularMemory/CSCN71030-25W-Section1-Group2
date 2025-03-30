@@ -17,8 +17,8 @@ void make_recipe(app_state_t* app_state) {
         printf("A: Return to recipe options\n");
         printf("B: View current recipe\n\n");
 
-        for (int i = 0; i < (int)alg_list.len; i++) {
-            printf("%2d: %s - %s\n", i + 1, alg_list.algorithms[i].name, alg_list.algorithms[i].description);
+        for (size_t i = 0; i < alg_list.len; i++) {
+            printf("%2zu: %s - %s\n", i + 1, alg_list.algorithms[i].name, alg_list.algorithms[i].description);
         }
 
         result_t raw_response = get_user_string();

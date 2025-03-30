@@ -143,7 +143,7 @@ status_t read_recipe(const char* filename, recipe_t* recipe) {
 					destroy_algorithm(alg);
 					return res_flt;
 				}
-				current->arg_union.integer = data_flt;
+				current->arg_union.fp = data_flt;
 			}
 			case STRING_ARG:
 			{
@@ -188,7 +188,7 @@ status_t write_recipe(const char* filename, const recipe_t recipe) {
 		return status_error("File could not be opened");
 	}
 
-	int recipe_count = get_recipe_count(recipe);
+	int recipe_count = (int)get_recipe_count(recipe);
 	status_t count_status = write_int_to_stream(fp, recipe_count);
 	if (!count_status.success) {
 		fclose(fp);
