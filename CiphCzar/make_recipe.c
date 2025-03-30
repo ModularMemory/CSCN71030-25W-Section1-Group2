@@ -5,6 +5,7 @@
 #include "get_args.h"
 #include "make_recipe.h"
 #include "user_input.h"
+#include "colour_codes.h"
 
 void make_recipe(app_state_t* app_state) {
     algorithm_list_t alg_list = get_algorithms();
@@ -14,8 +15,8 @@ void make_recipe(app_state_t* app_state) {
 
     do {
         printf("\n-+-+-+-+-+ Recipe builder +-+-+-+-+-\n");
-        printf("A: Return to recipe options\n");
-        printf("B: View current recipe\n\n");
+        printf(RED "A: " RESET "Return to recipe options\n");
+        printf(YELLOW "B:" RESET " View current recipe\n\n");
 
         for (size_t i = 0; i < alg_list.len; i++) {
             printf("%2zu: %s - %s\n", i + 1, alg_list.algorithms[i].name, alg_list.algorithms[i].description);
@@ -25,7 +26,7 @@ void make_recipe(app_state_t* app_state) {
 
         // Read error
         if (!raw_response.success) {
-            fprintf(stderr, "Error: %s", raw_response.message);
+            fprintf(stderr, RED "Error: " RESET "%s", raw_response.message);
             continue;
         }
 
